@@ -1,8 +1,9 @@
-from BaseClasses import Location #type: ignore
-from .Data import location_table, event_table
+from BaseClasses import Location
+from .Data import location_table, event_table, region_table
 from .Game import starting_index, game_name
 from typing import Any
 
+default_region = next(iter(region_table), "Menu")
 
 ######################
 # Generate location lookups
@@ -38,7 +39,7 @@ if not victory_names:
     location_table.append({
         "id": count + 1,
         "name": "__Manual Game Complete__",
-        "region": "Manual",
+        "region": default_region,
         "requires": []
         # "category": custom_victory_location["category"] if "category" in custom_victory_location else []
     })
@@ -90,5 +91,9 @@ for key, event in enumerate(event_table):
 ######################
 
 
-class ManualLocation(Location):
+class BotWLocation(Location):
     game = game_name
+
+
+# Temporary compatibility alias for existing imports.
+ManualLocation = BotWLocation

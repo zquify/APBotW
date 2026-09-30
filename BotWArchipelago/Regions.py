@@ -1,83 +1,155 @@
-from BaseClasses import Entrance, MultiWorld, Region, ItemClassification
-from .Helpers import is_category_enabled, is_location_enabled, is_event_enabled
+from BaseClasses import Entrance, ItemClassification, MultiWorld, Region
+from .Helpers import is_location_enabled, is_event_enabled
 from .Data import region_table
-from .Locations import ManualLocation, location_name_to_location
-from .Items import ManualItem
+from .Locations import BotWLocation, location_name_to_location
+from .Items import BotWItem
 from worlds.AutoWorld import World
 
 
-if not region_table:
-    region_table = {}
+regionMap = dict(region_table)
 
-regionMap = { **region_table }
-starting_regions = [ name for name in regionMap if "starting" in regionMap[name].keys() and regionMap[name]["starting"] ]
+# Use explicitly marked starting regions, or make every region
+# reachable from Menu when none are explicitly marked.
+starting_regions = [
+    name for name, data in regionMap.items()
+    if data.get("starting", False)
+]
 
-if len(starting_regions) == 0:
-    starting_regions = region_table.keys() # the Manual region connects to all user-defined regions automatically if you specify no starting regions
+if not starting_regions:
+    starting_regions = list(regionMap.keys())
 
-regionMap["Manual"] = {
-    "requires": [],
-    "connects_to": starting_regions
-}
+default_region = starting_regions[0] if starting_regions else "Menu"
 
 
 def create_regions(world: World, multiworld: MultiWorld, player: int):
-    # Create regions and assign locations to each region
-    for region in regionMap:
-        if "connects_to" not in regionMap[region]:
-            exit_array = None
-        else:
-            exit_array = regionMap[region]["connects_to"] or None
+    for region_name, region_data in regionMap.items():
+        exits = region_data.get("connects_to", []) or []
 
-        # safeguard for bad value at the end
-        if not exit_array:
-            exit_array = None
+        locations = [
+            location["name"]
+            for location in world.location_table
+            if location.get("region", default_region) == region_name
+            and is_location_enabled(multiworld, player, location)
+        ]
 
-        locations = []
-        for location in world.location_table:
-            if "region" in location and location["region"] == region:
-                if is_location_enabled(multiworld, player, location):
-                    locations.append(location["name"])
+        region = create_region(
+            world,
+            multiworld,
+            player,
+            region_name,
+            locations,
+            exits,
+        )
 
-        new_region = create_region(world, multiworld, player, region, locations, exit_array)
-        multiworld.regions += [new_region]
+        multiworld.regions.append(region)
 
-    menu = create_region(world, multiworld, player, "Menu", None, ["Manual"])
-    multiworld.regions += [menu]
-    menuConn = multiworld.get_entrance("MenuToManual", player)
-    menuConn.connect(multiworld.get_region("Manual", player))
+    # Menu is now the native starting region.
+    # There is no artificial "Manual" region anymore.
+    menu = Region("Menu", player, multiworld)
 
-    # Link regions together
-    for region in regionMap:
-        if "connects_to" in regionMap[region] and regionMap[region]["connects_to"]:
-            for linkedRegion in regionMap[region]["connects_to"]:
-                connection = multiworld.get_entrance(getConnectionName(region, linkedRegion), player)
-                connection.connect(multiworld.get_region(linkedRegion, player))
+    for region_name in starting_regions:
+        menu.exits.append(
+            Entrance(
+                player,
+                getConnectionName("Menu", region_name),
+                menu,
+            )
+        )
 
-def create_region(world: World, multiworld: MultiWorld, player: int, name: str, locations=None, exits=None):
-    ret = Region(name, player, multiworld)
+    multiworld.regions.append(menu)
 
-    if locations:
-        for location in locations:
-            loc_id = world.location_name_to_id.get(location, 0)
-            locationObj = ManualLocation(player, location, loc_id, ret)
-            if location_name_to_location[location].get('prehint'):
-                world.options.start_location_hints.value.add(location)
-            ret.locations.append(locationObj)
-    if exits:
-        for exit in exits:
-            ret.exits.append(Entrance(player, getConnectionName(name, exit), ret))
-    return ret
+    # Connect normal region exits.
+    for region_name, region_data in regionMap.items():
+        for linked_region in region_data.get("connects_to", []) or []:
+            connection = multiworld.get_entrance(
+                getConnectionName(region_name, linked_region),
+                player,
+            )
+
+            connection.connect(
+                multiworld.get_region(linked_region, player)
+            )
+
+    # Connect Menu to starting regions.
+    for region_name in starting_regions:
+        connection = multiworld.get_entrance(
+            getConnectionName("Menu", region_name),
+            player,
+        )
+
+        connection.connect(
+            multiworld.get_region(region_name, player)
+        )
+
+
+def create_region(
+    world: World,
+    multiworld: MultiWorld,
+    player: int,
+    name: str,
+    locations=None,
+    exits=None,
+):
+    region = Region(name, player, multiworld)
+
+    for location_name in locations or []:
+        location_id = world.location_name_to_id.get(location_name)
+
+        location = BotWLocation(
+            player,
+            location_name,
+            location_id,
+            region,
+        )
+
+        location_data = location_name_to_location[location_name]
+
+        if location_data.get("prehint"):
+            world.options.start_location_hints.value.add(location_name)
+
+        region.locations.append(location)
+
+    for exit_name in exits or []:
+        region.exits.append(
+            Entrance(
+                player,
+                getConnectionName(name, exit_name),
+                region,
+            )
+        )
+
+    return region
+
 
 def getConnectionName(entranceName: str, exitName: str):
     return entranceName + "To" + exitName
 
+
 def create_events(world: World, multiworld: MultiWorld, player: int):
-    for name, event in world.event_name_to_event.items():
+    for location_name, event in world.event_name_to_event.items():
         if not is_event_enabled(multiworld, player, event):
             continue
-        region = multiworld.get_region(event.get("region", "Manual"), player)
-        item = ManualItem(event["name"], ItemClassification.progression, None, player=player)
-        location = ManualLocation(player, name, None, region)
+
+        region_name = event.get("region", default_region)
+
+        region = multiworld.get_region(
+            region_name,
+            player,
+        )
+
+        item = BotWItem(
+            event["name"],
+            ItemClassification.progression,
+            None,
+            player=player,
+        )
+
+        location = BotWLocation(
+            player,
+            location_name,
+            None,
+            region,
+        )
+
         region.locations.append(location)
         location.place_locked_item(item)

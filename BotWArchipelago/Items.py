@@ -69,5 +69,9 @@ item_name_to_id = {name: id for id, name in item_id_to_name.items()}
 ######################
 
 
-class ManualItem(Item):
+class BotWItem(Item):
     game = game_name
+
+
+# Temporary compatibility alias for existing hooks and imports.
+ManualItem = BotWItem

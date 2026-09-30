@@ -19,7 +19,6 @@ from .Items import ManualItem
 from .Rules import set_rules
 from .Options import manual_options_data
 from .Helpers import is_item_enabled, get_option_value, remove_specific_item, resolve_yaml_option, format_state_prog_items_key, convert_string_to_itemclassification, ProgItemsCat
-from .container import APManualFile
 
 from BaseClasses import CollectionState, ItemClassification, Item
 from Options import PerGameCommonOptions
@@ -35,7 +34,8 @@ from .hooks.World import \
     before_extend_hint_information, after_extend_hint_information, \
     after_collect_item, after_remove_item, before_generate_early, hook_interpret_slot_data
 
-class ManualWorld(World):
+class BotWWorld(World):
+    topology_present = True
     __doc__ = world_description
     game: ClassVar[str] = game_name
     web = world_webworld
@@ -432,14 +432,6 @@ class ManualWorld(World):
         slot_data = after_fill_slot_data(slot_data, self, self.multiworld, self.player)
 
         return slot_data
-
-    def generate_output(self, output_directory: str):
-        filename = f"{self.multiworld.get_out_file_name_base(self.player)}.apmanual"
-        zf_path = os.path.join(output_directory, filename)
-
-        apmanual = APManualFile(zf_path, player=self.player, player_name=self.player_name)
-        apmanual.write()
-
 
     def write_spoiler(self, spoiler_handle):
         before_write_spoiler(self, self.multiworld, spoiler_handle)

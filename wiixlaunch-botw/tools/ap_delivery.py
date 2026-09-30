@@ -23,6 +23,11 @@ ITEM_MAP = {
     "Hearty Durian": ("Item_Fruit_D", 1),
     "Apple": ("Item_Fruit_A", 1),
     "Royal Broadsword": ("Weapon_Sword_024", 1),
+    
+    # Armor and shield delivery tests
+    "Rubber Helm": ("Armor_046_Head", 1),
+    "Champion's Tunic": ("Armor_116_Upper", 1),
+    "Royal Shield": ("Weapon_Shield_022", 1),
 }
 
 # Store delivery progress outside either source repository.
@@ -129,12 +134,21 @@ class APItemDelivery:
 
             mapping = ITEM_MAP.get(item_name)
             if mapping is None:
-                log.error(
-                    "No BotW actor mapping for AP item %r at index %d. "
-                    "Delivery paused; add a mapping before continuing.",
+                # Temporary behavior for the physical-item delivery test.
+                # Preserve unsupported items for implementation later.
+                deferred = self.progress.setdefault("deferred_items", [])
+                deferred.append({
+                    "index": index,
+                    "name": item_name,
+                })
+                self._advance()
+
+                log.warning(
+                    "Deferred unsupported AP item %r at index %d; "
+                    "continuing so physical-item delivery can be tested.",
                     item_name, index,
                 )
-                return False
+                continue
 
             actor_name, quantity = mapping
 
