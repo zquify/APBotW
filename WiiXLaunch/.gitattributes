@@ -1,0 +1,6 @@
+*.sh text eol=lf
+*.bat text eol=crlf
+*.wps -text
+*.nso -text
+subsdk9 -text
+*.npdm -text

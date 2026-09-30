@@ -1,0 +1,18 @@
+[submodule "vendor/exlaunch"]
+	path = vendor/exlaunch
+	url = https://github.com/shadowninja108/exlaunch.git
+[submodule "vendor/wut"]
+	path = vendor/wut
+	url = https://github.com/devkitPro/wut.git
+[submodule "vendor/wups"]
+	path = vendor/wups
+	url = https://github.com/wiiu-env/WiiUPluginSystem.git
+[submodule "vendor/libfunctionpatcher"]
+	path = vendor/libfunctionpatcher
+	url = https://github.com/wiiu-env/libfunctionpatcher.git
+[submodule "vendor/libnotifications"]
+	path = vendor/libnotifications
+	url = https://github.com/wiiu-env/libnotifications.git
+[submodule "vendor/wiixlaunch-botw"]
+	path = vendor/wiixlaunch-botw
+	url = https://github.com/TKVSC-Team/wiixlaunch-botw
