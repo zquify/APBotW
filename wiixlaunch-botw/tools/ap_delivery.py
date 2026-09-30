@@ -20,14 +20,17 @@ BRIDGE_TIMEOUT = 3.0
 #
 # Only add mappings after verifying the actor name in-game.
 ITEM_MAP = {
+    # Materials: value is quantity
     "Hearty Durian": ("Item_Fruit_D", 1),
     "Apple": ("Item_Fruit_A", 1),
-    "Royal Broadsword": ("Weapon_Sword_024", 1),
-    
-    # Armor and shield delivery tests
-    "Rubber Helm": ("Armor_046_Head", 1),
-    "Champion's Tunic": ("Armor_116_Upper", 1),
-    "Royal Shield": ("Weapon_Shield_022", 1),
+
+    # Weapons and shields: value is durability in hits
+    "Royal Broadsword": ("Weapon_Sword_024", 36),
+    "Royal Shield": ("Weapon_Shield_022", 29),
+
+    # Armor: value is dye color; 0 = default appearance
+    "Rubber Helm": ("Armor_046_Head", 0),
+    "Champion's Tunic": ("Armor_116_Upper", 0),
 }
 
 # Store delivery progress outside either source repository.
@@ -42,9 +45,6 @@ def send_to_bridge(actor_name, quantity=1):
     """Send one command and require an explicit bridge response."""
     if not actor_name or any(c.isspace() for c in actor_name):
         raise DeliveryError("Invalid BotW actor name")
-
-    if not isinstance(quantity, int) or quantity < 1:
-        raise DeliveryError("Quantity must be a positive integer")
 
     command = "GIVE {} {}\n".format(actor_name, quantity)
 
