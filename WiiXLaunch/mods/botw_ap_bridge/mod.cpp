@@ -1,6 +1,8 @@
 #include <cstdint>
 #include <wiixlaunch.hpp>
 #include <wiixlaunch/botw/game/pouch.hpp>
+#include <wiixlaunch/botw/game/events.hpp>
+#include <wiixlaunch/botw/game/gamedata.hpp>
 #include <stddef.h>
 
 extern "C" void* memset(void* destination, int value, size_t count)
@@ -120,6 +122,18 @@ static uint32_t g_TicksWaiting = 0;
 
 static char g_Command[128];
 static uint32_t g_CommandLength = 0;
+
+// Oman Au Shrine is Clear_Dungeon038.
+static volatile bool g_OmanAuPending = false;
+static volatile bool g_OmanAuChestPending = false;
+
+static void OnShrineComplete(int shrine)
+{
+    if (shrine == 38)
+    {
+        g_OmanAuPending = true;
+    }
+}
 
 static void CloseClient() {
     if (g_Client == kNoConnection) {
@@ -259,6 +273,91 @@ static bool ParseAndGrant()
         }
     }
 
+    // The Python client polls for a completed Oman Au Shrine check.
+    // Keep the check pending until the client acknowledges it.
+    if (tokenCount == 1 &&
+        LocalStringLength(tokens[0]) == 4 &&
+        tokens[0][0] == 'P' &&
+        tokens[0][1] == 'O' &&
+        tokens[0][2] == 'L' &&
+        tokens[0][3] == 'L')
+    {
+        if (g_OmanAuPending) {
+            g_Result = "CHECK OMAN_AU\n";
+        } else if (g_OmanAuChestPending) {
+            g_Result = "CHECK OMAN_AU_CHEST\n";
+        } else {
+            g_Result = "NONE\n";
+        }
+        return true;
+    }
+
+    // Acknowledge only after the Python client has submitted the check.
+    if (tokenCount == 2 &&
+        LocalStringLength(tokens[0]) == 3 &&
+        tokens[0][0] == 'A' &&
+        tokens[0][1] == 'C' &&
+        tokens[0][2] == 'K' &&
+        LocalStringLength(tokens[1]) == 8 &&
+        tokens[1][0] == 'O' &&
+        tokens[1][1] == 'M' &&
+        tokens[1][2] == 'A' &&
+        tokens[1][3] == 'N' &&
+        tokens[1][4] == '_' &&
+        tokens[1][5] == 'A' &&
+        tokens[1][6] == 'U' &&
+        tokens[1][7] == 'X')
+    {
+        // Deliberately do not acknowledge malformed or unknown checks.
+        g_Result = "ERR unknown check\n";
+        return false;
+    }
+
+    // Acknowledge the Oman Au chest check.
+    if (tokenCount == 2 &&
+        LocalStringLength(tokens[0]) == 3 &&
+        tokens[0][0] == 'A' &&
+        tokens[0][1] == 'C' &&
+        tokens[0][2] == 'K' &&
+        LocalStringLength(tokens[1]) == 13 &&
+        tokens[1][0] == 'O' &&
+        tokens[1][1] == 'M' &&
+        tokens[1][2] == 'A' &&
+        tokens[1][3] == 'N' &&
+        tokens[1][4] == '_' &&
+        tokens[1][5] == 'A' &&
+        tokens[1][6] == 'U' &&
+        tokens[1][7] == '_' &&
+        tokens[1][8] == 'C' &&
+        tokens[1][9] == 'H' &&
+        tokens[1][10] == 'E' &&
+        tokens[1][11] == 'S' &&
+        tokens[1][12] == 'T')
+    {
+        g_OmanAuChestPending = false;
+        g_Result = "OK\n";
+        return true;
+    }
+
+    if (tokenCount == 2 &&
+        LocalStringLength(tokens[0]) == 3 &&
+        tokens[0][0] == 'A' &&
+        tokens[0][1] == 'C' &&
+        tokens[0][2] == 'K' &&
+        LocalStringLength(tokens[1]) == 7 &&
+        tokens[1][0] == 'O' &&
+        tokens[1][1] == 'M' &&
+        tokens[1][2] == 'A' &&
+        tokens[1][3] == 'N' &&
+        tokens[1][4] == '_' &&
+        tokens[1][5] == 'A' &&
+        tokens[1][6] == 'U')
+    {
+        g_OmanAuPending = false;
+        g_Result = "OK\n";
+        return true;
+    }
+
     if (tokenCount < 2 || tokenCount > 5)
         return false;
 
@@ -358,7 +457,28 @@ static bool ParseAndGrant()
     return true;
 }
 
+static void ProbeOmanAuChestFlag() {
+    if (g_OmanAuChestPending) {
+        return;
+    }
+
+    bool opened = false;
+    const bool readable =
+        WiiXLaunch::BotW::GameData::GetFlagBool(
+            "CDungeon_TBox_Dungeon_Iron_3375369818",
+            opened
+        );
+
+    if (readable && opened) {
+        g_OmanAuChestPending = true;
+        g_Log("BotW AP bridge: Oman Au chest check pending");
+    }
+}
+
 extern "C" __attribute__((used)) void WiiXLaunch_ModTick() {
+    WiiXLaunch::BotW::Events::Tick();
+    ProbeOmanAuChestFlag();
+
     if (g_Listener == 0) {
         return;
     }
@@ -461,6 +581,10 @@ extern "C" __attribute__((used)) void WiiXLaunch_ModEntry() {
         g_Listener = 0;
         return;
     }
+
+    WiiXLaunch::BotW::Events::OnShrineComplete(
+        &OnShrineComplete
+    );
 
     g_RegisterTick(&WiiXLaunch_ModTick);
 

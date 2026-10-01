@@ -31,6 +31,7 @@ ITEM_MAP = {
     # Armor: value is dye color; 0 = default appearance
     "Rubber Helm": ("Armor_046_Head", 0),
     "Champion's Tunic": ("Armor_116_Upper", 0),
+    "Sheik's Mask": ("Armor_220_Head", 0),
 }
 
 # Store delivery progress outside either source repository.
