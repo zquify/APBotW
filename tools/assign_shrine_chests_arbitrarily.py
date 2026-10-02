@@ -90,13 +90,15 @@ def main():
         chest_number = int(match.group(2) or 1)
 
         ap_by_shrine[norm(shrine_name)].append({
+            "current_sequential_id": first_value(
+                row, "current_sequential_id"
+            ),
             "name": name,
             "shrine_name": shrine_name,
             "chest_number": chest_number,
             "region": first_value(row, "region"),
             "categories": first_value(row, "categories"),
         })
-
     # Index actors by dungeon. Prefer Static map records when the same
     # HashId appears in both Static and Dynamic files.
     actors_by_dungeon = defaultdict(dict)
@@ -221,6 +223,7 @@ def main():
             })
 
     registry_fields = [
+        "current_sequential_id",
         "name", "shrine_name", "chest_number", "region", "categories",
         "dungeon", "map_file", "actor_name", "hash_id_unsigned",
         "drop_actor", "drop_table", "persistent_flag_candidate",

@@ -3,6 +3,8 @@
 #include <wiixlaunch/botw/game/pouch.hpp>
 #include <wiixlaunch/botw/game/events.hpp>
 #include <wiixlaunch/botw/game/gamedata.hpp>
+#include "shrine_chest_registry.hpp"
+#include <cstdio>
 #include <stddef.h>
 
 extern "C" void* memset(void* destination, int value, size_t count)
@@ -123,9 +125,14 @@ static uint32_t g_TicksWaiting = 0;
 static char g_Command[128];
 static uint32_t g_CommandLength = 0;
 
-// Oman Au Shrine is Clear_Dungeon038.
+// Shrine completion is still handled by the existing event callback.
 static volatile bool g_OmanAuPending = false;
-static volatile bool g_OmanAuChestPending = false;
+
+// One pending flag per generated registry entry.
+static volatile bool
+    g_ShrineChestPending[BotWAP::kShrineChestRegistrySize] = {};
+
+static char g_DynamicResult[64];
 
 static void OnShrineComplete(int shrine)
 {
@@ -273,8 +280,6 @@ static bool ParseAndGrant()
         }
     }
 
-    // The Python client polls for a completed Oman Au Shrine check.
-    // Keep the check pending until the client acknowledges it.
     if (tokenCount == 1 &&
         LocalStringLength(tokens[0]) == 4 &&
         tokens[0][0] == 'P' &&
@@ -282,13 +287,31 @@ static bool ParseAndGrant()
         tokens[0][2] == 'L' &&
         tokens[0][3] == 'L')
     {
+        // Preserve the existing shrine-completion protocol.
         if (g_OmanAuPending) {
             g_Result = "CHECK OMAN_AU\n";
-        } else if (g_OmanAuChestPending) {
-            g_Result = "CHECK OMAN_AU_CHEST\n";
-        } else {
-            g_Result = "NONE\n";
+            return true;
         }
+
+        // Report the first pending chest using its registry index.
+        for (std::size_t i = 0;
+             i < BotWAP::kShrineChestRegistrySize;
+             ++i)
+        {
+            if (g_ShrineChestPending[i]) {
+                std::snprintf(
+                    g_DynamicResult,
+                    sizeof(g_DynamicResult),
+                    "CHECK CHEST %u\n",
+                    static_cast<unsigned int>(i)
+                );
+
+                g_Result = g_DynamicResult;
+                return true;
+            }
+        }
+
+        g_Result = "NONE\n";
         return true;
     }
 
@@ -313,28 +336,29 @@ static bool ParseAndGrant()
         return false;
     }
 
-    // Acknowledge the Oman Au chest check.
-    if (tokenCount == 2 &&
+    // Acknowledge a shrine chest check by registry index.
+    if (tokenCount == 3 &&
         LocalStringLength(tokens[0]) == 3 &&
         tokens[0][0] == 'A' &&
         tokens[0][1] == 'C' &&
         tokens[0][2] == 'K' &&
-        LocalStringLength(tokens[1]) == 13 &&
-        tokens[1][0] == 'O' &&
-        tokens[1][1] == 'M' &&
-        tokens[1][2] == 'A' &&
-        tokens[1][3] == 'N' &&
-        tokens[1][4] == '_' &&
-        tokens[1][5] == 'A' &&
-        tokens[1][6] == 'U' &&
-        tokens[1][7] == '_' &&
-        tokens[1][8] == 'C' &&
-        tokens[1][9] == 'H' &&
-        tokens[1][10] == 'E' &&
-        tokens[1][11] == 'S' &&
-        tokens[1][12] == 'T')
+        LocalStringLength(tokens[1]) == 5 &&
+        tokens[1][0] == 'C' &&
+        tokens[1][1] == 'H' &&
+        tokens[1][2] == 'E' &&
+        tokens[1][3] == 'S' &&
+        tokens[1][4] == 'T')
     {
-        g_OmanAuChestPending = false;
+        std::uint32_t index = 0;
+
+        if (!ParseUnsigned32(tokens[2], index) ||
+            index >= BotWAP::kShrineChestRegistrySize)
+        {
+            g_Result = "ERR unknown check\n";
+            return false;
+        }
+
+        g_ShrineChestPending[index] = false;
         g_Result = "OK\n";
         return true;
     }
@@ -457,27 +481,36 @@ static bool ParseAndGrant()
     return true;
 }
 
-static void ProbeOmanAuChestFlag() {
-    if (g_OmanAuChestPending) {
-        return;
-    }
+static void ProbeShrineChestFlags()
+{
+    for (std::size_t i = 0;
+         i < BotWAP::kShrineChestRegistrySize;
+         ++i)
+    {
+        const auto& entry = BotWAP::kShrineChestRegistry[i];
 
-    bool opened = false;
-    const bool readable =
-        WiiXLaunch::BotW::GameData::GetFlagBool(
-            "CDungeon_TBox_Dungeon_Iron_3375369818",
-            opened
-        );
+        // Never activate provisional assignments automatically.
+        if (!entry.verified || g_ShrineChestPending[i])
+            continue;
 
-    if (readable && opened) {
-        g_OmanAuChestPending = true;
-        g_Log("BotW AP bridge: Oman Au chest check pending");
+        bool opened = false;
+
+        const bool readable =
+            WiiXLaunch::BotW::GameData::GetFlagBool(
+                entry.persistent_flag,
+                opened
+            );
+
+        if (readable && opened) {
+            g_ShrineChestPending[i] = true;
+            g_Log("BotW AP bridge: shrine chest check pending");
+        }
     }
 }
 
 extern "C" __attribute__((used)) void WiiXLaunch_ModTick() {
     WiiXLaunch::BotW::Events::Tick();
-    ProbeOmanAuChestFlag();
+    ProbeShrineChestFlags();
 
     if (g_Listener == 0) {
         return;
