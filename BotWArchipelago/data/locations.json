@@ -2126,13 +2126,19 @@
       "requires": "|Progressive Armor Upgrade:2| AND |@Upgradeable Head| AND |@Upgradeable Body| AND |@Upgradeable Legs|"
     },
     {
-      "name": "Voo Lota Shrine - Chest",
+      "name": "Voo Lota Shrine - Chest 1",
       "region": "Tabantha",
       "category": [
         "Tabantha Shrines",
         "Shrine Chests"
       ],
       "requires": "|Vah Medoh Cleared|"
+    },
+    {
+      "name": "Voo Lota Shrine - Chest 2",
+      "region": "Tabantha",
+      "category": ["Tabantha Shrines", "Shrine Chests"],
+      "requires": ""
     },
     {
       "name": "Voo Lota Shrine",
@@ -3043,7 +3049,7 @@
       "requires": "|Magnesis| AND |Progressive Stasis|"
     },
     {
-      "name": "To Quoma Shrine - Chest",
+      "name": "To Quomo Shrine - Chest",
       "region": "Hebra",
       "category": [
         "Hebra Shrines",
@@ -3052,7 +3058,7 @@
       "requires": "|Cryonis|"
     },
     {
-      "name": "To Quoma Shrine",
+      "name": "To Quomo Shrine",
       "region": "Hebra",
       "category": [
         "Hebra Shrines"

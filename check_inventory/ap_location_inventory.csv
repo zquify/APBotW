@@ -1,0 +1,454 @@
+﻿current_sequential_id,name,region,categories,check_type,match_status
+1,Great Plateau Tower,Great Plateau,Sheikah Towers,other,not_mapped_yet
+2,Ja Baij Shrine - Chest 1,Great Plateau,Great Plateau Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+3,Ja Baij Shrine - Chest 2,Great Plateau,Great Plateau Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+4,Ja Baij Shrine,Great Plateau,Great Plateau Shrines,shrine_completion,not_mapped_yet
+5,Keh Namut Shrine - Chest,Great Plateau,Great Plateau Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+6,Keh Namut Shrine,Great Plateau,Great Plateau Shrines,shrine_completion,not_mapped_yet
+7,Oman Au Shrine - Chest,Great Plateau,Great Plateau Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+8,Oman Au Shrine,Great Plateau,Great Plateau Shrines,shrine_completion,not_mapped_yet
+9,Owa Daim Shrine - Chest,Great Plateau,Great Plateau Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+10,Owa Daim Shrine,Great Plateau,Great Plateau Shrines,shrine_completion,not_mapped_yet
+11,Yowaka Ita Shrine - Chest 1,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+12,Yowaka Ita Shrine - Chest 2,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+13,Yowaka Ita Shrine,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+14,Rohta Chigah Shrine - Chest,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+15,Rohta Chigah Shrine,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+16,Ruvo Korbah Shrine - Chest 1,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+17,Ruvo Korbah Shrine - Chest 2,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+18,Ruvo Korbah Shrine - Chest 3,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+19,Ruvo Korbah Shrine,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+20,Etsu Korima Shrine - Chest,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+21,Etsu Korima Shrine,Great Plateau (One-Hit Obliterator),Great Plateau Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+22,Central Tower,Central Hyrule,Sheikah Towers,other,not_mapped_yet
+23,Dah Kaso Shrine - Chest,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+24,Dah Kaso Shrine,Central Hyrule,Central Hyrule Shrines,shrine_completion,not_mapped_yet
+25,Kaam Ya'tak Shrine - Chest 1,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+26,Kaam Ya'tak Shrine - Chest 2,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+27,Kaam Ya'tak Shrine - Chest 3,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+28,Kaam Ya'tak Shrine - Chest 4,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+29,Kaam Ya'tak Shrine - Chest 5,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+30,Kaam Ya'tak Shrine,Central Hyrule,Central Hyrule Shrines,shrine_completion,not_mapped_yet
+31,Katah Chuki Shrine - Chest,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+32,Katah Chuki Shrine,Central Hyrule,Central Hyrule Shrines,shrine_completion,not_mapped_yet
+33,Namika Ozz Shrine - Chest,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+34,Namika Ozz Shrine,Central Hyrule,Central Hyrule Shrines,shrine_completion,not_mapped_yet
+35,Noya Neha Shrine - Chest,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+36,Noya Neha Shrine,Central Hyrule,Central Hyrule Shrines,shrine_completion,not_mapped_yet
+37,Rota Ooh Shrine - Chest 1,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+38,Rota Ooh Shrine - Chest 2,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+39,Rota Ooh Shrine,Central Hyrule,Central Hyrule Shrines,shrine_completion,not_mapped_yet
+40,Saas Ko'sah Shrine - Chest,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+41,Saas Ko'sah Shrine,Central Hyrule,Central Hyrule Shrines,shrine_completion,not_mapped_yet
+42,Wahgo Katta Shrine - Chest,Central Hyrule,Central Hyrule Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+43,Wahgo Katta Shrine,Central Hyrule,Central Hyrule Shrines,shrine_completion,not_mapped_yet
+44,Dueling Peaks Tower,Dueling Peaks,Sheikah Towers,other,not_mapped_yet
+45,Bosh Kala Shrine - Chest 1,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+46,Bosh Kala Shrine - Chest 2,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+47,Bosh Kala Shrine,Dueling Peaks,Dueling Peaks Shrines,shrine_completion,not_mapped_yet
+48,Ha Dahamar Shrine - Chest,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+49,Ha Dahamar Shrine,Dueling Peaks,Dueling Peaks Shrines,shrine_completion,not_mapped_yet
+50,Hila Rao Shrine - Chest 1,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+51,Hila Rao Shrine - Chest 2,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+52,Hila Rao Shrine,Dueling Peaks,Dueling Peaks Shrines,shrine_completion,not_mapped_yet
+53,Lakna Rokee Shrine - Chest,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+54,Lakna Rokee Shrine,Dueling Peaks,Dueling Peaks Shrines,shrine_completion,not_mapped_yet
+55,Ree Dahee Shrine - Chest,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+56,Ree Dahee Shrine,Dueling Peaks,Dueling Peaks Shrines,shrine_completion,not_mapped_yet
+57,Shee Vaneer Shrine - Chest,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+58,Shee Vaneer Shrine,Dueling Peaks,Dueling Peaks Shrines,shrine_completion,not_mapped_yet
+59,Shee Venath Shrine - Chest,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+60,Shee Venath Shrine,Dueling Peaks,Dueling Peaks Shrines,shrine_completion,not_mapped_yet
+61,Ta'loh Naeg Shrine - Chest 1,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+62,Ta'loh Naeg Shrine - Chest 2,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+63,Ta'loh Naeg Shrine - Chest 3,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+64,Ta'loh Naeg Shrine,Dueling Peaks,Dueling Peaks Shrines,shrine_completion,not_mapped_yet
+65,Toto Sah Shrine - Chest 1,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+66,Toto Sah Shrine - Chest 2,Dueling Peaks,Dueling Peaks Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+67,Toto Sah Shrine,Dueling Peaks,Dueling Peaks Shrines,shrine_completion,not_mapped_yet
+68,Hateno Tower,Necluda,Sheikah Towers,other,not_mapped_yet
+69,Chaas Qeta Shrine - Chest,Necluda,Necluda Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+70,Chaas Qeta Shrine,Necluda,Necluda Shrines,shrine_completion,not_mapped_yet
+71,Dow Na'eh Shrine - Chest 1,Necluda,Necluda Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+72,Dow Na'eh Shrine - Chest 2,Necluda,Necluda Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+73,Dow Na'eh Shrine - Chest 3,Necluda,Necluda Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+74,Dow Na'eh Shrine,Necluda,Necluda Shrines,shrine_completion,not_mapped_yet
+75,Jitan Sa'mi Shrine - Chest,Necluda,Necluda Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+76,Jitan Sa'mi Shrine,Necluda,Necluda Shrines,shrine_completion,not_mapped_yet
+77,Kam Urog Shrine - Chest 1,Necluda,Necluda Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+78,Kam Urog Shrine - Chest 2,Necluda,Necluda Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+79,Kam Urog Shrine,Necluda,Necluda Shrines,shrine_completion,not_mapped_yet
+80,Mezza Lo Shrine - Chest,Necluda,Necluda Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+81,Mezza Lo Shrine,Necluda,Necluda Shrines,shrine_completion,not_mapped_yet
+82,Myahm Agana Shrine - Chest,Necluda,Necluda Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+83,Myahm Agana Shrine,Necluda,Necluda Shrines,shrine_completion,not_mapped_yet
+84,Tahno O'ah Shrine - Chest,Necluda,Necluda Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+85,Tahno O'ah Shrine,Necluda,Necluda Shrines,shrine_completion,not_mapped_yet
+86,Faron Tower,Faron,Sheikah Towers,other,not_mapped_yet
+87,Kah Yah Shrine - Chest 1,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+88,Kah Yah Shrine - Chest 2,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+89,Kah Yah Shrine,Faron,Faron Shrines,shrine_completion,not_mapped_yet
+90,Korgu Chideh Shrine - Chest,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+91,Korgu Chideh Shrine,Faron,Faron Shrines,shrine_completion,not_mapped_yet
+92,Muwo Jeem Shrine - Chest,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+93,Muwo Jeem Shrine,Faron,Faron Shrines,shrine_completion,not_mapped_yet
+94,Qukah Nata Shrine - Chest,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+95,Qukah Nata Shrine,Faron,Faron Shrines,shrine_completion,not_mapped_yet
+96,Shoda Sah Shrine - Chest 1,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+97,Shoda Sah Shrine - Chest 2,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+98,Shoda Sah Shrine,Faron,Faron Shrines,shrine_completion,not_mapped_yet
+99,Shai Utoh Shrine - Chest 1,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+100,Shai Utoh Shrine - Chest 2,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+101,Shai Utoh Shrine,Faron,Faron Shrines,shrine_completion,not_mapped_yet
+102,Tawa Jinn Shrine - Chest,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+103,Tawa Jinn Shrine,Faron,Faron Shrines,shrine_completion,not_mapped_yet
+104,Yah Rin Shrine - Chest 1,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+105,Yah Rin Shrine - Chest 2,Faron,Faron Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+106,Yah Rin Shrine,Faron,Faron Shrines,shrine_completion,not_mapped_yet
+107,Lanayru Tower,Lanayru,Sheikah Towers,other,not_mapped_yet
+108,Dagah Keek Shrine - Chest,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+109,Dagah Keek Shrine,Lanayru,Lanayru Shrines,shrine_completion,not_mapped_yet
+110,Daka Tuss Shrine - Chest,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+111,Daka Tuss Shrine,Lanayru,Lanayru Shrines,shrine_completion,not_mapped_yet
+112,Kah Mael Shrine - Chest,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+113,Kah Mael Shrine,Lanayru,Lanayru Shrines,shrine_completion,not_mapped_yet
+114,Kaya Wan Shrine - Chest 1,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+115,Kaya Wan Shrine - Chest 2,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+116,Kaya Wan Shrine,Lanayru,Lanayru Shrines,shrine_completion,not_mapped_yet
+117,Ne'ez Yohma Shrine - Chest,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+118,Ne'ez Yohma Shrine,Lanayru,Lanayru Shrines,shrine_completion,not_mapped_yet
+119,Rucco Maag Shrine - Chest 1,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+120,Rucco Maag Shrine - Chest 2,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+121,Rucco Maag Shrine,Lanayru,Lanayru Shrines,shrine_completion,not_mapped_yet
+122,Shai Yota Shrine - Chest,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+123,Shai Yota Shrine,Lanayru,Lanayru Shrines,shrine_completion,not_mapped_yet
+124,Sheh Rata Shrine - Chest 1,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+125,Sheh Rata Shrine - Chest 2,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+126,Sheh Rata Shrine,Lanayru,Lanayru Shrines,shrine_completion,not_mapped_yet
+127,Soh Kofi Shrine - Chest,Lanayru,Lanayru Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+128,Soh Kofi Shrine,Lanayru,Lanayru Shrines,shrine_completion,not_mapped_yet
+129,Sato Koda Shrine - Chest,Lanayru,Lanayru Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+130,Sato Koda Shrine,Lanayru,Lanayru Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+131,Mah Eliya Shrine - Chest,Lanayru,Lanayru Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+132,Mah Eliya Shrine,Lanayru,Lanayru Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+133,Kee Dafunia Shrine - Chest,Lanayru,Lanayru Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+134,Kee Dafunia Shrine,Lanayru,Lanayru Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+135,Eldin Tower,Eldin,Sheikah Towers,other,not_mapped_yet
+136,Daqa Koh Shrine - Chest,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+137,Daqa Koh Shrine,Eldin,Eldin Shrines,shrine_completion,not_mapped_yet
+138,Gorae Torr Shrine - Chest,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+139,Gorae Torr Shrine,Eldin,Eldin Shrines,shrine_completion,not_mapped_yet
+140,Kayra Mah Shrine - Chest 1,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+141,Kayra Mah Shrine - Chest 2,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+142,Kayra Mah Shrine,Eldin,Eldin Shrines,shrine_completion,not_mapped_yet
+143,Mo'a Keet Shrine - Chest 1,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+144,Mo'a Keet Shrine - Chest 2,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+145,Mo'a Keet Shrine,Eldin,Eldin Shrines,shrine_completion,not_mapped_yet
+146,Qua Raym Shrine - Chest 1,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+147,Qua Raym Shrine - Chest 2,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+148,Qua Raym Shrine,Eldin,Eldin Shrines,shrine_completion,not_mapped_yet
+149,Sah Dahaj Shrine - Chest,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+150,Sah Dahaj Shrine,Eldin,Eldin Shrines,shrine_completion,not_mapped_yet
+151,Shae Mo'sah Shrine - Chest 1,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+152,Shae Mo'sah Shrine - Chest 2,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+153,Shae Mo'sah Shrine - Chest 3,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+154,Shae Mo'sah Shrine - Chest 4,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+155,Shae Mo'sah Shrine,Eldin,Eldin Shrines,shrine_completion,not_mapped_yet
+156,Shora Hah Shrine - Chest 1,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+157,Shora Hah Shrine - Chest 2,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+158,Shora Hah Shrine - Chest 3,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+159,Shora Hah Shrine - Chest 4,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+160,Shora Hah Shrine - Chest 5,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+161,Shora Hah Shrine - Chest 6,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+162,Shora Hah Shrine,Eldin,Eldin Shrines,shrine_completion,not_mapped_yet
+163,Tah Muhl Shrine - Chest 1,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+164,Tah Muhl Shrine - Chest 2,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+165,Tah Muhl Shrine - Chest 3,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+166,Tah Muhl Shrine - Chest 4,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+167,Tah Muhl Shrine,Eldin,Eldin Shrines,shrine_completion,not_mapped_yet
+168,Rinu Honika Shrine - Chest,Eldin,Eldin Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+169,Rinu Honika Shrine,Eldin,Eldin Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+170,Kamia Omuna Shrine - Chest,Eldin,Eldin Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+171,Kamia Omuna Shrine,Eldin,Eldin Shrines,shrine_completion,not_mapped_yet
+172,Sharo Lun Shrine - Chest,Eldin,Eldin Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+173,Sharo Lun Shrine,Eldin,Eldin Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+174,Akkala Tower,Akkala,Sheikah Towers,other,not_mapped_yet
+175,Dah Hesho Shrine - Chest,Akkala,Akkala Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+176,Dah Hesho Shrine,Akkala,Akkala Shrines,shrine_completion,not_mapped_yet
+177,Katosa Aug Shrine - Chest,Akkala,Akkala Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+178,Katosa Aug Shrine,Akkala,Akkala Shrines,shrine_completion,not_mapped_yet
+179,Ke'nai Shakah Shrine - Chest,Akkala,Akkala Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+180,Ke'nai Shakah Shrine,Akkala,Akkala Shrines,shrine_completion,not_mapped_yet
+181,Ritaag Zumo Shrine - Chest,Akkala,Akkala Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+182,Ritaag Zumo Shrine,Akkala,Akkala Shrines,shrine_completion,not_mapped_yet
+183,Tu Ka'loh Shrine - Chest,Akkala,Akkala Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+184,Tu Ka'loh Shrine,Akkala,Akkala Shrines,shrine_completion,not_mapped_yet
+185,Tutsuwa Nima Shrine - Chest,Akkala,Akkala Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+186,Tutsuwa Nima Shrine,Akkala,Akkala Shrines,shrine_completion,not_mapped_yet
+187,Ze Kasho Shrine - Chest,Akkala,Akkala Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+188,Ze Kasho Shrine,Akkala,Akkala Shrines,shrine_completion,not_mapped_yet
+189,Zuna Kai Shrine - Chest,Akkala,Akkala Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+190,Zuna Kai Shrine,Akkala,Akkala Shrines,shrine_completion,not_mapped_yet
+191,Woodland Tower,Great Hyrule Forest,Sheikah Towers,other,not_mapped_yet
+192,Daag Chokah Shrine - Chest,Great Hyrule Forest,Great Hyrule Forest Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+193,Daag Chokah Shrine,Great Hyrule Forest,Great Hyrule Forest Shrines,shrine_completion,not_mapped_yet
+194,Keo Ruug Shrine - Chest,Great Hyrule Forest,Great Hyrule Forest Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+195,Keo Ruug Shrine,Great Hyrule Forest,Great Hyrule Forest Shrines,shrine_completion,not_mapped_yet
+196,Ketoh Wawai Shrine - Chest,Great Hyrule Forest,Great Hyrule Forest Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+197,Ketoh Wawai Shrine,Great Hyrule Forest,Great Hyrule Forest Shrines,shrine_completion,not_mapped_yet
+198,Kuhn Sidajj Shrine - Chest,Great Hyrule Forest,Great Hyrule Forest Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+199,Kuhn Sidajj Shrine,Great Hyrule Forest,Great Hyrule Forest Shrines,shrine_completion,not_mapped_yet
+200,Maag Halan Shrine - Chest,Great Hyrule Forest,Great Hyrule Forest Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+201,Maag Halan Shrine,Great Hyrule Forest,Great Hyrule Forest Shrines,shrine_completion,not_mapped_yet
+202,Mirro Shaz Shrine - Chest 1,Great Hyrule Forest,Great Hyrule Forest Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+203,Mirro Shaz Shrine - Chest 2,Great Hyrule Forest,Great Hyrule Forest Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+204,Mirro Shaz Shrine - Chest 3,Great Hyrule Forest,Great Hyrule Forest Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+205,Mirro Shaz Shrine,Great Hyrule Forest,Great Hyrule Forest Shrines,shrine_completion,not_mapped_yet
+206,Monya Toma Shrine - Chest,Great Hyrule Forest,Great Hyrule Forest Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+207,Monya Toma Shrine,Great Hyrule Forest,Great Hyrule Forest Shrines,shrine_completion,not_mapped_yet
+208,Rona Kachta Shrine - Chest,Great Hyrule Forest,Great Hyrule Forest Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+209,Rona Kachta Shrine,Great Hyrule Forest,Great Hyrule Forest Shrines,shrine_completion,not_mapped_yet
+210,Lake Tower,Lake Hylia,Sheikah Towers,other,not_mapped_yet
+211,Ishto Soh Shrine - Chest 1,Lake Hylia,Lake Hylia Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+212,Ishto Soh Shrine - Chest 2,Lake Hylia,Lake Hylia Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+213,Ishto Soh Shrine,Lake Hylia,Lake Hylia Shrines,shrine_completion,not_mapped_yet
+214,Ka'o Makagh Shrine - Chest 1,Lake Hylia,Lake Hylia Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+215,Ka'o Makagh Shrine - Chest 2,Lake Hylia,Lake Hylia Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+216,Ka'o Makagh Shrine - Chest 3,Lake Hylia,Lake Hylia Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+217,Ka'o Makagh Shrine,Lake Hylia,Lake Hylia Shrines,shrine_completion,not_mapped_yet
+218,Pumaag Nitae Shrine - Chest,Lake Hylia,Lake Hylia Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+219,Pumaag Nitae Shrine,Lake Hylia,Lake Hylia Shrines,shrine_completion,not_mapped_yet
+220,Shae Katha Shrine - Chest,Lake Hylia,Lake Hylia Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+221,Shae Katha Shrine,Lake Hylia,Lake Hylia Shrines,shrine_completion,not_mapped_yet
+222,Shoqa Tatone Shrine - Chest,Lake Hylia,Lake Hylia Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+223,Shoqa Tatone Shrine,Lake Hylia,Lake Hylia Shrines,shrine_completion,not_mapped_yet
+224,Ya Naga Shrine - Chest,Lake Hylia,Lake Hylia Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+225,Ya Naga Shrine,Lake Hylia,Lake Hylia Shrines,shrine_completion,not_mapped_yet
+226,Tabantha Tower,Tabantha,Sheikah Towers,other,not_mapped_yet
+227,Akh Va'quot Shrine - Chest 1,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+228,Akh Va'quot Shrine - Chest 2,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+229,Akh Va'quot Shrine - Chest 3,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+230,Akh Va'quot Shrine,Tabantha,Tabantha Shrines,shrine_completion,not_mapped_yet
+231,Bareeda Naag Shrine - Chest 1,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+232,Bareeda Naag Shrine - Chest 2,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+233,Bareeda Naag Shrine,Tabantha,Tabantha Shrines,shrine_completion,not_mapped_yet
+234,Kah Okeo Shrine - Chest 1,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+235,Kah Okeo Shrine - Chest 2,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+236,Kah Okeo Shrine - Chest 3,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+237,Kah Okeo Shrine - Chest 4,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+238,Kah Okeo Shrine - Chest 5,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+239,Kah Okeo Shrine - Chest 6,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+240,Kah Okeo Shrine,Tabantha,Tabantha Shrines,shrine_completion,not_mapped_yet
+241,Sha Warvo Shrine - Chest 1,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+242,Sha Warvo Shrine - Chest 2,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+243,Sha Warvo Shrine,Tabantha,Tabantha Shrines,shrine_completion,not_mapped_yet
+244,Tena Ko'sah Shrine - Chest,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+245,Tena Ko'sah Shrine,Tabantha,Tabantha Shrines,shrine_completion,not_mapped_yet
+246,Voo Lota Shrine - Chest 1,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+247,Voo Lota Shrine - Chest 2,Tabantha,Tabantha Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+248,Voo Lota Shrine,Tabantha,Tabantha Shrines,shrine_completion,not_mapped_yet
+249,Noe Rajee Shrine - Chest,Tabantha,Tabantha Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+250,Noe Rajee Shrine,Tabantha,Tabantha Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+251,Ridgeland Tower,Hyrule Ridge,Sheikah Towers,other,not_mapped_yet
+252,Maag No'rah Shrine - Chest,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+253,Maag No'rah Shrine,Hyrule Ridge,Hyrule Ridge Shrines,shrine_completion,not_mapped_yet
+254,Mijah Rokee Shrine - Chest,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+255,Mijah Rokee Shrine,Hyrule Ridge,Hyrule Ridge Shrines,shrine_completion,not_mapped_yet
+256,Mogg Latan Shrine - Chest 1,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+257,Mogg Latan Shrine - Chest 2,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+258,Mogg Latan Shrine - Chest 3,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+259,Mogg Latan Shrine,Hyrule Ridge,Hyrule Ridge Shrines,shrine_completion,not_mapped_yet
+260,Shae Loya Shrine - Chest 1,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+261,Shae Loya Shrine - Chest 2,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+262,Shae Loya Shrine,Hyrule Ridge,Hyrule Ridge Shrines,shrine_completion,not_mapped_yet
+263,Sheem Dagoze Shrine - Chest,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+264,Sheem Dagoze Shrine,Hyrule Ridge,Hyrule Ridge Shrines,shrine_completion,not_mapped_yet
+265,Toh Yahsa Shrine - Chest 1,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+266,Toh Yahsa Shrine - Chest 2,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+267,Toh Yahsa Shrine,Hyrule Ridge,Hyrule Ridge Shrines,shrine_completion,not_mapped_yet
+268,Zalta Wa Shrine - Chest,Hyrule Ridge,Hyrule Ridge Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+269,Zalta Wa Shrine,Hyrule Ridge,Hyrule Ridge Shrines,shrine_completion,not_mapped_yet
+270,Shira Gomar Shrine - Chest,Hyrule Ridge,Hyrule Ridge Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+271,Shira Gomar Shrine,Hyrule Ridge,Hyrule Ridge Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+272,Gerudo Tower,Gerudo Highlands,Sheikah Towers,other,not_mapped_yet
+273,Joloo Nah Shrine - Chest 1,Gerudo Highlands,Gerudo Highlands Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+274,Joloo Nah Shrine - Chest 2,Gerudo Highlands,Gerudo Highlands Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+275,Joloo Nah Shrine,Gerudo Highlands,Gerudo Highlands Shrines,shrine_completion,not_mapped_yet
+276,Keeha Yoog Shrine - Chest,Gerudo Highlands,Gerudo Highlands Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+277,Keeha Yoog Shrine,Gerudo Highlands,Gerudo Highlands Shrines,shrine_completion,not_mapped_yet
+278,Kema Kosassa Shrine - Chest,Gerudo Highlands,Gerudo Highlands Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+279,Kema Kosassa Shrine,Gerudo Highlands,Gerudo Highlands Shrines,shrine_completion,not_mapped_yet
+280,Kuh Takkar Shrine - Chest,Gerudo Highlands,Gerudo Highlands Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+281,Kuh Takkar Shrine,Gerudo Highlands,Gerudo Highlands Shrines,shrine_completion,not_mapped_yet
+282,Sho Dantu Shrine - Chest,Gerudo Highlands,Gerudo Highlands Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+283,Sho Dantu Shrine,Gerudo Highlands,Gerudo Highlands Shrines,shrine_completion,not_mapped_yet
+284,Sasa Kai Shrine - Chest,Gerudo Highlands,Gerudo Highlands Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+285,Sasa Kai Shrine,Gerudo Highlands,Gerudo Highlands Shrines,shrine_completion,not_mapped_yet
+286,Wasteland Tower,Gerudo Desert,Sheikah Towers,other,not_mapped_yet
+287,Dako Tah Shrine - Chest 1,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+288,Dako Tah Shrine - Chest 2,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+289,Dako Tah Shrine - Chest 3,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+290,Dako Tah Shrine - Chest 4,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+291,Dako Tah Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+292,Daqo Chisay Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+293,Daqo Chisay Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+294,Dila Maag Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+295,Dila Maag Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+296,Hawa Koth Shrine - Chest 1,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+297,Hawa Koth Shrine - Chest 2,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+298,Hawa Koth Shrine - Chest 3,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+299,Hawa Koth Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+300,Jee Noh Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+301,Jee Noh Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+302,Kay Noh Shrine - Chest 1,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+303,Kay Noh Shrine - Chest 2,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+304,Kay Noh Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+305,Kema Zoos Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+306,Kema Zoos Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+307,Korsh O'hu Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+308,Korsh O'hu Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+309,Misae Suma Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+310,Misae Suma Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+311,Raqa Zunzo Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+312,Raqa Zunzo Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+313,Suma Sahma Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+314,Suma Sahma Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+315,Tho Kayu Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+316,Tho Kayu Shrine,Gerudo Desert,Gerudo Desert Shrines,shrine_completion,not_mapped_yet
+317,Keive Tala Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+318,Keive Tala Shrine,Gerudo Desert,Gerudo Desert Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+319,Takama Shiri Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+320,Takama Shiri Shrine,Gerudo Desert,Gerudo Desert Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+321,Kihiro Moh Shrine - Chest,Gerudo Desert,Gerudo Desert Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+322,Kihiro Moh Shrine,Gerudo Desert,Gerudo Desert Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+323,Hebra Tower,Hebra,Sheikah Towers,other,not_mapped_yet
+324,Dunba Taag Shrine - Chest 1,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+325,Dunba Taag Shrine - Chest 2,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+326,Dunba Taag Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+327,Gee Ha'rah Shrine - Chest,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+328,Gee Ha'rah Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+329,Goma Asaagh Shrine - Chest,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+330,Goma Asaagh Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+331,Hia Miu Shrine - Chest,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+332,Hia Miu Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+333,Lanno Kooh Shrine - Chest,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+334,Lanno Kooh Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+335,Maka Rah Shrine - Chest 1,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+336,Maka Rah Shrine - Chest 2,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+337,Maka Rah Shrine - Chest 3,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+338,Maka Rah Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+339,Mozo Shenno Shrine - Chest,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+340,Mozo Shenno Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+341,Qaza Tokki Shrine - Chest,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+342,Qaza Tokki Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+343,Rin Oyaa Shrine - Chest,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+344,Rin Oyaa Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+345,Rok Uwog Shrine - Chest 1,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+346,Rok Uwog Shrine - Chest 2,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+347,Rok Uwog Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+348,Sha Gehma Shrine - Chest 1,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+349,Sha Gehma Shrine - Chest 2,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+350,Sha Gehma Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+351,Shada Naw Shrine - Chest,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+352,Shada Naw Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+353,To Quomo Shrine - Chest,Hebra,Hebra Shrines;Shrine Chests,shrine_chest,not_mapped_yet
+354,To Quomo Shrine,Hebra,Hebra Shrines,shrine_completion,not_mapped_yet
+355,Kiah Toza Shrine - Chest,Hebra,Hebra Shrines;The Champions' Ballad DLC;Shrine Chests,shrine_chest,not_mapped_yet
+356,Kiah Toza Shrine,Hebra,Hebra Shrines;The Champions' Ballad DLC,shrine_completion,not_mapped_yet
+357,Sacred Ground Ruins - Recovered Memory (Subdued Ceremony),Central Hyrule,Recovered Memories,other,not_mapped_yet
+358,Hyrule Field - Recovered Memory (Resolve and Grief),Central Hyrule,Recovered Memories,other,not_mapped_yet
+359,Ancient Columns - Recovered Memory (Zelda's Resentment),Tabantha,Recovered Memories,other,not_mapped_yet
+360,Kara Kara Bazaar - Recovered Memory (Blades of the Yiga),Gerudo Desert,Recovered Memories,other,not_mapped_yet
+361,Eldin Canyon - Recovered Memory (A Premonition),Eldin,Recovered Memories,other,not_mapped_yet
+362,Irch Plain - Recovered Memory (Silent Princess),Hyrule Ridge,Recovered Memories,other,not_mapped_yet
+363,Hills of Baumer - Recovered Memory (Shelter from the Storm),,Recovered Memories,other,not_mapped_yet
+364,Hyrule Castle - Recovered Memory (Father and Daughter),Hyrule Castle,Recovered Memories,other,not_mapped_yet
+365,Spring of Power - Recovered Memory (Slumbering Power),Akkala,Recovered Memories,other,not_mapped_yet
+366,Sanidin Park Ruins - Recovered Memory (To Mount Lanayru),Hyrule Ridge,Recovered Memories,other,not_mapped_yet
+367,Lanayru Road - Recovered Memory (Return of Calamity Ganon),Necluda,Recovered Memories,other,not_mapped_yet
+368,Hyrule Field - Recovered Memory (Despair),Central Hyrule,Recovered Memories,other,not_mapped_yet
+369,Ash Swamp - Recovered Memory (Zelda's Awakening),Dueling Peaks,Recovered Memories,other,not_mapped_yet
+370,Divine Beast Vah Medoh - Map Terminal,Divine Beast Vah Medoh,Divine Beast Vah Medoh,divine_beast_or_terminal,not_mapped_yet
+371,Divine Beast Vah Medoh - Right Wing End Terminal,Divine Beast Vah Medoh,Divine Beast Vah Medoh,divine_beast_or_terminal,not_mapped_yet
+372,Divine Beast Vah Medoh - Right Wing Terminal,Divine Beast Vah Medoh,Divine Beast Vah Medoh,divine_beast_or_terminal,not_mapped_yet
+373,Divine Beast Vah Medoh - Left Wing Lower Terminal,Divine Beast Vah Medoh,Divine Beast Vah Medoh,divine_beast_or_terminal,not_mapped_yet
+374,Divine Beast Vah Medoh - Left Wing Terminal,Divine Beast Vah Medoh,Divine Beast Vah Medoh,divine_beast_or_terminal,not_mapped_yet
+375,Divine Beast Vah Medoh - Left Wing End Terminal,Divine Beast Vah Medoh,Divine Beast Vah Medoh,divine_beast_or_terminal,not_mapped_yet
+376,Divine Beast Vah Medoh - Windblight Ganon Defeated,Divine Beast Vah Medoh,Divine Beast Vah Medoh,divine_beast_or_terminal,not_mapped_yet
+377,(EVENT) Vah Medoh Cleared,Divine Beast Vah Medoh,Divine Beast Vah Medoh,divine_beast_or_terminal,not_mapped_yet
+378,Divine Beast Vah Medoh - Memory Windblight Ganon Defeated,,Divine Beast Vah Medoh;The Champions' Ballad DLC,divine_beast_or_terminal,not_mapped_yet
+379,Divine Beast Vah Rudania - Map Terminal,Divine Beast Vah Rudania,Divine Beast Vah Rudania,divine_beast_or_terminal,not_mapped_yet
+380,Divine Beast Vah Rudania - Rear Terminal,Divine Beast Vah Rudania,Divine Beast Vah Rudania,divine_beast_or_terminal,not_mapped_yet
+381,Divine Beast Vah Rudania - Rear Right Leg Terminal,Divine Beast Vah Rudania,Divine Beast Vah Rudania,divine_beast_or_terminal,not_mapped_yet
+382,Divine Beast Vah Rudania - Front Left Leg Terminal,Divine Beast Vah Rudania,Divine Beast Vah Rudania,divine_beast_or_terminal,not_mapped_yet
+383,Divine Beast Vah Rudania - Outer Back Terminal,Divine Beast Vah Rudania,Divine Beast Vah Rudania,divine_beast_or_terminal,not_mapped_yet
+384,Divine Beast Vah Rudania - Rear Left Leg Terminal,Divine Beast Vah Rudania,Divine Beast Vah Rudania,divine_beast_or_terminal,not_mapped_yet
+385,Divine Beast Vah Rudania - Fireblight Ganon Defeated,Divine Beast Vah Rudania,Divine Beast Vah Rudania,divine_beast_or_terminal,not_mapped_yet
+386,(EVENT) Vah Rudania Cleared,Divine Beast Vah Rudania,Divine Beast Vah Rudania,divine_beast_or_terminal,not_mapped_yet
+387,Divine Beast Vah Rudania - Memory Fireblight Ganon Defeated,,Divine Beast Vah Rudania;The Champions' Ballad DLC,divine_beast_or_terminal,not_mapped_yet
+388,Divine Beast Vah Ruta - Map Terminal,Divine Beast Vah Ruta,Divine Beast Vah Ruta,divine_beast_or_terminal,not_mapped_yet
+389,Divine Beast Vah Ruta - Lower Terminal,Divine Beast Vah Ruta,Divine Beast Vah Ruta,divine_beast_or_terminal,not_mapped_yet
+390,Divine Beast Vah Ruta - Rear Terminal,Divine Beast Vah Ruta,Divine Beast Vah Ruta,divine_beast_or_terminal,not_mapped_yet
+391,Divine Beast Vah Ruta - Center Terminal,Divine Beast Vah Ruta,Divine Beast Vah Ruta,divine_beast_or_terminal,not_mapped_yet
+392,Divine Beast Vah Ruta - Trunk Terminal,Divine Beast Vah Ruta,Divine Beast Vah Ruta,divine_beast_or_terminal,not_mapped_yet
+393,Divine Beast Vah Ruta - Head Terminal,Divine Beast Vah Ruta,Divine Beast Vah Ruta,divine_beast_or_terminal,not_mapped_yet
+394,Divine Beast Vah Ruta - Waterblight Ganon Defeated,Divine Beast Vah Ruta,Divine Beast Vah Ruta,divine_beast_or_terminal,not_mapped_yet
+395,(EVENT) Vah Ruta Cleared,Divine Beast Vah Ruta,Divine Beast Vah Ruta,divine_beast_or_terminal,not_mapped_yet
+396,Divine Beast Vah Ruta - Memory Waterblight Ganon Defeated,,Divine Beast Vah Ruta;The Champions' Ballad DLC,divine_beast_or_terminal,not_mapped_yet
+397,Divine Beast Vah Naboris - Map Terminal,Divine Beast Vah Naboris,Divine Beast Vah Naboris,divine_beast_or_terminal,not_mapped_yet
+398,Divine Beast Vah Naboris - Front Wheel Terminal,Divine Beast Vah Naboris,Divine Beast Vah Naboris,divine_beast_or_terminal,not_mapped_yet
+399,Divine Beast Vah Naboris - Rear Wheel Terminal,Divine Beast Vah Naboris,Divine Beast Vah Naboris,divine_beast_or_terminal,not_mapped_yet
+400,Divine Beast Vah Naboris - Head Terminal,Divine Beast Vah Naboris,Divine Beast Vah Naboris,divine_beast_or_terminal,not_mapped_yet
+401,Divine Beast Vah Naboris - Front Hump Terminal,Divine Beast Vah Naboris,Divine Beast Vah Naboris,divine_beast_or_terminal,not_mapped_yet
+402,Divine Beast Vah Naboris - Upper Back Terminal,Divine Beast Vah Naboris,Divine Beast Vah Naboris,divine_beast_or_terminal,not_mapped_yet
+403,Divine Beast Vah Naboris - Thunderblight Ganon Defeated,Divine Beast Vah Naboris,Divine Beast Vah Naboris,divine_beast_or_terminal,not_mapped_yet
+404,(EVENT) Vah Naboris Cleared,Divine Beast Vah Naboris,Divine Beast Vah Naboris,divine_beast_or_terminal,not_mapped_yet
+405,Divine Beast Vah Naboris - Memory Thunderblight Ganon Defeated,,Divine Beast Vah Naboris;The Champions' Ballad DLC,divine_beast_or_terminal,not_mapped_yet
+406,Final Trial - Map Terminal,Final Trial,Final Trial;The Champions' Ballad DLC,divine_beast_or_terminal,not_mapped_yet
+407,Final Trial - Wind Terminal,Final Trial,Final Trial;The Champions' Ballad DLC,divine_beast_or_terminal,not_mapped_yet
+408,Final Trial - Fire Terminal,Final Trial,Final Trial;The Champions' Ballad DLC,divine_beast_or_terminal,not_mapped_yet
+409,Final Trial - Water Terminal,Final Trial,Final Trial;The Champions' Ballad DLC,divine_beast_or_terminal,not_mapped_yet
+410,Final Trial - Electric Terminal,Final Trial,Final Trial;The Champions' Ballad DLC,divine_beast_or_terminal,not_mapped_yet
+411,Final Trial - Maz Koshia Defeated,Final Trial,Final Trial;The Champions' Ballad DLC,other,not_mapped_yet
+412,Dark Beast Ganon Defeated,Hyrule Castle,Victory,other,not_mapped_yet
+413,Korok Forest - Master Sword,Great Hyrule Forest,Korok Forest,other,not_mapped_yet
+414,Trial of the Sword (Beginning) - Floor 3 Chest 1,Trial of the Sword (Beginning Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+415,Trial of the Sword (Beginning) - Floor 3 Chest 2,Trial of the Sword (Beginning Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+416,Trial of the Sword (Beginning) - Floor 7 (Rest) Chest 1,Trial of the Sword (Beginning Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+417,Trial of the Sword (Beginning) - Floor 7 (Rest) Chest 2,Trial of the Sword (Beginning Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+418,Trial of the Sword (Beginning) - Floor 7 (Rest) Chest 3,Trial of the Sword (Beginning Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+419,Trial of the Sword (Beginning) - Floor 8 Chest,Trial of the Sword (Beginning Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+420,Trial of the Sword (Beginning) - Floor 9 Chest,Trial of the Sword (Beginning Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+421,Trial of the Sword (Beginning) - Floor 11 Chest 1,Trial of the Sword (Beginning Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+422,Trial of the Sword (Beginning) - Floor 11 Chest 2,Trial of the Sword (Beginning Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+423,Trial of the Sword (Beginning),Trial of the Sword (Beginning Trials),Trial of the Sword;The Master Trials DLC,other,not_mapped_yet
+424,Trial of the Sword (Middle) - Floor 1 Chest,Trial of the Sword (Middle Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+425,Trial of the Sword (Middle) - Floor 5 (Rest) Chest 1,Trial of the Sword (Middle Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+426,Trial of the Sword (Middle) - Floor 5 (Rest) Chest 2,Trial of the Sword (Middle Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+427,Trial of the Sword (Middle) - Floor 5 (Rest) Chest 3,Trial of the Sword (Middle Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+428,Trial of the Sword (Middle) - Floor 11 (Rest) Chest 1,Trial of the Sword (Middle Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+429,Trial of the Sword (Middle) - Floor 11 (Rest) Chest 2,Trial of the Sword (Middle Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+430,Trial of the Sword (Middle) - Floor 11 (Rest) Chest 3,Trial of the Sword (Middle Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+431,Trial of the Sword (Middle) - Floor 12 Chest,Trial of the Sword (Middle Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+432,Trial of the Sword (Middle) - Floor 13 Chest,Trial of the Sword (Middle Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+433,Trial of the Sword (Middle),Trial of the Sword (Middle Trials),Trial of the Sword;The Master Trials DLC,other,not_mapped_yet
+434,Trial of the Sword (Final) - Floor 2 Chest,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+435,Trial of the Sword (Final) - Floor 6 (Rest) Chest 1,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+436,Trial of the Sword (Final) - Floor 6 (Rest) Chest 2,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+437,Trial of the Sword (Final) - Floor 6 (Rest) Chest 3,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+438,Trial of the Sword (Final) - Floor 10 Chest,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+439,Trial of the Sword (Final) - Floor 12 (Rest) Chest 1,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+440,Trial of the Sword (Final) - Floor 12 (Rest) Chest 2,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+441,Trial of the Sword (Final) - Floor 12 (Rest) Chest 3,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+442,Trial of the Sword (Final) - Floor 13 Chest,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+443,Trial of the Sword (Final) - Floor 14 Chest,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+444,Trial of the Sword (Final) - Floor 17 Chest,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+445,Trial of the Sword (Final) - Floor 18 (Rest) Chest 1,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+446,Trial of the Sword (Final) - Floor 18 (Rest) Chest 2,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+447,Trial of the Sword (Final) - Floor 18 (Rest) Chest 3,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+448,Trial of the Sword (Final) - Floor 19 Chest,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+449,Trial of the Sword (Final) - Floor 21 Chest,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+450,Trial of the Sword (Final) - Floor 22 Chest 1,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+451,Trial of the Sword (Final) - Floor 22 Chest 2,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+452,Trial of the Sword (Final) - Floor 23 Chest,Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other_chest,not_mapped_yet
+453,Trial of the Sword (Final),Trial of the Sword (Final Trials),Trial of the Sword;The Master Trials DLC,other,not_mapped_yet

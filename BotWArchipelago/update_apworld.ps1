@@ -1,7 +1,7 @@
 
 $ErrorActionPreference = "Stop"
 
-$ProjectDir = "C:\Projects\BotWArchipelago"
+$ProjectDir = "C:\Projects\APBotW\BotWArchipelago"
 $ArchivePath = Join-Path $ProjectDir "botw.apworld"
 $ZipPath = Join-Path $ProjectDir "botw.zip"
 $CustomWorldsDir = "C:\ProgramData\Archipelago\custom_worlds"

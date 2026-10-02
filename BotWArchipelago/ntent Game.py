@@ -134,7 +134,7 @@
 [31m-[m
 [31m-$ErrorActionPreference = "Stop"[m
 [31m-[m
-[31m-$ProjectDir = "C:\Projects\BotWArchipelago"[m
+[31m-$ProjectDir = "C:\Projects\APBotW\BotWArchipelago"[m
 [31m-$ArchivePath = Join-Path $ProjectDir "botw.apworld"[m
 [31m-$ZipPath = Join-Path $ProjectDir "botw.zip"[m
 [31m-$CustomWorldsDir = "C:\ProgramData\Archipelago\custom_worlds"[m
@@ -252,126 +252,247 @@
 [31m-}[m
 [31m-finally {[m
 [31m-    Remove-Item $StageRoot -Recurse -Force -ErrorAction SilentlyContinue[m
-[32m+[m[41m[m
-[32m+[m[32m$ErrorActionPreference = "Stop"[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m$ProjectDir = "C:\Projects\BotWArchipelago"[m[41m[m
-[32m+[m[32m$ArchivePath = Join-Path $ProjectDir "botw.apworld"[m[41m[m
-[32m+[m[32m$ZipPath = Join-Path $ProjectDir "botw.zip"[m[41m[m
-[32m+[m[32m$CustomWorldsDir = "C:\ProgramData\Archipelago\custom_worlds"[m[41m[m
-[32m+[m[32m$InstalledPath = Join-Path $CustomWorldsDir "botw.apworld"[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m$StageRoot = Join-Path $env:TEMP "BotW_APWorld_Build"[m[41m[m
-[32m+[m[32m$PackageDir = Join-Path $StageRoot "botw"[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32mtry {[m[41m[m
-[32m+[m[32m    Write-Host ""[m[41m[m
-[32m+[m[32m    Write-Host "=== BotW Archipelago World Updater ===" -ForegroundColor Cyan[m[41m[m
-[32m+[m[32m    Write-Host ""[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    # Verify the Manual repository files.[m[41m[m
-[32m+[m[32m    $RequiredFiles = @([m[41m[m
-[32m+[m[32m        "__init__.py",[m[41m[m
-[32m+[m[32m        "Game.py",[m[41m[m
-[32m+[m[32m        "Data.py",[m[41m[m
-[32m+[m[32m        "Items.py",[m[41m[m
-[32m+[m[32m        "Locations.py",[m[41m[m
-[32m+[m[32m        "Regions.py",[m[41m[m
-[32m+[m[32m        "Rules.py",[m[41m[m
-[32m+[m[32m        "data\game.json"[m[41m[m
-[32m+[m[32m    )[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    foreach ($File in $RequiredFiles) {[m[41m[m
-[32m+[m[32m        if (-not (Test-Path (Join-Path $ProjectDir $File))) {[m[41m[m
-[32m+[m[32m            throw "Required repository file not found: $ProjectDir\$File"[m[41m[m
-[32m+[m[32m        }[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    # Create a clean staging directory.[m[41m[m
-[32m+[m[32m    Remove-Item $StageRoot -Recurse -Force -ErrorAction SilentlyContinue[m[41m[m
-[32m+[m[32m    New-Item -ItemType Directory -Path $PackageDir -Force |[m[41m[m
-[32m+[m[32m        Out-Null[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    # Copy the repository into one package directory.[m[41m[m
-[32m+[m[32m    # Exclude Git metadata, editor settings, caches, and old archives.[m[41m[m
-[32m+[m[32m    & robocopy $ProjectDir $PackageDir /E `[m[41m[m
-[32m+[m[32m        /XD ".git" ".vscode" "__pycache__" `[m[41m[m
-[32m+[m[32m        /XF "*.apworld" "*.zip" "update_apworld.ps1" `[m[41m[m
-[32m+[m[32m        /NFL /NDL /NJH /NJS /NP[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    $RobocopyExitCode = $LASTEXITCODE[m[41m[m
-[32m+[m[32m    if ($RobocopyExitCode -ge 8) {[m[41m[m
-[32m+[m[32m        throw "Failed to stage repository files. Robocopy exit code: $RobocopyExitCode"[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    if (-not (Test-Path (Join-Path $PackageDir "__init__.py"))) {[m[41m[m
-[32m+[m[32m        throw "Staged package is missing __init__.py."[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    # Ensure the custom worlds directory exists.[m[41m[m
-[32m+[m[32m    if (-not (Test-Path $CustomWorldsDir)) {[m[41m[m
-[32m+[m[32m        New-Item -ItemType Directory -Path $CustomWorldsDir -Force |[m[41m[m
-[32m+[m[32m            Out-Null[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    Remove-Item $ArchivePath, $ZipPath -Force -ErrorAction SilentlyContinue[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    # Archive the botw directory itself, preserving the botw/ prefix.[m[41m[m
-[32m+[m[32m    Compress-Archive -Path $PackageDir -DestinationPath $ZipPath -Force[m[41m[m
-[32m+[m[32m    Move-Item $ZipPath $ArchivePath -Force[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    # Verify the APWorld archive structure.[m[41m[m
-[32m+[m[32m    Add-Type -AssemblyName System.IO.Compression.FileSystem[m[41m[m
-[32m+[m[32m    $Zip = [System.IO.Compression.ZipFile]::OpenRead($ArchivePath)[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    try {[m[41m[m
-[32m+[m[32m        $Entries = @([m[41m[m
-[32m+[m[32m            $Zip.Entries | ForEach-Object {[m[41m[m
-[32m+[m[32m                $_.FullName.Replace("\", "/")[m[41m[m
-[32m+[m[32m            }[m[41m[m
-[32m+[m[32m        )[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        if ($Entries -notcontains "botw/__init__.py") {[m[41m[m
-[32m+[m[32m            throw "Archive is missing botw/__init__.py."[m[41m[m
-[32m+[m[32m        }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        if ($Entries -notcontains "botw/Game.py") {[m[41m[m
-[32m+[m[32m            throw "Archive is missing botw/Game.py."[m[41m[m
-[32m+[m[32m        }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        if ($Entries -notcontains "botw/data/game.json") {[m[41m[m
-[32m+[m[32m            throw "Archive is missing botw/data/game.json."[m[41m[m
-[32m+[m[32m        }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        $TopLevelEntries = @([m[41m[m
-[32m+[m[32m            $Entries |[m[41m[m
-[32m+[m[32m                Where-Object { $_ -and $_ -notmatch "^botw/" }[m[41m[m
-[32m+[m[32m        )[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m        if ($TopLevelEntries.Count -gt 0) {[m[41m[m
-[32m+[m[32m            throw "Unexpected files outside the botw directory: $($TopLevelEntries -join ', ')"[m[41m[m
-[32m+[m[32m        }[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[32m    finally {[m[41m[m
-[32m+[m[32m        $Zip.Dispose()[m[41m[m
-[32m+[m[32m    }[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    # Install the verified archive.[m[41m[m
-[32m+[m[32m    Copy-Item $ArchivePath $InstalledPath -Force[m[41m[m
-[32m+[m[41m[m
-[32m+[m[32m    Write-Host "SUCCESS!" -ForegroundColor Green[m[41m[m
-[32m+[m[32m    Write-Host "Built:     $ArchivePath"[m[41m[m
-[32m+[m[32m    Write-Host "Installed: $InstalledPath"[m[41m[m
-[32m+[m[32m    Write-Host "Archive contains one top-level botw/ directory."[m[41m[m
-[32m+[m[32m    Write-Host ""[m[41m[m
-[32m+[m[32m    Write-Host "Restart Archipelago before testing changes."[m[41m[m
-[32m+[m[32m}[m[41m[m
-[32m+[m[32mcatch {[m[41m[m
-[32m+[m[32m    Write-Host ""[m[41m[m
-[32m+[m[32m    Write-Host "UPDATE FAILED:" -ForegroundColor Red[m[41m[m
-[32m+[m[32m    Write-Host $_.Exception.Message -ForegroundColor Red[m[41m[m
-[32m+[m[32m}[m[41m[m
-[32m+[m[32mfinally {[m[41m[m
-[32m+[m[32m    Remove-Item $StageRoot -Recurse -Force -ErrorAction SilentlyContinue[m[41m[m
+[32m+[m[41m
+[m
+[32m+[m[32m$ErrorActionPreference = "Stop"[m[41m
+[mC:\Projects\APBotW\BotWArchipelago
+[32m+[m[41m
+[m
+[32m+[m[32m$ProjectDir = "C:\Projects\BotWArchipelago"[m[41m
+[m
+[32m+[m[32m$ArchivePath = Join-Path $ProjectDir "botw.apworld"[m[41m
+[m
+[32m+[m[32m$ZipPath = Join-Path $ProjectDir "botw.zip"[m[41m
+[m
+[32m+[m[32m$CustomWorldsDir = "C:\ProgramData\Archipelago\custom_worlds"[m[41m
+[m
+[32m+[m[32m$InstalledPath = Join-Path $CustomWorldsDir "botw.apworld"[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m$StageRoot = Join-Path $env:TEMP "BotW_APWorld_Build"[m[41m
+[m
+[32m+[m[32m$PackageDir = Join-Path $StageRoot "botw"[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32mtry {[m[41m
+[m
+[32m+[m[32m    Write-Host ""[m[41m
+[m
+[32m+[m[32m    Write-Host "=== BotW Archipelago World Updater ===" -ForegroundColor Cyan[m[41m
+[m
+[32m+[m[32m    Write-Host ""[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    # Verify the Manual repository files.[m[41m
+[m
+[32m+[m[32m    $RequiredFiles = @([m[41m
+[m
+[32m+[m[32m        "__init__.py",[m[41m
+[m
+[32m+[m[32m        "Game.py",[m[41m
+[m
+[32m+[m[32m        "Data.py",[m[41m
+[m
+[32m+[m[32m        "Items.py",[m[41m
+[m
+[32m+[m[32m        "Locations.py",[m[41m
+[m
+[32m+[m[32m        "Regions.py",[m[41m
+[m
+[32m+[m[32m        "Rules.py",[m[41m
+[m
+[32m+[m[32m        "data\game.json"[m[41m
+[m
+[32m+[m[32m    )[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    foreach ($File in $RequiredFiles) {[m[41m
+[m
+[32m+[m[32m        if (-not (Test-Path (Join-Path $ProjectDir $File))) {[m[41m
+[m
+[32m+[m[32m            throw "Required repository file not found: $ProjectDir\$File"[m[41m
+[m
+[32m+[m[32m        }[m[41m
+[m
+[32m+[m[32m    }[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    # Create a clean staging directory.[m[41m
+[m
+[32m+[m[32m    Remove-Item $StageRoot -Recurse -Force -ErrorAction SilentlyContinue[m[41m
+[m
+[32m+[m[32m    New-Item -ItemType Directory -Path $PackageDir -Force |[m[41m
+[m
+[32m+[m[32m        Out-Null[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    # Copy the repository into one package directory.[m[41m
+[m
+[32m+[m[32m    # Exclude Git metadata, editor settings, caches, and old archives.[m[41m
+[m
+[32m+[m[32m    & robocopy $ProjectDir $PackageDir /E `[m[41m
+[m
+[32m+[m[32m        /XD ".git" ".vscode" "__pycache__" `[m[41m
+[m
+[32m+[m[32m        /XF "*.apworld" "*.zip" "update_apworld.ps1" `[m[41m
+[m
+[32m+[m[32m        /NFL /NDL /NJH /NJS /NP[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    $RobocopyExitCode = $LASTEXITCODE[m[41m
+[m
+[32m+[m[32m    if ($RobocopyExitCode -ge 8) {[m[41m
+[m
+[32m+[m[32m        throw "Failed to stage repository files. Robocopy exit code: $RobocopyExitCode"[m[41m
+[m
+[32m+[m[32m    }[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    if (-not (Test-Path (Join-Path $PackageDir "__init__.py"))) {[m[41m
+[m
+[32m+[m[32m        throw "Staged package is missing __init__.py."[m[41m
+[m
+[32m+[m[32m    }[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    # Ensure the custom worlds directory exists.[m[41m
+[m
+[32m+[m[32m    if (-not (Test-Path $CustomWorldsDir)) {[m[41m
+[m
+[32m+[m[32m        New-Item -ItemType Directory -Path $CustomWorldsDir -Force |[m[41m
+[m
+[32m+[m[32m            Out-Null[m[41m
+[m
+[32m+[m[32m    }[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    Remove-Item $ArchivePath, $ZipPath -Force -ErrorAction SilentlyContinue[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    # Archive the botw directory itself, preserving the botw/ prefix.[m[41m
+[m
+[32m+[m[32m    Compress-Archive -Path $PackageDir -DestinationPath $ZipPath -Force[m[41m
+[m
+[32m+[m[32m    Move-Item $ZipPath $ArchivePath -Force[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    # Verify the APWorld archive structure.[m[41m
+[m
+[32m+[m[32m    Add-Type -AssemblyName System.IO.Compression.FileSystem[m[41m
+[m
+[32m+[m[32m    $Zip = [System.IO.Compression.ZipFile]::OpenRead($ArchivePath)[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    try {[m[41m
+[m
+[32m+[m[32m        $Entries = @([m[41m
+[m
+[32m+[m[32m            $Zip.Entries | ForEach-Object {[m[41m
+[m
+[32m+[m[32m                $_.FullName.Replace("\", "/")[m[41m
+[m
+[32m+[m[32m            }[m[41m
+[m
+[32m+[m[32m        )[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m        if ($Entries -notcontains "botw/__init__.py") {[m[41m
+[m
+[32m+[m[32m            throw "Archive is missing botw/__init__.py."[m[41m
+[m
+[32m+[m[32m        }[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m        if ($Entries -notcontains "botw/Game.py") {[m[41m
+[m
+[32m+[m[32m            throw "Archive is missing botw/Game.py."[m[41m
+[m
+[32m+[m[32m        }[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m        if ($Entries -notcontains "botw/data/game.json") {[m[41m
+[m
+[32m+[m[32m            throw "Archive is missing botw/data/game.json."[m[41m
+[m
+[32m+[m[32m        }[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m        $TopLevelEntries = @([m[41m
+[m
+[32m+[m[32m            $Entries |[m[41m
+[m
+[32m+[m[32m                Where-Object { $_ -and $_ -notmatch "^botw/" }[m[41m
+[m
+[32m+[m[32m        )[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m        if ($TopLevelEntries.Count -gt 0) {[m[41m
+[m
+[32m+[m[32m            throw "Unexpected files outside the botw directory: $($TopLevelEntries -join ', ')"[m[41m
+[m
+[32m+[m[32m        }[m[41m
+[m
+[32m+[m[32m    }[m[41m
+[m
+[32m+[m[32m    finally {[m[41m
+[m
+[32m+[m[32m        $Zip.Dispose()[m[41m
+[m
+[32m+[m[32m    }[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    # Install the verified archive.[m[41m
+[m
+[32m+[m[32m    Copy-Item $ArchivePath $InstalledPath -Force[m[41m
+[m
+[32m+[m[41m
+[m
+[32m+[m[32m    Write-Host "SUCCESS!" -ForegroundColor Green[m[41m
+[m
+[32m+[m[32m    Write-Host "Built:     $ArchivePath"[m[41m
+[m
+[32m+[m[32m    Write-Host "Installed: $InstalledPath"[m[41m
+[m
+[32m+[m[32m    Write-Host "Archive contains one top-level botw/ directory."[m[41m
+[m
+[32m+[m[32m    Write-Host ""[m[41m
+[m
+[32m+[m[32m    Write-Host "Restart Archipelago before testing changes."[m[41m
+[m
+[32m+[m[32m}[m[41m
+[m
+[32m+[m[32mcatch {[m[41m
+[m
+[32m+[m[32m    Write-Host ""[m[41m
+[m
+[32m+[m[32m    Write-Host "UPDATE FAILED:" -ForegroundColor Red[m[41m
+[m
+[32m+[m[32m    Write-Host $_.Exception.Message -ForegroundColor Red[m[41m
+[m
+[32m+[m[32m}[m[41m
+[m
+[32m+[m[32mfinally {[m[41m
+[m
+[32m+[m[32m    Remove-Item $StageRoot -Recurse -Force -ErrorAction SilentlyContinue[m[41m
+[m
  }[m
 \ No newline at end of file[m
