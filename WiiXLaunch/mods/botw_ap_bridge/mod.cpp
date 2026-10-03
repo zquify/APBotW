@@ -76,6 +76,40 @@ extern "C" {
     );
 }
 
+static void FormatChestCheck(char* buffer, std::size_t capacity, std::size_t index)
+{
+    if (capacity == 0)
+        return;
+
+    constexpr char prefix[] = "CHECK CHEST ";
+    constexpr std::size_t prefixLength = sizeof(prefix) - 1;
+
+    if (capacity <= prefixLength)
+    {
+        buffer[0] = '\0';
+        return;
+    }
+
+    std::size_t pos = 0;
+
+    for (std::size_t i = 0; i < prefixLength; ++i)
+        buffer[pos++] = prefix[i];
+
+    char digits[20];
+    std::size_t digitCount = 0;
+
+    do
+    {
+        digits[digitCount++] = static_cast<char>('0' + (index % 10));
+        index /= 10;
+    } while (index != 0 && digitCount < sizeof(digits));
+
+    while (digitCount > 0 && pos + 1 < capacity)
+        buffer[pos++] = digits[--digitCount];
+
+    buffer[pos] = '\0';
+}
+
 using U32Fn = uint32_t (*)(void);
 using OpenFn = uint32_t (*)(uint32_t*);
 using HandleFn = uint32_t (*)(uint32_t);
@@ -131,6 +165,9 @@ static volatile bool g_OmanAuPending = false;
 // One pending flag per generated registry entry.
 static volatile bool
     g_ShrineChestPending[BotWAP::kShrineChestRegistrySize] = {};
+
+static bool
+    g_ShrineChestDetected[BotWAP::kShrineChestRegistrySize] = {};
 
 static char g_DynamicResult[64];
 
@@ -299,11 +336,10 @@ static bool ParseAndGrant()
              ++i)
         {
             if (g_ShrineChestPending[i]) {
-                std::snprintf(
+                FormatChestCheck(
                     g_DynamicResult,
                     sizeof(g_DynamicResult),
-                    "CHECK CHEST %u\n",
-                    static_cast<unsigned int>(i)
+                    i
                 );
 
                 g_Result = g_DynamicResult;
@@ -351,7 +387,7 @@ static bool ParseAndGrant()
     {
         std::uint32_t index = 0;
 
-        if (!ParseUnsigned32(tokens[2], index) ||
+        if (!ParseUnsigned32(tokens[2], &index) ||
             index >= BotWAP::kShrineChestRegistrySize)
         {
             g_Result = "ERR unknown check\n";
@@ -490,7 +526,8 @@ static void ProbeShrineChestFlags()
         const auto& entry = BotWAP::kShrineChestRegistry[i];
 
         // Never activate provisional assignments automatically.
-        if (!entry.verified || g_ShrineChestPending[i])
+        // Once detected, never queue this chest again.
+        if (!entry.verified || g_ShrineChestDetected[i])
             continue;
 
         bool opened = false;
@@ -502,6 +539,7 @@ static void ProbeShrineChestFlags()
             );
 
         if (readable && opened) {
+            g_ShrineChestDetected[i] = true;
             g_ShrineChestPending[i] = true;
             g_Log("BotW AP bridge: shrine chest check pending");
         }

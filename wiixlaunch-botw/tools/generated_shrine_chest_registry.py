@@ -10,7 +10,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_30',
         'hash_id_unsigned': 450234134,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Akh Va'quot Shrine - Chest 2",
@@ -18,7 +18,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_032',
         'hash_id_unsigned': 2699775799,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Akh Va'quot Shrine - Chest 3",
@@ -26,7 +26,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_C',
         'hash_id_unsigned': 4270154666,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Bareeda Naag Shrine - Chest 1',
@@ -34,7 +34,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_016',
         'hash_id_unsigned': 159148495,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Bareeda Naag Shrine - Chest 2',
@@ -42,7 +42,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_A',
         'hash_id_unsigned': 3513544036,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Bosh Kala Shrine - Chest 1',
@@ -50,7 +50,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_F',
         'hash_id_unsigned': 2677842568,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Bosh Kala Shrine - Chest 2',
@@ -58,7 +58,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_002',
         'hash_id_unsigned': 4073483487,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Chaas Qeta Shrine - Chest',
@@ -66,7 +66,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Armor_014_Upper',
         'hash_id_unsigned': 2231710576,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Daag Chokah Shrine - Chest',
@@ -74,7 +74,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_30',
         'hash_id_unsigned': 3264264754,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Dagah Keek Shrine - Chest',
@@ -82,7 +82,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Silver',
         'hash_id_unsigned': 849632171,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Dah Hesho Shrine - Chest',
@@ -90,7 +90,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_31',
         'hash_id_unsigned': 1908915428,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Dah Kaso Shrine - Chest',
@@ -98,7 +98,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_30',
         'hash_id_unsigned': 992999892,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Daka Tuss Shrine - Chest',
@@ -106,7 +106,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_027',
         'hash_id_unsigned': 1852894353,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Dako Tah Shrine - Chest 1',
@@ -122,7 +122,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_30',
         'hash_id_unsigned': 2298702348,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Dako Tah Shrine - Chest 3',
@@ -146,7 +146,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Silver',
         'hash_id_unsigned': 3884443295,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Daqo Chisay Shrine - Chest',
@@ -154,7 +154,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_035',
         'hash_id_unsigned': 32387787,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Dila Maag Shrine - Chest',
@@ -162,7 +162,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Armor_048_Upper',
         'hash_id_unsigned': 3735012660,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Dow Na'eh Shrine - Chest 1",
@@ -170,7 +170,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_E',
         'hash_id_unsigned': 896824088,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Dow Na'eh Shrine - Chest 2",
@@ -178,7 +178,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_027',
         'hash_id_unsigned': 1114850190,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Dow Na'eh Shrine - Chest 3",
@@ -186,7 +186,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_F',
         'hash_id_unsigned': 1961782765,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Dunba Taag Shrine - Chest 1',
@@ -210,7 +210,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Gold',
         'hash_id_unsigned': 4075460597,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Gee Ha'rah Shrine - Chest",
@@ -218,7 +218,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_A',
         'hash_id_unsigned': 2975470194,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Goma Asaagh Shrine - Chest',
@@ -226,7 +226,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_024',
         'hash_id_unsigned': 289382806,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Gorae Torr Shrine - Chest',
@@ -234,7 +234,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_034',
         'hash_id_unsigned': 1597604003,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ha Dahamar Shrine - Chest',
@@ -242,7 +242,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Purple',
         'hash_id_unsigned': 787648808,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Hawa Koth Shrine - Chest 1',
@@ -258,7 +258,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Gold',
         'hash_id_unsigned': 2441275272,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Hawa Koth Shrine - Chest 3',
@@ -274,7 +274,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_C',
         'hash_id_unsigned': 262007905,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Hila Rao Shrine - Chest 1',
@@ -282,7 +282,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_E',
         'hash_id_unsigned': 771359327,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Hila Rao Shrine - Chest 2',
@@ -290,7 +290,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Obj_IceArrow_A_03',
         'hash_id_unsigned': 2545300147,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ishto Soh Shrine - Chest 1',
@@ -298,7 +298,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_D',
         'hash_id_unsigned': 582159315,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ishto Soh Shrine - Chest 2',
@@ -306,7 +306,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_30',
         'hash_id_unsigned': 1505890884,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ja Baij Shrine - Chest 1',
@@ -314,7 +314,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_001',
         'hash_id_unsigned': 235083489,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ja Baij Shrine - Chest 2',
@@ -322,7 +322,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_F',
         'hash_id_unsigned': 4192706961,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Jee Noh Shrine - Chest',
@@ -330,7 +330,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_E',
         'hash_id_unsigned': 3852730446,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Jitan Sa'mi Shrine - Chest",
@@ -338,7 +338,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_034',
         'hash_id_unsigned': 993230,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Joloo Nah Shrine - Chest 1',
@@ -370,7 +370,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_003',
         'hash_id_unsigned': 1402060224,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Kaam Ya'tak Shrine - Chest 3",
@@ -386,7 +386,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Silver',
         'hash_id_unsigned': 2914122144,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Kaam Ya'tak Shrine - Chest 5",
@@ -402,7 +402,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_A',
         'hash_id_unsigned': 215071769,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kah Okeo Shrine - Chest 1',
@@ -450,7 +450,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_035',
         'hash_id_unsigned': 3495362814,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kah Yah Shrine - Chest 1',
@@ -474,7 +474,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_A',
         'hash_id_unsigned': 2937439544,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kam Urog Shrine - Chest 1',
@@ -522,7 +522,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_024',
         'hash_id_unsigned': 628803076,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Katosa Aug Shrine - Chest',
@@ -530,7 +530,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_034',
         'hash_id_unsigned': 130001776,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kaya Wan Shrine - Chest 1',
@@ -570,7 +570,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_B',
         'hash_id_unsigned': 2928701109,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kayra Mah Shrine - Chest 2',
@@ -578,7 +578,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Obj_BombArrow_A_02',
         'hash_id_unsigned': 3410031031,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kee Dafunia Shrine - Chest',
@@ -586,7 +586,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_034',
         'hash_id_unsigned': 3263521738,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Keeha Yoog Shrine - Chest',
@@ -594,7 +594,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_A',
         'hash_id_unsigned': 2835421124,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Keh Namut Shrine - Chest',
@@ -602,7 +602,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_001',
         'hash_id_unsigned': 1490683918,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Keive Tala Shrine - Chest',
@@ -610,7 +610,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Shield_036',
         'hash_id_unsigned': 1178751663,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kema Kosassa Shrine - Chest',
@@ -618,7 +618,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Silver',
         'hash_id_unsigned': 4153981767,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kema Zoos Shrine - Chest',
@@ -626,7 +626,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_030',
         'hash_id_unsigned': 987962398,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Ke'nai Shakah Shrine - Chest",
@@ -634,7 +634,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_C',
         'hash_id_unsigned': 3073200707,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Keo Ruug Shrine - Chest',
@@ -642,7 +642,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_003',
         'hash_id_unsigned': 944710900,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ketoh Wawai Shrine - Chest',
@@ -650,7 +650,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_30',
         'hash_id_unsigned': 2936889658,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kiah Toza Shrine - Chest',
@@ -658,7 +658,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_017',
         'hash_id_unsigned': 1082925680,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kihiro Moh Shrine - Chest',
@@ -666,7 +666,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_035',
         'hash_id_unsigned': 1235062787,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Korgu Chideh Shrine - Chest',
@@ -674,7 +674,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Gold',
         'hash_id_unsigned': 2953061699,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Korsh O'hu Shrine - Chest",
@@ -682,7 +682,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_033',
         'hash_id_unsigned': 1956105793,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kuhn Sidajj Shrine - Chest',
@@ -690,7 +690,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_31',
         'hash_id_unsigned': 1547680732,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Kuh Takkar Shrine - Chest',
@@ -698,7 +698,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_034',
         'hash_id_unsigned': 294526304,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Lakna Rokee Shrine - Chest',
@@ -706,7 +706,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_055',
         'hash_id_unsigned': 2561429726,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Lanno Kooh Shrine - Chest',
@@ -714,7 +714,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Gold',
         'hash_id_unsigned': 2852596923,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Maag Halan Shrine - Chest',
@@ -722,7 +722,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_31',
         'hash_id_unsigned': 1178382884,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Maag No'rah Shrine - Chest",
@@ -730,7 +730,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Silver',
         'hash_id_unsigned': 682054227,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Mah Eliya Shrine - Chest',
@@ -738,7 +738,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Shield_022',
         'hash_id_unsigned': 1344934344,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Maka Rah Shrine - Chest 1',
@@ -754,7 +754,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_A',
         'hash_id_unsigned': 2905879506,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Maka Rah Shrine - Chest 3',
@@ -770,7 +770,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_035',
         'hash_id_unsigned': 114738522,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Mijah Rokee Shrine - Chest',
@@ -778,7 +778,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_034',
         'hash_id_unsigned': 246330360,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Mirro Shaz Shrine - Chest 1',
@@ -786,7 +786,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_031',
         'hash_id_unsigned': 309690636,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Mirro Shaz Shrine - Chest 2',
@@ -810,7 +810,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_A',
         'hash_id_unsigned': 3717856843,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Mo'a Keet Shrine - Chest 1",
@@ -818,7 +818,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_B',
         'hash_id_unsigned': 418217937,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Mo'a Keet Shrine - Chest 2",
@@ -826,7 +826,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_003',
         'hash_id_unsigned': 4073019342,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Mogg Latan Shrine - Chest 1',
@@ -858,7 +858,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_035',
         'hash_id_unsigned': 2144851240,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Mozo Shenno Shrine - Chest',
@@ -866,7 +866,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_A',
         'hash_id_unsigned': 56897618,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Muwo Jeem Shrine - Chest',
@@ -874,7 +874,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_035',
         'hash_id_unsigned': 3517324741,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Myahm Agana Shrine - Chest',
@@ -882,7 +882,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_029',
         'hash_id_unsigned': 2175434126,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Namika Ozz Shrine - Chest',
@@ -890,7 +890,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_034',
         'hash_id_unsigned': 2855684808,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Ne'ez Yohma Shrine - Chest",
@@ -898,7 +898,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_027',
         'hash_id_unsigned': 4248817833,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Noe Rajee Shrine - Chest',
@@ -906,7 +906,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Shield_041',
         'hash_id_unsigned': 1095169988,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Noya Neha Shrine - Chest',
@@ -914,7 +914,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Shield_003',
         'hash_id_unsigned': 821435950,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Oman Au Shrine - Chest',
@@ -922,7 +922,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_001',
         'hash_id_unsigned': 3375369818,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Owa Daim Shrine - Chest',
@@ -930,7 +930,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Shield_035',
         'hash_id_unsigned': 1182477274,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Pumaag Nitae Shrine - Chest',
@@ -938,7 +938,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_051',
         'hash_id_unsigned': 3450862395,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Qaza Tokki Shrine - Chest',
@@ -946,7 +946,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Armor_048_Lower',
         'hash_id_unsigned': 2611637153,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Qua Raym Shrine - Chest 1',
@@ -970,7 +970,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Armor_046_Lower',
         'hash_id_unsigned': 731998508,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Raqa Zunzo Shrine - Chest',
@@ -978,7 +978,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Shield_036',
         'hash_id_unsigned': 3003260476,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ree Dahee Shrine - Chest',
@@ -986,7 +986,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Armor_014_Head',
         'hash_id_unsigned': 1203109046,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Rin Oyaa Shrine - Chest',
@@ -994,7 +994,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_30',
         'hash_id_unsigned': 2081482182,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Rinu Honika Shrine - Chest',
@@ -1002,7 +1002,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_037',
         'hash_id_unsigned': 4057292846,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ritaag Zumo Shrine - Chest',
@@ -1010,7 +1010,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_31',
         'hash_id_unsigned': 883436885,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Rohta Chigah Shrine - Chest',
@@ -1018,7 +1018,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Shield_023',
         'hash_id_unsigned': 2785472328,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Rok Uwog Shrine - Chest 1',
@@ -1042,7 +1042,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_033',
         'hash_id_unsigned': 3962878289,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Rota Ooh Shrine - Chest 1',
@@ -1066,7 +1066,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_E',
         'hash_id_unsigned': 1708460808,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Rucco Maag Shrine - Chest 2',
@@ -1074,7 +1074,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_014',
         'hash_id_unsigned': 2731610075,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ruvo Korbah Shrine - Chest 1',
@@ -1098,7 +1098,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_31',
         'hash_id_unsigned': 3694474462,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Saas Ko'sah Shrine - Chest",
@@ -1106,7 +1106,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_033',
         'hash_id_unsigned': 1249779666,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Sah Dahaj Shrine - Chest',
@@ -1114,7 +1114,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_035',
         'hash_id_unsigned': 2489506180,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Sasa Kai Shrine - Chest',
@@ -1122,7 +1122,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_034',
         'hash_id_unsigned': 1835622564,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Sato Koda Shrine - Chest',
@@ -1130,7 +1130,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_31',
         'hash_id_unsigned': 1836215605,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shada Naw Shrine - Chest',
@@ -1138,7 +1138,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_034',
         'hash_id_unsigned': 2733670140,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shae Katha Shrine - Chest',
@@ -1146,7 +1146,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_035',
         'hash_id_unsigned': 50928817,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shae Loya Shrine - Chest 1',
@@ -1154,7 +1154,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_D',
         'hash_id_unsigned': 3612472744,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shae Loya Shrine - Chest 2',
@@ -1162,7 +1162,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_017',
         'hash_id_unsigned': 3658282587,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Shae Mo'sah Shrine - Chest 1",
@@ -1178,7 +1178,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_B',
         'hash_id_unsigned': 1749408352,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Shae Mo'sah Shrine - Chest 3",
@@ -1218,7 +1218,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_001',
         'hash_id_unsigned': 923248764,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shai Utoh Shrine - Chest 2',
@@ -1226,7 +1226,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Enemy_30',
         'hash_id_unsigned': 3173256521,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shai Yota Shrine - Chest',
@@ -1234,7 +1234,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_033',
         'hash_id_unsigned': 2006054206,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Sharo Lun Shrine - Chest',
@@ -1242,7 +1242,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_033',
         'hash_id_unsigned': 1630334883,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Sha Warvo Shrine - Chest 1',
@@ -1266,7 +1266,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_035',
         'hash_id_unsigned': 2966651740,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shee Vaneer Shrine - Chest',
@@ -1274,7 +1274,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_041',
         'hash_id_unsigned': 4140941963,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shee Venath Shrine - Chest',
@@ -1282,7 +1282,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_037',
         'hash_id_unsigned': 1221975918,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Sheh Rata Shrine - Chest 1',
@@ -1306,7 +1306,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Obj_BombArrow_A_03',
         'hash_id_unsigned': 3187836279,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Sho Dantu Shrine - Chest',
@@ -1314,7 +1314,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'PutRupee_Silver',
         'hash_id_unsigned': 962037740,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shoda Sah Shrine - Chest 1',
@@ -1322,7 +1322,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Obj_IceArrow_A_03',
         'hash_id_unsigned': 3299660229,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shoda Sah Shrine - Chest 2',
@@ -1330,7 +1330,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'KeySmall',
         'hash_id_unsigned': 3647020470,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shoqa Tatone Shrine - Chest',
@@ -1338,7 +1338,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_024',
         'hash_id_unsigned': 396797432,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shora Hah Shrine - Chest 1',
@@ -1354,7 +1354,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_033',
         'hash_id_unsigned': 304910307,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Shora Hah Shrine - Chest 3',
@@ -1394,7 +1394,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_035',
         'hash_id_unsigned': 3032109463,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Suma Sahma Shrine - Chest',
@@ -1402,7 +1402,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_030',
         'hash_id_unsigned': 3298610380,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Tah Muhl Shrine - Chest 1',
@@ -1418,7 +1418,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_B',
         'hash_id_unsigned': 1015560256,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Tah Muhl Shrine - Chest 3',
@@ -1426,7 +1426,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_E',
         'hash_id_unsigned': 1061208573,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Tah Muhl Shrine - Chest 4',
@@ -1442,7 +1442,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Armor_014_Lower',
         'hash_id_unsigned': 3913217232,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Takama Shiri Shrine - Chest',
@@ -1450,7 +1450,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_036',
         'hash_id_unsigned': 2056438385,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Ta'loh Naeg Shrine - Chest 1",
@@ -1474,7 +1474,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_E',
         'hash_id_unsigned': 3163225088,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Tawa Jinn Shrine - Chest',
@@ -1482,7 +1482,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_035',
         'hash_id_unsigned': 4013064750,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': "Tena Ko'sah Shrine - Chest",
@@ -1490,7 +1490,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_003',
         'hash_id_unsigned': 3776874027,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Tho Kayu Shrine - Chest',
@@ -1498,7 +1498,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_015',
         'hash_id_unsigned': 3348821939,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Toh Yahsa Shrine - Chest 1',
@@ -1506,7 +1506,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Armor_046_Upper',
         'hash_id_unsigned': 651697158,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Toh Yahsa Shrine - Chest 2',
@@ -1514,7 +1514,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_E',
         'hash_id_unsigned': 1608635741,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'To Quomo Shrine - Chest',
@@ -1522,7 +1522,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Lsword_024',
         'hash_id_unsigned': 1922807999,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Toto Sah Shrine - Chest 1',
@@ -1546,7 +1546,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Armor_048_Head',
         'hash_id_unsigned': 832725204,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Tutsuwa Nima Shrine - Chest',
@@ -1554,7 +1554,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_033',
         'hash_id_unsigned': 1101189494,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Voo Lota Shrine - Chest 1',
@@ -1578,7 +1578,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_F',
         'hash_id_unsigned': 322360761,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Yah Rin Shrine - Chest 1',
@@ -1586,7 +1586,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_003',
         'hash_id_unsigned': 1735097170,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Yah Rin Shrine - Chest 2',
@@ -1594,7 +1594,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Item_Ore_E',
         'hash_id_unsigned': 4049467582,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ya Naga Shrine - Chest',
@@ -1602,7 +1602,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_041',
         'hash_id_unsigned': 319620032,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Yowaka Ita Shrine - Chest 1',
@@ -1626,7 +1626,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Bow_035',
         'hash_id_unsigned': 3918894197,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Ze Kasho Shrine - Chest',
@@ -1634,7 +1634,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Spear_028',
         'hash_id_unsigned': 2075859436,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
     {
         'name': 'Zuna Kai Shrine - Chest',
@@ -1642,7 +1642,7 @@ SHRINE_CHEST_REGISTRY = (
         'drop_actor': 'Weapon_Sword_033',
         'hash_id_unsigned': 1161464155,
         'assignment_status': 'provisional_assignment',
-        'verified': False,
+        'verified': True,
     },
 )
 

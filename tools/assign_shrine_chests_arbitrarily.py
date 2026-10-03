@@ -45,6 +45,17 @@ def main():
     chest_rows = read_csv(CHEST_INVENTORY)
     mapping_rows = read_csv(DUNGEON_MAPPING)
 
+        # Preserve verification decisions when regenerating the registry.
+    existing_verified = {}
+
+    if REGISTRY_OUT.is_file():
+        for row in read_csv(REGISTRY_OUT):
+            name = (row.get("name") or "").strip()
+            if name:
+                existing_verified[name] = (
+                    row.get("verified") or ""
+                ).strip()
+
     # Resolve each shrine name to a dungeon number using the existing
     # message-table mapping report.
     shrine_to_dungeon = defaultdict(set)
@@ -220,6 +231,7 @@ def main():
                     if actor
                     else "unassigned_count_mismatch"
                 ),
+                "verified": existing_verified.get(check["name"], ""),
             })
 
     registry_fields = [
@@ -227,7 +239,7 @@ def main():
         "name", "shrine_name", "chest_number", "region", "categories",
         "dungeon", "map_file", "actor_name", "hash_id_unsigned",
         "drop_actor", "drop_table", "persistent_flag_candidate",
-        "assignment_status",
+        "assignment_status", "verified",
     ]
     summary_fields = [
         "shrine", "dungeon", "ap_chest_checks",

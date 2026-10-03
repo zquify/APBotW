@@ -5,14 +5,29 @@ import asyncio
 import logging
 import sys
 import socket
+import json
 from pathlib import Path
 
-# Reuse the existing WiiXLaunch delivery bridge.
+REPO_ROOT = Path(__file__).resolve().parents[2]
+WORLD_DIR = REPO_ROOT / "BotWArchipelago"
+
+if not WORLD_DIR.is_dir():
+    raise FileNotFoundError(
+        f"Native BotW world directory not found: {WORLD_DIR}"
+    )
+
+# Archipelago installation containing CommonClient.py.
+ARCHIPELAGO_DIR = Path(r"C:\Projects\Archipelago-0.6.7")
+
+# Existing WiiXLaunch tools containing ap_delivery.py.
 TOOLS_DIR = Path(r"C:\Projects\wiixlaunch-botw\tools")
+
+sys.path.insert(0, str(ARCHIPELAGO_DIR))
 sys.path.insert(0, str(TOOLS_DIR))
 
 from CommonClient import CommonContext, get_base_parser, server_loop
 from ap_delivery import APItemDelivery
+from generated_shrine_chest_registry import SHRINE_CHEST_REGISTRY
 
 
 GAME_NAME = "Breath of the Wild"
@@ -20,7 +35,6 @@ GAME_NAME = "Breath of the Wild"
 # Locations.py assigns IDs sequentially, starting at 1 by default.
 # Oman Au Shrine is the eighth entry in data/locations.json.
 OMAN_AU_SHRINE_LOCATION_ID = 8
-OMAN_AU_CHEST_LOCATION_ID = 7
 
 BRIDGE_ADDRESS = ("127.0.0.1", 8080)
 
@@ -41,6 +55,54 @@ def bridge_command(command):
         return response.decode("ascii", errors="replace").strip()
 
 
+def resolve_location_id(ctx, location_name):
+    """Resolve a location name using the native BotW world's IDs."""
+    return NATIVE_LOCATION_IDS.get(location_name)
+
+
+def load_native_location_ids():
+    """Build the location-name mapping using the native world's ID rules."""
+    import json
+
+    game_file = WORLD_DIR / "data" / "game.json"
+    data_file = WORLD_DIR / "data" / "locations.json"
+
+    with game_file.open("r", encoding="utf-8-sig") as f:
+        game_table = json.load(f)
+
+    starting_index = int(game_table.get("starting_index", 1))
+
+    with data_file.open("r", encoding="utf-8-sig") as f:
+        data = json.load(f)
+
+    locations = data.get("data", data)
+    count = starting_index
+    name_to_id = {}
+
+    for location in locations:
+        if "id" in location:
+            location_id = location["id"]
+            if location_id >= count:
+                count = location_id
+            else:
+                raise ValueError(
+                    f"Invalid location ID for {location['name']}: "
+                    f"{location_id}"
+                )
+
+        location_id = count
+        name_to_id[location["name"]] = location_id
+        count += 1
+
+    return name_to_id
+
+
+NATIVE_LOCATION_IDS = load_native_location_ids()
+
+
+NATIVE_LOCATION_IDS = load_native_location_ids()
+
+
 async def game_check_loop(ctx):
     """Poll the bridge and report the Oman Au Shrine completion."""
     while not ctx.exit_event.is_set():
@@ -56,10 +118,43 @@ async def game_check_loop(ctx):
                     check_name = "Oman Au Shrine"
                     ack_command = "ACK OMAN_AU"
 
-                elif response == "CHECK OMAN_AU_CHEST":
-                    location_id = OMAN_AU_CHEST_LOCATION_ID
-                    check_name = "Oman Au Shrine - Chest"
-                    ack_command = "ACK OMAN_AU_CHEST"
+                elif response.startswith("CHECK CHEST "):
+                    try:
+                        registry_index = int(
+                            response.removeprefix("CHECK CHEST ").strip()
+                        )
+                    except ValueError:
+                        logger.warning(
+                            "Invalid chest-check response from bridge: %r",
+                            response,
+                        )
+                        continue
+
+                    from generated_shrine_chest_registry import (
+                        SHRINE_CHEST_REGISTRY,
+                    )
+
+                    if not (
+                        0 <= registry_index < len(SHRINE_CHEST_REGISTRY)
+                    ):
+                        logger.warning(
+                            "Chest registry index out of range: %s",
+                            registry_index,
+                        )
+                        continue
+
+                    entry = SHRINE_CHEST_REGISTRY[registry_index]
+                    check_name = entry["name"]
+                    location_id = resolve_location_id(ctx, check_name)
+                    ack_command = f"ACK CHEST {registry_index}"
+
+                    if location_id is None:
+                        logger.warning(
+                            "Cannot resolve AP location ID for %r; "
+                            "leaving chest check pending",
+                            check_name,
+                        )
+                        continue
 
                 else:
                     location_id = None

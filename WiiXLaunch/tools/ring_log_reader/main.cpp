@@ -284,7 +284,12 @@ void PrintEntries(const std::vector<uint8_t>& buf) {
         if (!found) break;
 
         std::string text(reinterpret_cast<const char*>(&buf[textStart]), j - textStart);
-        printf("[log] %s\n", text.c_str());
+        if (std::strstr(text.c_str(), "Net: SetNonBlocking") == nullptr &&
+            std::strstr(text.c_str(), "Net: SO_NONBLOCK readback") == nullptr)
+        {
+            printf("[log] %s\n", text.c_str());
+            fflush(stdout);
+        }
         i = j + 4;
     }
 }

@@ -3,10 +3,10 @@ setlocal
 
 title WiiXLaunch BotW - Build, Deploy and Launch
 
-set "WX=C:\Projects\WiiXLaunch"
-set "BOTW=C:\Projects\wiixlaunch-botw"
+set "WX=C:\Projects\APBotW\WiiXLaunch"
+set "BOTW=C:\Projects\APBotW\wiixlaunch-botw"
 set "CEMU=C:\Cemu\cemu_1.26.2"
-set "HOST_SOURCE=%WX%\build\host"
+set "HOST_SOURCE=%WX%\deploy\cemu\graphicPacks\WiiXLaunch_BotW"
 set "HOST_DEST=%CEMU%\graphicPacks\WiiXLaunch_BotW"
 set "MOD_SOURCE=%WX%\mods\botw_ap_bridge"
 
@@ -47,19 +47,20 @@ if errorlevel 1 (
 )
 popd
 
-if not exist "%HOST_SOURCE%" (
-    echo ERROR: Host build output not found:
-    echo %HOST_SOURCE%
-    pause
-    exit /b 1
-)
-
 echo.
 echo [2/5] Deploying BotW graphic pack...
 pushd "%WX%"
 python scripts\deploy.py --target botw
 if errorlevel 1 (
     echo ERROR: Graphic pack deployment failed.
+    popd
+    pause
+    exit /b 1
+)
+
+if not exist "%HOST_SOURCE%\" (
+    echo ERROR: Graphic pack deployment did not create the expected host directory:
+    echo %HOST_SOURCE%
     popd
     pause
     exit /b 1

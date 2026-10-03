@@ -137,7 +137,7 @@ def load_registry(path: Path) -> list[dict]:
                     ).strip(),
                     "hash_id_unsigned": hash_id,
                     "assignment_status": status,
-                    "verified": status.lower() in VERIFIED_STATUSES,
+                    "verified": parse_verified(row.get("verified", "")),
                 }
             )
 
