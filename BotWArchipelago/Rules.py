@@ -215,9 +215,8 @@ def set_rules(world: "BotWWorld", multiworld: MultiWorld, player: int):
 
                 if total >= item_count:
                     requires_list = requires_list.replace(item_base, "1")
-
-            if total <= item_count: # type: ignore
-                requires_list = requires_list.replace(item_base, "0")
+                else:
+                    requires_list = requires_list.replace(item_base, "0")
 
         requires_list = re.sub(r'\s?\bAND\b\s?', '&', requires_list, count=0, flags=re.IGNORECASE)
         requires_list = re.sub(r'\s?\bOR\b\s?', '|', requires_list, count=0, flags=re.IGNORECASE)
