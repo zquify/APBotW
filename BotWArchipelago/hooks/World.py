@@ -2,6 +2,7 @@
 from typing import Any
 from worlds.AutoWorld import World
 from BaseClasses import MultiWorld, CollectionState, Item
+from Fill import sweep_from_pool
 
 # Object classes from Manual -- extending AP core -- representing items and locations that are used in generation
 from ..Items import ManualItem
@@ -198,3 +199,50 @@ def hook_interpret_slot_data(world: World, player: int, slot_data: dict[str, Any
         Use this if you want to use or modify the slot_data for passed into re_gen_passthrough
     """
     return slot_data
+
+def fill_hook(
+    world: World,
+    multiworld: MultiWorld,
+    player: int,
+    progitempool: list,
+    usefulitempool: list,
+    filleritempool: list,
+    fill_locations: list,
+) -> None:
+    """
+    Keep BotW progression items in a stable order.
+
+    Archipelago 0.6.7's fill_restrictive() pops progression items from the
+    end of the pool. Put tower items at the end so they are considered early.
+    Towers remain ordinary progression items and can be placed at any normal
+    location.
+    """
+    tower_names = {
+        "Central Tower",
+        "Dueling Peaks Tower",
+        "Hateno Tower",
+        "Faron Tower",
+        "Lanayru Tower",
+        "Eldin Tower",
+        "Great Plateau Tower",
+        "Akkala Tower",
+        "Woodland Tower",
+        "Lake Tower",
+        "Tabantha Tower",
+        "Ridgeland Tower",
+        "Gerudo Tower",
+        "Wasteland Tower",
+        "Hebra Tower",
+    }
+
+    towers = [
+        item for item in progitempool
+        if item.name in tower_names
+    ]
+
+    other_progression = [
+        item for item in progitempool
+        if item.name not in tower_names
+    ]
+
+    progitempool[:] = other_progression + towers

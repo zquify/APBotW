@@ -3,6 +3,8 @@
 #include <wiixlaunch/botw/game/pouch.hpp>
 #include <wiixlaunch/botw/game/events.hpp>
 #include <wiixlaunch/botw/game/gamedata.hpp>
+#include <wiixlaunch/botw/game/map.hpp>
+#include <wiixlaunch/botw/game/region.hpp>
 #include "shrine_chest_registry.hpp"
 #include <cstdio>
 #include <stddef.h>
@@ -110,6 +112,47 @@ static void FormatChestCheck(char* buffer, std::size_t capacity, std::size_t ind
     buffer[pos] = '\0';
 }
 
+static void FormatShrineCheck(
+    char* buffer,
+    std::size_t capacity,
+    std::size_t shrine
+)
+{
+    if (capacity == 0)
+        return;
+
+    constexpr char prefix[] = "CHECK SHRINE ";
+    constexpr std::size_t prefixLength = sizeof(prefix) - 1;
+
+    if (capacity <= prefixLength)
+    {
+        buffer[0] = '\0';
+        return;
+    }
+
+    std::size_t pos = 0;
+
+    for (std::size_t i = 0; i < prefixLength; ++i)
+        buffer[pos++] = prefix[i];
+
+    char digits[20];
+    std::size_t digitCount = 0;
+
+    do
+    {
+        digits[digitCount++] =
+            static_cast<char>('0' + (shrine % 10));
+
+        shrine /= 10;
+    }
+    while (shrine != 0 && digitCount < sizeof(digits));
+
+    while (digitCount > 0 && pos + 1 < capacity)
+        buffer[pos++] = digits[--digitCount];
+
+    buffer[pos] = '\0';
+}
+
 using U32Fn = uint32_t (*)(void);
 using OpenFn = uint32_t (*)(uint32_t*);
 using HandleFn = uint32_t (*)(uint32_t);
@@ -159,10 +202,14 @@ static uint32_t g_TicksWaiting = 0;
 static char g_Command[128];
 static uint32_t g_CommandLength = 0;
 
-// Shrine completion is still handled by the existing event callback.
-static volatile bool g_OmanAuPending = false;
+// One pending flag per shrine Dungeon index.
+// Events::OnShrineComplete() reports the Dungeon number directly.
+static volatile bool
+    g_ShrineCompletionPending[
+        WiiXLaunch::BotW::Events::kShrineProbeLimit
+    ] = {};
 
-// One pending flag per generated registry entry.
+// One pending flag per generated shrine chest registry entry.
 static volatile bool
     g_ShrineChestPending[BotWAP::kShrineChestRegistrySize] = {};
 
@@ -173,10 +220,13 @@ static char g_DynamicResult[64];
 
 static void OnShrineComplete(int shrine)
 {
-    if (shrine == 38)
+    if (shrine < 0 ||
+        shrine >= WiiXLaunch::BotW::Events::kShrineProbeLimit)
     {
-        g_OmanAuPending = true;
+        return;
     }
+
+    g_ShrineCompletionPending[shrine] = true;
 }
 
 static void CloseClient() {
@@ -324,18 +374,31 @@ static bool ParseAndGrant()
         tokens[0][2] == 'L' &&
         tokens[0][3] == 'L')
     {
-        // Preserve the existing shrine-completion protocol.
-        if (g_OmanAuPending) {
-            g_Result = "CHECK OMAN_AU\n";
-            return true;
+        // Report the first pending shrine completion.
+        for (std::size_t i = 0;
+            i < WiiXLaunch::BotW::Events::kShrineProbeLimit;
+            ++i)
+        {
+            if (g_ShrineCompletionPending[i])
+            {
+                FormatShrineCheck(
+                    g_DynamicResult,
+                    sizeof(g_DynamicResult),
+                    i
+                );
+
+                g_Result = g_DynamicResult;
+                return true;
+            }
         }
 
-        // Report the first pending chest using its registry index.
+        // Report the first pending shrine chest using its registry index.
         for (std::size_t i = 0;
-             i < BotWAP::kShrineChestRegistrySize;
-             ++i)
+            i < BotWAP::kShrineChestRegistrySize;
+            ++i)
         {
-            if (g_ShrineChestPending[i]) {
+            if (g_ShrineChestPending[i])
+            {
                 FormatChestCheck(
                     g_DynamicResult,
                     sizeof(g_DynamicResult),
@@ -349,27 +412,6 @@ static bool ParseAndGrant()
 
         g_Result = "NONE\n";
         return true;
-    }
-
-    // Acknowledge only after the Python client has submitted the check.
-    if (tokenCount == 2 &&
-        LocalStringLength(tokens[0]) == 3 &&
-        tokens[0][0] == 'A' &&
-        tokens[0][1] == 'C' &&
-        tokens[0][2] == 'K' &&
-        LocalStringLength(tokens[1]) == 8 &&
-        tokens[1][0] == 'O' &&
-        tokens[1][1] == 'M' &&
-        tokens[1][2] == 'A' &&
-        tokens[1][3] == 'N' &&
-        tokens[1][4] == '_' &&
-        tokens[1][5] == 'A' &&
-        tokens[1][6] == 'U' &&
-        tokens[1][7] == 'X')
-    {
-        // Deliberately do not acknowledge malformed or unknown checks.
-        g_Result = "ERR unknown check\n";
-        return false;
     }
 
     // Acknowledge a shrine chest check by registry index.
@@ -399,21 +441,76 @@ static bool ParseAndGrant()
         return true;
     }
 
-    if (tokenCount == 2 &&
+    if (tokenCount == 3 &&
         LocalStringLength(tokens[0]) == 3 &&
         tokens[0][0] == 'A' &&
         tokens[0][1] == 'C' &&
         tokens[0][2] == 'K' &&
-        LocalStringLength(tokens[1]) == 7 &&
-        tokens[1][0] == 'O' &&
-        tokens[1][1] == 'M' &&
-        tokens[1][2] == 'A' &&
-        tokens[1][3] == 'N' &&
-        tokens[1][4] == '_' &&
-        tokens[1][5] == 'A' &&
-        tokens[1][6] == 'U')
+        LocalStringLength(tokens[1]) == 6 &&
+        tokens[1][0] == 'S' &&
+        tokens[1][1] == 'H' &&
+        tokens[1][2] == 'R' &&
+        tokens[1][3] == 'I' &&
+        tokens[1][4] == 'N' &&
+        tokens[1][5] == 'E')
     {
-        g_OmanAuPending = false;
+        std::uint32_t shrine = 0;
+
+        if (!ParseUnsigned32(tokens[2], &shrine) ||
+            shrine >= WiiXLaunch::BotW::Events::kShrineProbeLimit)
+        {
+            g_Result = "ERR unknown check\n";
+            return false;
+        }
+
+        g_ShrineCompletionPending[shrine] = false;
+        g_Result = "OK\n";
+        return true;
+    }
+
+    // Unlock a Sheikah Tower.
+    //
+    // Protocol:
+    // UNLOCK TOWER 7
+    //
+    // Tower numbers are the game's MapTower_01 through MapTower_15.
+    if (tokenCount == 3 &&
+        LocalStringLength(tokens[0]) == 6 &&
+        tokens[0][0] == 'U' &&
+        tokens[0][1] == 'N' &&
+        tokens[0][2] == 'L' &&
+        tokens[0][3] == 'O' &&
+        tokens[0][4] == 'C' &&
+        tokens[0][5] == 'K' &&
+        LocalStringLength(tokens[1]) == 5 &&
+        tokens[1][0] == 'T' &&
+        tokens[1][1] == 'O' &&
+        tokens[1][2] == 'W' &&
+        tokens[1][3] == 'E' &&
+        tokens[1][4] == 'R')
+    {
+        std::uint32_t tower = 0;
+
+        if (!ParseUnsigned32(tokens[2], &tower) ||
+            tower < WiiXLaunch::BotW::Map::kFirstRegion ||
+            tower > WiiXLaunch::BotW::Map::kLastRegion)
+        {
+            g_Result = "ERR unknown tower\n";
+            return false;
+        }
+
+        if (!WiiXLaunch::BotW::Map::SetMapRegionUnlock(
+                static_cast<int>(tower),
+                true))
+        {
+            g_Result = "ERR tower unlock failed\n";
+            return false;
+        }
+
+        // If the AP region-lock system is active, make the newly activated
+        // tower open its corresponding physical region as well.
+        WiiXLaunch::BotW::Region::SyncFromTowers();
+
         g_Result = "OK\n";
         return true;
     }

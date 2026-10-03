@@ -1,15 +1,7 @@
 {
   "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.locations.schema.json",
   "data": [
-    {
-      "name": "Great Plateau Tower",
-	  "region": "Great Plateau",
-	  "category": [
-		"Sheikah Towers"
-	  ],
-	  "requires": ""
-	},
-	{
+   {
 	  "name": "Ja Baij Shrine - Chest 1",
       "region": "Great Plateau",
       "category": [
@@ -193,14 +185,6 @@
       "requires": ""
     },
     {
-      "name": "Central Tower",
-      "region": "Central Hyrule",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
-    },
-    {
       "name": "Dah Kaso Shrine - Chest",
       "region": "Central Hyrule",
       "category": [
@@ -380,14 +364,6 @@
         "Central Hyrule Shrines"
       ],
       "requires": "|Magnesis|"
-    },
-    {
-      "name": "Dueling Peaks Tower",
-      "region": "Dueling Peaks",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
     },
     {
       "name": "Bosh Kala Shrine - Chest 1",
@@ -588,14 +564,6 @@
       "requires": "|Progressive Remote Bomb|"
     },
     {
-      "name": "Hateno Tower",
-      "region": "Necluda",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
-    },
-    {
       "name": "Chaas Qeta Shrine - Chest",
       "region": "Necluda",
       "category": [
@@ -740,14 +708,6 @@
         "Necluda Shrines"
       ],
       "requires": "|@Cold Resistance| AND |Progressive Remote Bomb|"
-    },
-    {
-      "name": "Faron Tower",
-      "region": "Faron",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
     },
     {
       "name": "Kah Yah Shrine - Chest 1",
@@ -920,14 +880,6 @@
         "Faron Shrines"
       ],
       "requires": "|Magnesis|"
-    },
-    {
-      "name": "Lanayru Tower",
-      "region": "Lanayru",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
     },
     {
       "name": "Dagah Keek Shrine - Chest",
@@ -1165,14 +1117,6 @@
         "The Champions' Ballad DLC"
       ],
       "requires": "|Progressive Mipha's Grace| AND |Cryonis|"
-    },
-    {
-      "name": "Eldin Tower",
-      "region": "Eldin",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
     },
     {
       "name": "Daqa Koh Shrine - Chest",
@@ -1509,14 +1453,6 @@
       "requires": "|Vah Rudania Cleared| AND ((|@Flame Resistant Head| AND |@Flame Resistant Body|) OR (|@Flame Resistant Head| AND |@Flame Resistant Legs|) OR (|@Flame Resistant Body| AND |@Flame Resistant Legs|)) AND |Cryonis|"
     },
     {
-      "name": "Akkala Tower",
-      "region": "Akkala",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
-    },
-    {
       "name": "Dah Hesho Shrine - Chest",
       "region": "Akkala",
       "category": [
@@ -1651,14 +1587,6 @@
         "Akkala Shrines"
       ],
       "requires": "(|Revali's Gale| OR |Progressive Revali's Gale|)"
-    },
-    {
-      "name": "Woodland Tower",
-      "region": "Great Hyrule Forest",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
     },
     {
       "name": "Daag Chokah Shrine - Chest",
@@ -1815,14 +1743,6 @@
       "requires": ""
     },
     {
-      "name": "Lake Tower",
-      "region": "Lake Hylia",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
-    },
-    {
       "name": "Ishto Soh Shrine - Chest 1",
       "region": "Lake Hylia",
       "category": [
@@ -1950,14 +1870,6 @@
         "Lake Hylia Shrines"
       ],
       "requires": "|Progressive Remote Bomb|"
-    },
-    {
-      "name": "Tabantha Tower",
-      "region": "Tabantha",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
     },
     {
       "name": "Akh Va'quot Shrine - Chest 1",
@@ -2168,14 +2080,6 @@
       "requires": "|Progressive Revali's Gale| AND ((|@Cold Resistant Head| AND |@Cold Resistant Body|) OR (|@Cold Resistant Head| AND |@Cold Resistant Legs|) OR (|@Cold Resistant Body| AND |@Cold Resistant Legs|))"
     },
     {
-      "name": "Ridgeland Tower",
-      "region": "Hyrule Ridge",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
-    },
-    {
       "name": "Maag No'rah Shrine - Chest",
       "region": "Hyrule Ridge",
       "category": [
@@ -2350,14 +2254,6 @@
       "requires": "|Progressive Revali's Gale| AND |Progressive Remote Bomb| AND |Progressive Stasis|"
     },
     {
-      "name": "Gerudo Tower",
-      "region": "Gerudo Highlands",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
-    },
-    {
       "name": "Joloo Nah Shrine - Chest 1",
       "region": "Gerudo Highlands",
       "category": [
@@ -2467,14 +2363,6 @@
         "Gerudo Highlands Shrines"
       ],
       "requires": "|Progressive Armor Upgrade| AND |@Upgradeable Head| AND |@Upgradeable Body| AND |@Upgradeable Legs|"
-    },
-    {
-      "name": "Wasteland Tower",
-      "region": "Gerudo Desert",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
     },
     {
       "name": "Dako Tah Shrine - Chest 1",
@@ -2790,14 +2678,6 @@
         "The Champions' Ballad DLC"
       ],
       "requires": "|Progressive Urbosa's Fury| AND (|@Heat Resistance| OR (|Gerudo Veil| AND |Gerudo Top| AND |Gerudo Sirwal|)) AND |@Cold Resistance|"
-    },
-    {
-      "name": "Hebra Tower",
-      "region": "Hebra",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "requires": ""
     },
     {
       "name": "Dunba Taag Shrine - Chest 1",

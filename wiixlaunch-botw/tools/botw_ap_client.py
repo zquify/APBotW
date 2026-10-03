@@ -2,6 +2,7 @@
 
 import argparse
 import asyncio
+import csv
 import logging
 import sys
 import socket
@@ -31,10 +32,6 @@ from generated_shrine_chest_registry import SHRINE_CHEST_REGISTRY
 
 
 GAME_NAME = "Breath of the Wild"
-
-# Locations.py assigns IDs sequentially, starting at 1 by default.
-# Oman Au Shrine is the eighth entry in data/locations.json.
-OMAN_AU_SHRINE_LOCATION_ID = 8
 
 BRIDGE_ADDRESS = ("127.0.0.1", 8080)
 
@@ -100,7 +97,56 @@ def load_native_location_ids():
 NATIVE_LOCATION_IDS = load_native_location_ids()
 
 
-NATIVE_LOCATION_IDS = load_native_location_ids()
+def load_shrine_locations():
+    """Build Dungeon index -> (AP location ID, location name)."""
+    mapping_file = (
+        REPO_ROOT
+        / "check_inventory"
+        / "shrine_dungeon_mapping.csv"
+    )
+
+    shrine_locations = {}
+
+    with mapping_file.open(
+        "r",
+        encoding="utf-8-sig",
+        newline="",
+    ) as f:
+        reader = csv.DictReader(f)
+
+        for row in reader:
+            # Each shrine appears twice in the CSV: once for Dungeon.xmsbt
+            # and once for LocationMarker.xmsbt. Only need one copy.
+            if row["source_file"] != "Dungeon.xmsbt":
+                continue
+
+            dungeon_id = row["dungeon_id"]
+
+            if not dungeon_id.startswith("Dungeon"):
+                continue
+
+            dungeon_number = int(
+                dungeon_id.removeprefix("Dungeon")
+            )
+
+            shrine_name = row["display_name"]
+            location_id = NATIVE_LOCATION_IDS.get(shrine_name)
+
+            if location_id is None:
+                raise ValueError(
+                    f"Shrine {shrine_name!r} from {dungeon_id} "
+                    "does not exist in locations.json"
+                )
+
+            shrine_locations[dungeon_number] = (
+                location_id,
+                shrine_name,
+            )
+
+    return shrine_locations
+
+
+SHRINE_LOCATIONS = load_shrine_locations()
 
 
 async def game_check_loop(ctx):
@@ -113,10 +159,29 @@ async def game_check_loop(ctx):
                     bridge_command, "POLL"
                 )
 
-                if response == "CHECK OMAN_AU":
-                    location_id = OMAN_AU_SHRINE_LOCATION_ID
-                    check_name = "Oman Au Shrine"
-                    ack_command = "ACK OMAN_AU"
+                if response.startswith("CHECK SHRINE "):
+                    try:
+                        shrine_number = int(
+                            response.removeprefix("CHECK SHRINE ").strip()
+                        )
+                    except ValueError:
+                        logger.warning(
+                            "Invalid shrine-check response from bridge: %r",
+                            response,
+                        )
+                        continue
+
+                    shrine = SHRINE_LOCATIONS.get(shrine_number)
+
+                    if shrine is None:
+                        logger.warning(
+                            "No AP location mapping for Dungeon%03d",
+                            shrine_number,
+                        )
+                        continue
+
+                    location_id, check_name = shrine
+                    ack_command = f"ACK SHRINE {shrine_number}"
 
                 elif response.startswith("CHECK CHEST "):
                     try:

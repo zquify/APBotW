@@ -36,6 +36,24 @@ ITEM_MAP = {
     "Cap of the Wind": ("Armor_205_Head", 0),
 }
 
+TOWER_MAP = {
+    "Central Tower": 1,
+    "Dueling Peaks Tower": 2,
+    "Hateno Tower": 3,
+    "Faron Tower": 4,
+    "Lanayru Tower": 5,
+    "Eldin Tower": 6,
+    "Great Plateau Tower": 7,
+    "Akkala Tower": 8,
+    "Woodland Tower": 9,
+    "Lake Tower": 10,
+    "Tabantha Tower": 11,
+    "Ridgeland Tower": 12,
+    "Gerudo Tower": 13,
+    "Wasteland Tower": 14,
+    "Hebra Tower": 15,
+}
+
 # Store delivery progress outside either source repository.
 STATE_FILE = Path.home() / ".botw_ap_delivery.json"
 
@@ -74,6 +92,52 @@ def send_to_bridge(actor_name, quantity=1):
     result = response.decode("ascii", errors="replace").strip()
     if result != "OK":
         raise DeliveryError("Bridge rejected command: {}".format(result))
+
+    return True
+
+
+def send_tower_to_bridge(tower_number):
+    """Tell the WiiXLaunch bridge to activate a Sheikah Tower."""
+    if not 1 <= tower_number <= 15:
+        raise DeliveryError(
+            "Invalid tower number: {}".format(tower_number)
+        )
+
+    command = "UNLOCK TOWER {}\n".format(tower_number)
+
+    try:
+        with socket.create_connection(
+            (BRIDGE_HOST, BRIDGE_PORT), timeout=BRIDGE_TIMEOUT
+        ) as sock:
+            sock.settimeout(BRIDGE_TIMEOUT)
+            sock.sendall(command.encode("ascii"))
+
+            response = bytearray()
+            while not response.endswith(b"\n"):
+                chunk = sock.recv(1)
+                if not chunk:
+                    break
+                response.extend(chunk)
+
+    except OSError as exc:
+        raise DeliveryError(
+            "Bridge connection failed: {}".format(exc)
+        )
+
+    if not response:
+        raise DeliveryError(
+            "Bridge disconnected without a response"
+        )
+
+    result = response.decode(
+        "ascii",
+        errors="replace",
+    ).strip()
+
+    if result != "OK":
+        raise DeliveryError(
+            "Bridge rejected tower command: {}".format(result)
+        )
 
     return True
 
@@ -133,6 +197,27 @@ class APItemDelivery:
 
             if item_name == "__Victory__":
                 self._advance()
+                continue
+
+            tower_number = TOWER_MAP.get(item_name)
+
+            if tower_number is not None:
+                try:
+                    send_tower_to_bridge(tower_number)
+                except DeliveryError:
+                    log.exception(
+                        "Failed to activate tower %r at index %d; "
+                        "delivery paused.",
+                        item_name, index,
+                    )
+                    return False
+
+                self._advance()
+                log.info(
+                    "Activated AP tower %d: %s",
+                    tower_number,
+                    item_name,
+                )
                 continue
 
             mapping = ITEM_MAP.get(item_name)
