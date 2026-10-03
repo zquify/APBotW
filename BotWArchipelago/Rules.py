@@ -197,8 +197,10 @@ def set_rules(world: "BotWWorld", multiworld: MultiWorld, player: int):
                 for category_item in category_items:
                     total += state.count(category_item["name"], player)
 
-                    if total >= item_count:
-                        requires_list = requires_list.replace(item_base, "1")
+                if total >= item_count:
+                    requires_list = requires_list.replace(item_base, "1")
+                else:
+                    requires_list = requires_list.replace(item_base, "0")
             elif require_type == 'item':
                 item_current_count = items_counts.get(item_name, 0)
                 if item_count.lower() == 'all':

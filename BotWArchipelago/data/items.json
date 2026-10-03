@@ -134,7 +134,10 @@
       "category": [
         "Runes"
       ],
-      "progression": true
+      "classification_count": {
+        "progression": 1,
+        "useful": 1
+      }
     },
     {
       "count": "2",
@@ -142,7 +145,10 @@
       "category": [
         "Runes"
       ],
-      "progression": true
+      "classification_count": {
+        "progression": 1,
+        "useful": 1
+      }
     },
     {
       "count": 1,
@@ -501,7 +507,7 @@
         "Armor",
         "Upgradeable Body"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,
@@ -588,7 +594,7 @@
         "Heat Resistant Legs",
         "Upgradeable Heat Resistant Legs"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,
@@ -660,7 +666,7 @@
         "Flame Resistant Legs",
         "Upgradeable Flame Resistant Legs"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,
@@ -828,7 +834,7 @@
         "Armor",
         "Upgradeable Head"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,
@@ -837,7 +843,7 @@
         "Armor",
         "Upgradeable Body"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,
@@ -846,7 +852,7 @@
         "Armor",
         "Upgradeable Legs"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,
@@ -1079,7 +1085,7 @@
         "Armor",
         "Upgradeable Head"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,
@@ -1088,7 +1094,7 @@
         "Armor",
         "Upgradeable Body"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,
@@ -1097,7 +1103,7 @@
         "Armor",
         "Upgradeable Legs"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,
@@ -1205,7 +1211,7 @@
         "Cold Resistant Legs",
         "Upgradeable Cold Resistant Legs"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,
@@ -1313,7 +1319,7 @@
         "Cold Resistance",
         "Cold Resistant Body"
       ],
-      "progression": true
+      "useful": true
     },
     {
       "count": 1,

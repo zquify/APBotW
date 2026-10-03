@@ -247,6 +247,13 @@ class BotWWorld(World):
         # then will remove specific item placements below from the overall pool
         self.multiworld.itempool += pool
 
+        logging.warning(
+            "BOTW AFTER CREATE_ITEMS: %d items, %d total locations, %d unfilled locations",
+            len([i for i in self.multiworld.itempool if i.player == self.player]),
+            len(self.multiworld.get_locations(player=self.player)),
+            len(self.multiworld.get_unfilled_locations(player=self.player)),
+        )
+
         # Filter Precollected items for those not in logic aka created by start_inventory(_from_pool)
         precollected_items = list(self.multiworld.precollected_items[self.player])
 
@@ -333,82 +340,46 @@ class BotWWorld(World):
 
     def generate_basic(self):
         before_generate_basic(self, self.multiworld, self.player)
-
-        # Handle item forbidding
-        manual_locations_with_forbid = {location['name']: location for location in location_name_to_location.values() if "dont_place_item" in location or "dont_place_item_category" in location}
-        locations_with_forbid = [l for l in self.multiworld.get_unfilled_locations(player=self.player) if l.name in manual_locations_with_forbid.keys()]
-        for location in locations_with_forbid:
-            manual_location = manual_locations_with_forbid[location.name]
-            forbidden_item_names = []
-
-            if manual_location.get("dont_place_item"):
-                forbidden_item_names.extend([i["name"] for i in item_name_to_item.values() if i["name"] in manual_location["dont_place_item"]])
-
-            if manual_location.get("dont_place_item_category"):
-                forbidden_item_names.extend([i["name"] for i in item_name_to_item.values() if "category" in i and set(i["category"]).intersection(manual_location["dont_place_item_category"])])
-
-            if forbidden_item_names:
-                forbid_items_for_player(location, set(forbidden_item_names), self.player)
-
-        # Handle specific item placements using fill_restrictive
-        manual_locations_with_placements = {location['name']: location for location in location_name_to_location.values() if "place_item" in location or "place_item_category" in location}
-        locations_with_placements = [l for l in self.multiworld.get_unfilled_locations(player=self.player) if l.name in manual_locations_with_placements.keys()]
-        for location in locations_with_placements:
-            manual_location = manual_locations_with_placements[location.name]
-            eligible_items = []
-            eligible_item_names = []
-            forbidden_item_names = []
-            place_messages = []
-            forbid_messages = []
-
-            #First we get possible items names
-            if manual_location.get("place_item"):
-                eligible_item_names += manual_location["place_item"]
-                place_messages.append('", "'.join(manual_location["place_item"]))
-
-            if manual_location.get("place_item_category"):
-                eligible_item_names += [i["name"] for i in item_name_to_item.values() if "category" in i and set(i["category"]).intersection(manual_location["place_item_category"])]
-                place_messages.append('", "'.join(manual_location["place_item_category"]) + " category(ies)")
-
-            # Second we check for forbidden items names
-            if manual_location.get("dont_place_item"):
-                forbidden_item_names += manual_location["dont_place_item"]
-                forbid_messages.append('", "'.join(manual_location["dont_place_item"]) + ' items')
-
-            if manual_location.get("dont_place_item_category"):
-                forbidden_item_names += [i["name"] for i in item_name_to_item.values() if "category" in i and set(i["category"]).intersection(manual_location["dont_place_item_category"])]
-                forbid_messages.append('", "'.join(manual_location["dont_place_item_category"]) + ' category(ies)')
-
-            # If we forbid some names, check for those in the possible names and remove them
-            if forbidden_item_names:
-                eligible_item_names = [name for name in eligible_item_names if name not in forbidden_item_names]
-
-            if eligible_item_names:
-                eligible_items = [item for item in self.multiworld.itempool if item.player == self.player and item.name in eligible_item_names]
-
-            if len(eligible_items) == 0:
-                nl = "\n"
-                if forbidden_item_names:
-                    raise Exception(f'Could not find a suitable item to place at "{manual_location["name"]}".\n    No items that match "{f"{nl}     or ".join(place_messages)}"\n    Maybe because of forbidden "{f"{nl}     or ".join(forbid_messages)}"')
-                raise Exception(f'Could not find a suitable item to place at "{manual_location["name"]}". \n    No items that match "{f"{nl}     or ".join(place_messages)}"')
-
-            item_to_place = self.random.choice(eligible_items)
-            location.place_locked_item(item_to_place)
-
-            # remove the item we're about to place from the pool so it isn't placed twice
-            remove_specific_item(self.multiworld.itempool, item_to_place)
-
-
         after_generate_basic(self, self.multiworld, self.player)
-
-        # Enable this in Meta.json to generate a diagram of your manual.  Only works on 0.4.4+
-        if get_option_value(self.multiworld, self.player, "generate_region_diagram"):
-            from Utils import visualize_regions
-            visualize_regions(self.multiworld.get_region("Menu", self.player), f"{self.game}_{self.player}.puml")
-
+    
     def pre_fill(self):
-        # DataValidation after all the hooks are done but before fill
         runPreFillDataValidation(self, self.multiworld)
+
+        event_placements = (
+            ("(EVENT) Vah Medoh Cleared", "Vah Medoh Cleared"),
+            ("(EVENT) Vah Rudania Cleared", "Vah Rudania Cleared"),
+            ("(EVENT) Vah Ruta Cleared", "Vah Ruta Cleared"),
+            ("(EVENT) Vah Naboris Cleared", "Vah Naboris Cleared"),
+        )
+
+        for location_name, item_name in event_placements:
+            location = self.multiworld.get_location(location_name, self.player)
+
+            item = next(
+                item
+                for item in self.multiworld.itempool
+                if item.player == self.player and item.name == item_name
+            )
+
+            location.place_locked_item(item)
+            self.multiworld.itempool.remove(item)
+
+        filled = self.multiworld.get_filled_locations(player=self.player)
+
+        logging.warning(
+            "BOTW FILLED LOCATIONS (%d):\n%s",
+            len(filled),
+            "\n".join(
+                f"  {location.name} -> {location.item.name if location.item else 'NONE'}"
+                for location in filled
+            ),
+        )
+
+        logging.warning(
+            "BOTW FILL COUNTS: %d items, %d unfilled locations",
+            len([i for i in self.multiworld.itempool if i.player == self.player]),
+            len(self.multiworld.get_unfilled_locations(player=self.player)),
+        )
 
     def fill_slot_data(self):
         slot_data = before_fill_slot_data({}, self, self.multiworld, self.player)
@@ -463,7 +434,18 @@ class BotWWorld(World):
         return self.adjust_filler_items(item_pool, traps)
 
     def adjust_filler_items(self, item_pool, traps):
-        extras = len(self.multiworld.get_unfilled_locations(player=self.player)) - len(item_pool)
+        unfilled_count = len(
+            self.multiworld.get_unfilled_locations(player=self.player)
+        )
+
+        logging.warning(
+            "BOTW ADJUST FILLER: %d items, %d unfilled locations, extras=%d",
+            len(item_pool),
+            unfilled_count,
+            unfilled_count - len(item_pool),
+        )
+
+        extras = unfilled_count - len(item_pool)
 
         if extras > 0:
             trap_percent = get_option_value(self.multiworld, self.player, "filler_traps")
