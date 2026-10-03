@@ -32,8 +32,7 @@ from .hooks.World import \
     before_generate_basic, after_generate_basic, \
     before_fill_slot_data, after_fill_slot_data, before_write_spoiler, \
     before_extend_hint_information, after_extend_hint_information, \
-    after_collect_item, after_remove_item, before_generate_early, hook_interpret_slot_data, \
-    fill_hook
+    after_collect_item, after_remove_item, before_generate_early, hook_interpret_slot_data
 
 class BotWWorld(World):
     topology_present = True
@@ -407,9 +406,6 @@ class BotWWorld(World):
             from Utils import visualize_regions
             visualize_regions(self.multiworld.get_region("Menu", self.player), f"{self.game}_{self.player}.puml")
 
-    def fill_hook(self, progitempool, usefulitempool, filleritempool, fill_locations):
-        fill_hook(self, self.multiworld, self.player, progitempool, usefulitempool, filleritempool, fill_locations)
-
     def pre_fill(self):
         # DataValidation after all the hooks are done but before fill
         runPreFillDataValidation(self, self.multiworld)
@@ -539,23 +535,6 @@ class BotWWorld(World):
             return self.item_counts_progression.get(player, Counter())
         else:
             return self.item_counts.get(player, Counter())
-
-    def fill_hook(
-        self,
-        progitempool,
-        usefulitempool,
-        filleritempool,
-        fill_locations,
-    ) -> None:
-        fill_hook(
-            self,
-            self.multiworld,
-            self.player,
-            progitempool,
-            usefulitempool,
-            filleritempool,
-            fill_locations,
-        )
 
 
 ###
