@@ -1,7 +1,51 @@
 {
   "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.locations.schema.json",
   "data": [
-   {
+  {
+    "name": "Magnesis Pedestal",
+    "region": "Great Plateau",
+    "category": [
+      "Great Plateau"
+    ],
+    "requires": "",
+    "place_item": [
+      "Magnesis"
+    ]
+  },
+  {
+    "name": "Remote Bomb Pedestal",
+    "region": "Great Plateau",
+    "category": [
+      "Great Plateau"
+    ],
+    "requires": "",
+    "place_item": [
+      "Progressive Remote Bomb"
+    ]
+  },
+  {
+    "name": "Cryonis Pedestal",
+    "region": "Great Plateau",
+    "category": [
+      "Great Plateau"
+    ],
+    "requires": "",
+    "place_item": [
+      "Cryonis"
+    ]
+  },
+  {
+    "name": "Stasis Pedestal",
+    "region": "Great Plateau",
+    "category": [
+      "Great Plateau"
+    ],
+    "requires": "",
+    "place_item": [
+      "Progressive Stasis"
+    ]
+  }, 
+  {
 	  "name": "Ja Baij Shrine - Chest 1",
       "region": "Great Plateau",
       "category": [

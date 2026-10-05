@@ -4,7 +4,6 @@
 #include <wiixlaunch/botw/game/events.hpp>
 #include <wiixlaunch/botw/game/gamedata.hpp>
 #include <wiixlaunch/botw/game/map.hpp>
-#include <wiixlaunch/botw/game/region.hpp>
 #include "shrine_chest_registry.hpp"
 #include <cstdio>
 #include <stddef.h>
@@ -506,10 +505,6 @@ static bool ParseAndGrant()
             g_Result = "ERR tower unlock failed\n";
             return false;
         }
-
-        // If the AP region-lock system is active, make the newly activated
-        // tower open its corresponding physical region as well.
-        WiiXLaunch::BotW::Region::SyncFromTowers();
 
         g_Result = "OK\n";
         return true;

@@ -1,7 +1,7 @@
 {
   "Great Plateau": {
     "connects_to": [],
-    "requires": "|Great Plateau Tower|"
+    "requires": ""
   },
   "Central Hyrule": {
     "connects_to": [],
@@ -89,11 +89,11 @@
   },
   "Great Plateau (One-Hit Obliterator)": {
     "connects_to": [],
-    "requires": "|Great Plateau Tower| AND |Progressive Revali's Gale| AND |Progressive Daruk's Protection| AND |Progressive Mipha's Grace| AND |Progressive Urbosa's Fury|"
+    "requires": "|Progressive Revali's Gale| AND |Progressive Daruk's Protection| AND |Progressive Mipha's Grace| AND |Progressive Urbosa's Fury|"
   },
   "Final Trial": {
     "connects_to": [],
-    "requires": "|Great Plateau Tower| AND |Final Trial Controls| AND |Progressive Revali's Gale:2| AND |Progressive Daruk's Protection:2| AND |Progressive Mipha's Grace:2| AND |Progressive Urbosa's Fury:2|"
+    "requires": "|Final Trial Controls| AND |Progressive Revali's Gale:2| AND |Progressive Daruk's Protection:2| AND |Progressive Mipha's Grace:2| AND |Progressive Urbosa's Fury:2|"
   },
   "Hyrule Castle": {
     "connects_to": [],

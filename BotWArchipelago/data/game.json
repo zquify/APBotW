@@ -4,16 +4,13 @@
   "filler_item_name": "Arrows (10)",
   "starting_items": [
     {
-      "items": [
-		"Great Plateau Tower"
-	  ],
+      "items": [],
 	  "yaml_option": [
 		"!randomize_starting_tower"
 	  ]
 	},
 	{
 	  "items": [
-        "Great Plateau Tower",
         "Central Tower",
         "Dueling Peaks Tower",
         "Hateno Tower",

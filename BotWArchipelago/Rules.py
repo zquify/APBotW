@@ -178,9 +178,20 @@ def set_rules(world: "BotWWorld", multiworld: MultiWorld, player: int):
             total = 0
 
             if require_type == 'category':
-                category_items = [item for item in world.item_name_to_item.values() if "category" in item and item_name in item["category"]]
-                category_items += [event for event in world.event_name_to_event.values() if "category" in event and item_name in event["category"]]
-                category_items_counts = sum([items_counts.get(category_item["name"], 0) for category_item in category_items])
+                category_items = [
+                    item for item in world.item_name_to_item.values()
+                    if "category" in item and item_name in item["category"]
+                ]
+                category_items += [
+                    event for event in world.event_name_to_event.values()
+                    if "category" in event and item_name in event["category"]
+                ]
+
+                category_items_counts = sum(
+                    items_counts.get(category_item["name"], 0)
+                    for category_item in category_items
+                )
+
                 if item_count.lower() == 'all':
                     item_count = category_items_counts
                 elif item_count.lower() == 'half':
@@ -192,15 +203,23 @@ def set_rules(world: "BotWWorld", multiworld: MultiWorld, player: int):
                     try:
                         item_count = int(item_count)
                     except ValueError as e:
-                        raise ValueError(f"Invalid item count `{item_name}` in {area}.") from e
+                        raise ValueError(
+                            f"Invalid item count `{item_name}` in {area}."
+                        ) from e
+
+                total = 0
 
                 for category_item in category_items:
                     total += state.count(category_item["name"], player)
 
-                    if total >= item_count:
-                        requires_list = requires_list.replace(item_base, "1")
+                if total >= item_count:
+                    requires_list = requires_list.replace(item_base, "1")
+                else:
+                    requires_list = requires_list.replace(item_base, "0")
+
             elif require_type == 'item':
                 item_current_count = items_counts.get(item_name, 0)
+
                 if item_count.lower() == 'all':
                     item_count = item_current_count
                 elif item_count.lower() == 'half':
@@ -215,9 +234,8 @@ def set_rules(world: "BotWWorld", multiworld: MultiWorld, player: int):
 
                 if total >= item_count:
                     requires_list = requires_list.replace(item_base, "1")
-
-            if total <= item_count: # type: ignore
-                requires_list = requires_list.replace(item_base, "0")
+                else:
+                    requires_list = requires_list.replace(item_base, "0")
 
         requires_list = re.sub(r'\s?\bAND\b\s?', '&', requires_list, count=0, flags=re.IGNORECASE)
         requires_list = re.sub(r'\s?\bOR\b\s?', '|', requires_list, count=0, flags=re.IGNORECASE)

@@ -224,7 +224,6 @@ def fill_hook(
         "Faron Tower",
         "Lanayru Tower",
         "Eldin Tower",
-        "Great Plateau Tower",
         "Akkala Tower",
         "Woodland Tower",
         "Lake Tower",

@@ -2,14 +2,6 @@
   "data": [
     {
       "count": 1,
-      "name": "Great Plateau Tower",
-      "category": [
-        "Sheikah Towers"
-      ],
-      "progression": true
-    },
-    {
-      "count": 1,
       "name": "Central Tower",
       "category": [
         "Sheikah Towers"
