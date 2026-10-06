@@ -1,7 +1,7 @@
 // GENERATED FILE - do not edit.
 // Regenerate with: python scripts/gen_imports.py
 //
-// botw.region v1.0, 31 symbol(s), from the surface's own table.
+// botw.region v1.0, 33 symbol(s), from the surface's own table.
 //
 // Declaring a symbol here costs nothing. BINDING one is what makes it an
 // import, and that is opt-in:
@@ -9,7 +9,7 @@
 //     namespace S { WXL_USE_botw_region(SupportsRegion); }
 //     S::SupportsRegion(...);
 //
-// so a mod that uses two symbols imports two, not all 31.
+// so a mod that uses two symbols imports two, not all 33.
 //
 // The comments are the SURFACE's own, carried across - they say why a
 // symbol behaves as it does, which is the half a signature cannot.
@@ -19,6 +19,8 @@
 
 extern "C" {
 extern uint32_t wiixl_import__botw_region__SupportsRegion(void);
+extern uint32_t wiixl_import__botw_region__Init(void);
+extern uint32_t wiixl_import__botw_region__Tick(void);
 extern int32_t wiixl_import__botw_region__GetPlayerRegion(void);
 extern int32_t wiixl_import__botw_region__GetRegionAt(float x, float z);
 extern uint32_t wiixl_import__botw_region__GetUnlockMask(void);

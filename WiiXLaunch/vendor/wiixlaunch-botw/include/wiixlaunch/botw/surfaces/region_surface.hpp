@@ -73,6 +73,15 @@ inline void NoteWallOwnerOnce() {
 
 extern "C" inline uint32_t RgSupportsRegion() { return Region::SupportsRegion ? 1u : 0u; }
 
+extern "C" inline uint32_t RgInit() {
+    return Region::Init() ? 1u : 0u;
+}
+
+extern "C" inline uint32_t RgTick() {
+    Region::Tick();
+    return 1u;
+}
+
 // --- where things are ------------------------------------------------------
 
 extern "C" inline int32_t RgGetPlayerRegion() {
@@ -229,6 +238,8 @@ extern "C" inline uint32_t RgGetMarkerOffset(float* out) {
 
 inline const Surface::Symbol kSymbols[] = {
     WIIXL_SURFACE_SYMBOL("SupportsRegion",     &RgSupportsRegion),
+    WIIXL_SURFACE_SYMBOL("Init",               &RgInit),
+    WIIXL_SURFACE_SYMBOL("Tick",               &RgTick),
     WIIXL_SURFACE_SYMBOL("GetPlayerRegion",    &RgGetPlayerRegion),
     WIIXL_SURFACE_SYMBOL("GetRegionAt",        &RgGetRegionAt),
 

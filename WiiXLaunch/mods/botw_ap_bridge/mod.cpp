@@ -5,18 +5,25 @@
 #include <wiixlaunch/botw/game/gamedata.hpp>
 #include <wiixlaunch/botw/game/map.hpp>
 #include <wiixlaunch/imports/botw_region.h>
+#include <wiixlaunch/imports/botw_player.h>
 #include "shrine_chest_registry.hpp"
 #include <cstdio>
 #include <stddef.h>
 
-WXL_USE_botw_region(SetRegionUnlock);
-WXL_USE_botw_region(SetRegionUnlockAll);
-WXL_USE_botw_region(SetUnlockMask);
-WXL_USE_botw_region(GetUnlockMask);
-WXL_USE_botw_region(SetWallsEnabled);
-WXL_USE_botw_region(SetPushbackEnabled);
-WXL_USE_botw_region(GetWallsEnabled);
-WXL_USE_botw_region(GetPushbackEnabled);
+namespace RegionImport
+{
+    WXL_USE_botw_region(Init);
+    WXL_USE_botw_region(Tick);
+    WXL_USE_botw_region(SetUnlockMask);
+    WXL_USE_botw_region(GetUnlockMask);
+    WXL_USE_botw_region(SetWallsEnabled);
+    WXL_USE_botw_region(SetPushbackEnabled);
+}
+
+namespace PlayerImport
+{
+    WXL_USE_botw_player(Init);
+}
 
 extern "C" void* memset(void* destination, int value, size_t count)
 {
@@ -537,9 +544,11 @@ static bool ParseAndGrant()
         }
 
         // Unlock the corresponding physical world region.
-        if (!WiiXLaunch::BotW::Region::SetRegionUnlock(
-                towerId,
-                true))
+        // Region N is bit N-1.
+        const uint32_t currentMask = GetUnlockMask();
+        const uint32_t regionBit = 1u << (towerId - 1);
+
+        if (!SetUnlockMask(currentMask | regionBit))
         {
             g_Result = "ERR region unlock failed\n";
             return false;
@@ -719,7 +728,7 @@ extern "C" __attribute__((used)) void WiiXLaunch_ModTick() {
     ProbeShrineChestFlags();
 
     // Maintain physical region barriers.
-    WiiXLaunch::BotW::Region::Tick();
+    Tick();
 
     if (g_Listener == 0) {
         return;
@@ -788,18 +797,34 @@ extern "C" __attribute__((used)) void WiiXLaunch_ModEntry() {
 
     g_Log("BotW AP bridge: starting");
 
-    WiiXLaunch::BotW::Region::Init();
+    // Initialize the region wall system.
+    if (!Init())
+    {
+        g_Log("BotW AP bridge: region init failed");
+        return;
+    }
 
     // Start with only the Great Plateau accessible.
-    // Region 7 = Great Plateau.
-    WiiXLaunch::BotW::Region::SetRegionUnlockAll(false);
-    WiiXLaunch::BotW::Region::SetRegionUnlock(7, true);
+    // Region 7 = Great Plateau = bit 6.
+    if (!SetUnlockMask(1u << (7 - 1)))
+    {
+        g_Log("BotW AP bridge: region mask setup failed");
+        return;
+    }
 
     // Enable the physical region barriers.
-    WiiXLaunch::BotW::Region::SetWallsEnabled(true);
+    if (!SetWallsEnabled(true))
+    {
+        g_Log("BotW AP bridge: region walls failed");
+        return;
+    }
 
     // Safety net for getting through a gap, over a wall, etc.
-    WiiXLaunch::BotW::Region::SetPushbackEnabled(true);
+    if (!SetPushbackEnabled(true))
+    {
+        g_Log("BotW AP bridge: region pushback failed");
+        return;
+    }
 
     if (!g_Available()) {
         g_Log("BotW AP bridge: network API unavailable");
