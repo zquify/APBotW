@@ -16,6 +16,7 @@ namespace RegionImport
     WXL_USE_botw_region(Tick);
     WXL_USE_botw_region(SetUnlockMask);
     WXL_USE_botw_region(GetUnlockMask);
+    WXL_USE_botw_region(SyncFromTowers);
     WXL_USE_botw_region(SetWallsEnabled);
     WXL_USE_botw_region(SetPushbackEnabled);
 }
@@ -545,10 +546,10 @@ static bool ParseAndGrant()
 
         // Unlock the corresponding physical world region.
         // Region N is bit N-1.
-        const uint32_t currentMask = GetUnlockMask();
+        const uint32_t currentMask = RegionImport::GetUnlockMask();
         const uint32_t regionBit = 1u << (towerId - 1);
 
-        if (!SetUnlockMask(currentMask | regionBit))
+        if (!RegionImport::SetUnlockMask(currentMask | regionBit))
         {
             g_Result = "ERR region unlock failed\n";
             return false;
@@ -728,7 +729,7 @@ extern "C" __attribute__((used)) void WiiXLaunch_ModTick() {
     ProbeShrineChestFlags();
 
     // Maintain physical region barriers.
-    Tick();
+    RegionImport::Tick();
 
     if (g_Listener == 0) {
         return;
@@ -798,29 +799,36 @@ extern "C" __attribute__((used)) void WiiXLaunch_ModEntry() {
     g_Log("BotW AP bridge: starting");
 
     // Initialize the region wall system.
-    if (!Init())
+    if (!RegionImport::Init())
     {
         g_Log("BotW AP bridge: region init failed");
         return;
     }
 
-    // Start with only the Great Plateau accessible.
-    // Region 7 = Great Plateau = bit 6.
-    if (!SetUnlockMask(1u << (7 - 1)))
+    // Sync physical region access from the currently activated
+    // MapTower_01 through MapTower_15 flags.
+    RegionImport::SyncFromTowers();
+
+    // Great Plateau (region 7) is always accessible.
+    // Region 7 = bit 6.
+    const uint32_t currentMask = RegionImport::GetUnlockMask();
+    const uint32_t plateauBit = 1u << (7 - 1);
+
+    if (!RegionImport::SetUnlockMask(currentMask | plateauBit))
     {
-        g_Log("BotW AP bridge: region mask setup failed");
+        g_Log("BotW AP bridge: failed to keep Great Plateau unlocked");
         return;
     }
 
     // Enable the physical region barriers.
-    if (!SetWallsEnabled(true))
+    if (!RegionImport::SetWallsEnabled(true))
     {
         g_Log("BotW AP bridge: region walls failed");
         return;
     }
 
     // Safety net for getting through a gap, over a wall, etc.
-    if (!SetPushbackEnabled(true))
+    if (!RegionImport::SetPushbackEnabled(true))
     {
         g_Log("BotW AP bridge: region pushback failed");
         return;
