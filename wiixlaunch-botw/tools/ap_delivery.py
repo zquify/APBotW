@@ -37,21 +37,20 @@ ITEM_MAP = {
 }
 
 TOWER_MAP = {
-    "Central Tower": 1,
-    "Dueling Peaks Tower": 2,
-    "Hateno Tower": 3,
-    "Faron Tower": 4,
-    "Lanayru Tower": 5,
-    "Eldin Tower": 6,
+    "Hebra Tower": 1,
+    "Tabantha Tower": 2,
+    "Wasteland Tower": 4,
+    "Woodland Tower": 5,
+    "Central Tower": 6,
     "Great Plateau Tower": 7,
-    "Akkala Tower": 8,
-    "Woodland Tower": 9,
-    "Lake Tower": 10,
-    "Tabantha Tower": 11,
-    "Ridgeland Tower": 12,
-    "Gerudo Tower": 13,
-    "Wasteland Tower": 14,
-    "Hebra Tower": 15,
+    "Dueling Peaks Tower": 8,
+    "Lake Tower": 9,
+    "Eldin Tower": 10,
+    "Akkala Tower": 11,
+    "Lanayru Tower": 12,
+    "Hateno Tower": 13,
+    "Faron Tower": 14,
+    "Ridgeland Tower": 15,
 }
 
 # Store delivery progress outside either source repository.
@@ -92,6 +91,46 @@ def send_to_bridge(actor_name, quantity=1):
     result = response.decode("ascii", errors="replace").strip()
     if result != "OK":
         raise DeliveryError("Bridge rejected command: {}".format(result))
+
+    return True
+
+def send_paraglider_to_bridge():
+    """Tell the WiiXLaunch bridge that the AP Paraglider was received."""
+    command = "UNLOCK PARAGLIDER\n"
+
+    try:
+        with socket.create_connection(
+            (BRIDGE_HOST, BRIDGE_PORT), timeout=BRIDGE_TIMEOUT
+        ) as sock:
+            sock.settimeout(BRIDGE_TIMEOUT)
+            sock.sendall(command.encode("ascii"))
+
+            response = bytearray()
+            while not response.endswith(b"\n"):
+                chunk = sock.recv(1)
+                if not chunk:
+                    break
+                response.extend(chunk)
+
+    except OSError as exc:
+        raise DeliveryError(
+            "Bridge connection failed: {}".format(exc)
+        )
+
+    if not response:
+        raise DeliveryError(
+            "Bridge disconnected without a response"
+        )
+
+    result = response.decode(
+        "ascii",
+        errors="replace",
+    ).strip()
+
+    if result != "OK":
+        raise DeliveryError(
+            "Bridge rejected paraglider command: {}".format(result)
+        )
 
     return True
 
@@ -220,6 +259,23 @@ class APItemDelivery:
                 )
                 continue
 
+            if item_name == "Paraglider":
+                try:
+                    send_paraglider_to_bridge()
+                except DeliveryError:
+                    log.exception(
+                        "Failed to unlock Paraglider at index %d; "
+                        "delivery paused.",
+                        index,
+                    )
+                    return False
+
+                self._advance()
+                log.info(
+                    "Unlocked AP Paraglider"
+                )
+                continue
+            
             mapping = ITEM_MAP.get(item_name)
             if mapping is None:
                 # Temporary behavior for the physical-item delivery test.

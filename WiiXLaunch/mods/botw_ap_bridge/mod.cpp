@@ -4,6 +4,7 @@
 #include <wiixlaunch/botw/game/events.hpp>
 #include <wiixlaunch/botw/game/gamedata.hpp>
 #include <wiixlaunch/botw/game/map.hpp>
+#include <wiixlaunch/botw/game/region.hpp>
 #include "shrine_chest_registry.hpp"
 #include <cstdio>
 #include <stddef.h>
@@ -498,11 +499,68 @@ static bool ParseAndGrant()
             return false;
         }
 
-        if (!WiiXLaunch::BotW::Map::SetMapRegionUnlock(
-                static_cast<int>(tower),
+        const int towerId = static_cast<int>(tower);
+
+        if (!WiiXLaunch::BotW::Map::SetMapRegionActivated(
+                towerId,
+                true,
+                true,
                 true))
         {
-            g_Result = "ERR tower unlock failed\n";
+            g_Result = "ERR tower activation failed\n";
+            return false;
+        }
+
+        if (!WiiXLaunch::BotW::Map::SetMapRegionScaleLevel(
+                towerId,
+                3))
+        {
+            g_Result = "ERR tower map reveal failed\n";
+            return false;
+        }
+
+        if (!WiiXLaunch::BotW::Map::SetMapRegionMarker(
+                towerId,
+                10))
+        {
+            g_Result = "ERR tower marker failed\n";
+            return false;
+        }
+
+        g_Result = "OK\n";
+        return true;
+    }
+
+    // Unlock the Paraglider.
+    //
+    // Protocol:
+    // UNLOCK PARAGLIDER
+    if (tokenCount == 2 &&
+        LocalStringLength(tokens[0]) == 6 &&
+        tokens[0][0] == 'U' &&
+        tokens[0][1] == 'N' &&
+        tokens[0][2] == 'L' &&
+        tokens[0][3] == 'O' &&
+        tokens[0][4] == 'C' &&
+        tokens[0][5] == 'K' &&
+        LocalStringLength(tokens[1]) == 10 &&
+        tokens[1][0] == 'P' &&
+        tokens[1][1] == 'A' &&
+        tokens[1][2] == 'R' &&
+        tokens[1][3] == 'A' &&
+        tokens[1][4] == 'G' &&
+        tokens[1][5] == 'L' &&
+        tokens[1][6] == 'I' &&
+        tokens[1][7] == 'D' &&
+        tokens[1][8] == 'E' &&
+        tokens[1][9] == 'R')
+    {
+        if (!WiiXLaunch::BotW::GameData::SetFlagBoolForced(
+                "IsGet_PlayerStole2",
+                true,
+                true))
+        {
+            g_Result = "ERR paraglider unlock failed\n";
             return false;
         }
 
