@@ -10,15 +10,20 @@
 #include <cstdio>
 #include <stddef.h>
 
+static bool g_RegionTowersSynced = false;
+
 namespace RegionImport
 {
     WXL_USE_botw_region(Init);
     WXL_USE_botw_region(Tick);
     WXL_USE_botw_region(SetUnlockMask);
     WXL_USE_botw_region(GetUnlockMask);
+    WXL_USE_botw_region(SyncFromTowers);
     WXL_USE_botw_region(SetWallsEnabled);
     WXL_USE_botw_region(SetPushbackEnabled);
 }
+
+using namespace RegionImport;
 
 namespace PlayerImport
 {
@@ -726,6 +731,26 @@ static void ProbeShrineChestFlags()
 extern "C" __attribute__((used)) void WiiXLaunch_ModTick() {
     WiiXLaunch::BotW::Events::Tick();
     ProbeShrineChestFlags();
+
+    // Keep the physical region mask synchronized with the game's
+    // MapTower_01 through MapTower_15 flags.
+    //
+    // SyncFromTowers() is safe to call repeatedly. If GameData is not
+    // available yet, it returns 0 and leaves the current mask alone.
+    if (WiiXLaunch::BotW::Map::IsAvailable())
+    {
+        SyncFromTowers();
+
+        // The Great Plateau is always accessible.
+        // Region 7 = Great Plateau = bit 6.
+        const uint32_t currentMask = GetUnlockMask();
+        const uint32_t plateauBit = 1u << (7 - 1);
+
+        if ((currentMask & plateauBit) == 0)
+        {
+            SetUnlockMask(currentMask | plateauBit);
+        }
+    }
 
     // Maintain physical region barriers.
     Tick();
