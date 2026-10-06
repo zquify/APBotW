@@ -4,10 +4,19 @@
 #include <wiixlaunch/botw/game/events.hpp>
 #include <wiixlaunch/botw/game/gamedata.hpp>
 #include <wiixlaunch/botw/game/map.hpp>
-#include <wiixlaunch/botw/game/region.hpp>
+#include <wiixlaunch/imports/botw_region.h>
 #include "shrine_chest_registry.hpp"
 #include <cstdio>
 #include <stddef.h>
+
+WXL_USE_botw_region(SetRegionUnlock);
+WXL_USE_botw_region(SetRegionUnlockAll);
+WXL_USE_botw_region(SetUnlockMask);
+WXL_USE_botw_region(GetUnlockMask);
+WXL_USE_botw_region(SetWallsEnabled);
+WXL_USE_botw_region(SetPushbackEnabled);
+WXL_USE_botw_region(GetWallsEnabled);
+WXL_USE_botw_region(GetPushbackEnabled);
 
 extern "C" void* memset(void* destination, int value, size_t count)
 {
@@ -527,6 +536,15 @@ static bool ParseAndGrant()
             return false;
         }
 
+        // Unlock the corresponding physical world region.
+        if (!WiiXLaunch::BotW::Region::SetRegionUnlock(
+                towerId,
+                true))
+        {
+            g_Result = "ERR region unlock failed\n";
+            return false;
+        }
+
         g_Result = "OK\n";
         return true;
     }
@@ -700,6 +718,9 @@ extern "C" __attribute__((used)) void WiiXLaunch_ModTick() {
     WiiXLaunch::BotW::Events::Tick();
     ProbeShrineChestFlags();
 
+    // Maintain physical region barriers.
+    WiiXLaunch::BotW::Region::Tick();
+
     if (g_Listener == 0) {
         return;
     }
@@ -766,6 +787,19 @@ extern "C" __attribute__((used)) void WiiXLaunch_ModEntry() {
     }
 
     g_Log("BotW AP bridge: starting");
+
+    WiiXLaunch::BotW::Region::Init();
+
+    // Start with only the Great Plateau accessible.
+    // Region 7 = Great Plateau.
+    WiiXLaunch::BotW::Region::SetRegionUnlockAll(false);
+    WiiXLaunch::BotW::Region::SetRegionUnlock(7, true);
+
+    // Enable the physical region barriers.
+    WiiXLaunch::BotW::Region::SetWallsEnabled(true);
+
+    // Safety net for getting through a gap, over a wall, etc.
+    WiiXLaunch::BotW::Region::SetPushbackEnabled(true);
 
     if (!g_Available()) {
         g_Log("BotW AP bridge: network API unavailable");
