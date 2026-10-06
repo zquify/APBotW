@@ -18,7 +18,7 @@ if not WORLD_DIR.is_dir():
     )
 
 # Archipelago installation containing CommonClient.py.
-ARCHIPELAGO_DIR = Path(r"C:\Projects\Archipelago-0.6.7")
+ARCHIPELAGO_DIR = Path(r"C:\Projects\Archipelago")
 
 # Existing WiiXLaunch tools containing ap_delivery.py.
 TOOLS_DIR = Path(r"C:\Projects\wiixlaunch-botw\tools")
