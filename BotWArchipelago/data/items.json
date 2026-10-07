@@ -393,48 +393,6 @@
     },
     {
       "count": 1,
-      "name": "Vah Medoh Divine Helm",
-      "category": [
-        "Armor",
-        "Upgradeable Head",
-        "Cold Resistance",
-        "Cold Resistant Head",
-        "Upgradeable Cold Resistant Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Vah Naboris Divine Helm",
-      "category": [
-        "Armor",
-        "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Vah Rudania Divine Helm",
-      "category": [
-        "Armor",
-        "Upgradeable Head",
-        "Flame Resistance",
-        "Flame Resistant Head",
-        "Upgradeable Flame Resistant Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Vah Ruta Divine Helm",
-      "category": [
-        "Armor",
-        "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
       "name": "Ancient Cuirass",
       "category": [
         "Armor",
@@ -524,30 +482,6 @@
     },
     {
       "count": 1,
-      "name": "Dark Hood",
-      "category": [
-        "Armor"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Dark Tunic",
-      "category": [
-        "Armor"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Dark Trousers",
-      "category": [
-        "Armor"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
       "name": "Desert Voe Headband",
       "category": [
         "Armor",
@@ -588,33 +522,6 @@
       "category": [
         "Armor",
         "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Fierce Deity Mask",
-      "category": [
-        "Armor",
-        "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Fierce Deity Armor",
-      "category": [
-        "Armor",
-        "Upgradeable Body"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Fierce Deity Boots",
-      "category": [
-        "Armor",
-        "Upgradeable Legs"
       ],
       "useful": true
     },
@@ -677,141 +584,6 @@
         "Armor"
       ],
       "progression": true
-    },
-    {
-      "count": 1,
-      "name": "Cap of the Hero",
-      "category": [
-        "Armor",
-        "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Tunic of the Hero",
-      "category": [
-        "Armor",
-        "Upgradeable Body"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Trousers of the Hero",
-      "category": [
-        "Armor",
-        "Upgradeable Legs"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Cap of Time",
-      "category": [
-        "Armor",
-        "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Tunic of Time",
-      "category": [
-        "Armor",
-        "Upgradeable Body"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Trousers of Time",
-      "category": [
-        "Armor",
-        "Upgradeable Legs"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Cap of Twilight",
-      "category": [
-        "Armor",
-        "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Tunic of Twilight",
-      "category": [
-        "Armor",
-        "Upgradeable Body"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Trousers of Twilight",
-      "category": [
-        "Armor",
-        "Upgradeable Legs"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Cap of the Wind",
-      "category": [
-        "Armor",
-        "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Tunic of the Wind",
-      "category": [
-        "Armor",
-        "Upgradeable Body"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Trousers of the Wind",
-      "category": [
-        "Armor",
-        "Upgradeable Legs"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Cap of the Sky",
-      "category": [
-        "Armor",
-        "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Tunic of the Sky",
-      "category": [
-        "Armor",
-        "Upgradeable Body"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Trousers of the Sky",
-      "category": [
-        "Armor",
-        "Upgradeable Legs"
-      ],
-      "useful": true
     },
     {
       "count": 1,
@@ -976,69 +748,6 @@
     },
     {
       "count": 1,
-      "name": "Phantom Ganon Skull",
-      "category": [
-        "Armor",
-        "The Champions' Ballad DLC"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Phantom Ganon Armor",
-      "category": [
-        "Armor",
-        "The Champions' Ballad DLC"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Phantom Ganon Greaves",
-      "category": [
-        "Armor",
-        "The Champions' Ballad DLC"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Radiant Mask",
-      "category": [
-        "Armor",
-        "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Radiant Shirt",
-      "category": [
-        "Armor",
-        "Upgradeable Body"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Radiant Tights",
-      "category": [
-        "Armor",
-        "Upgradeable Legs"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Ravio's Hood",
-      "category": [
-        "Armor",
-        "The Champions' Ballad DLC"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
       "name": "Royal Guard Cap",
       "category": [
         "Armor",
@@ -1105,30 +814,6 @@
     },
     {
       "count": 1,
-      "name": "Salvager Headwear",
-      "category": [
-        "Armor"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Salvager Vest",
-      "category": [
-        "Armor"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Salvager Trousers",
-      "category": [
-        "Armor"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
       "name": "Sand Boots",
       "category": [
         "Armor",
@@ -1139,15 +824,6 @@
     {
       "count": 1,
       "name": "Sapphire Circlet",
-      "category": [
-        "Armor",
-        "Upgradeable Head"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Sheik's Mask",
       "category": [
         "Armor",
         "Upgradeable Head"
@@ -1263,33 +939,6 @@
     },
     {
       "count": 1,
-      "name": "Tingle's Hood",
-      "category": [
-        "Armor",
-        "The Champions' Ballad DLC"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Tingle's Shirt",
-      "category": [
-        "Armor",
-        "The Champions' Ballad DLC"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Tingle's Tights",
-      "category": [
-        "Armor",
-        "The Champions' Ballad DLC"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
       "name": "Topaz Earrings",
       "category": [
         "Armor",
@@ -1306,31 +955,6 @@
         "Cold Resistant Body"
       ],
       "progression": true
-    },
-    {
-      "count": 1,
-      "name": "Old Shirt",
-      "category": [
-        "Armor"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Well-Worn Trousers",
-      "category": [
-        "Armor"
-      ],
-      "useful": true
-    },
-    {
-      "count": 1,
-      "name": "Zant's Helmet",
-      "category": [
-        "Armor",
-        "The Champions' Ballad DLC"
-      ],
-      "useful": true
     },
     {
       "count": 1,
