@@ -352,6 +352,20 @@ static bool ParseUnsigned32(const char* text, uint32_t* out)
     return true;
 }
 
+static bool TokenEquals(const char* token, const char* expected)
+{
+    if (!token || !expected)
+        return false;
+
+    while (*token && *expected && *token == *expected)
+    {
+        ++token;
+        ++expected;
+    }
+
+    return *token == '\0' && *expected == '\0';
+}
+
 static int32_t* GetPlayerLifePointer()
 {
     void* playerInfo = WiiXLaunch::BotW::GameData::impl::PlayerInfo();
@@ -618,6 +632,87 @@ static bool ParseAndGrant()
         if (!SetUnlockMask(currentMask | regionBit))
         {
             g_Result = "ERR region unlock failed\n";
+            return false;
+        }
+
+        g_Result = "OK\n";
+        return true;
+    }
+
+    // Add an AP rupee bundle to the save-backed wallet.
+    //
+    // Protocol:
+    // ADD RUPEES 200
+    if (tokenCount == 3 &&
+        TokenEquals(tokens[0], "ADD") &&
+        TokenEquals(tokens[1], "RUPEES"))
+    {
+        uint32_t amount = 0;
+        int currentRupees = 0;
+
+        if (!ParseUnsigned32(tokens[2], &amount) || amount == 0 ||
+            amount > static_cast<uint32_t>(INT32_MAX) ||
+            !WiiXLaunch::BotW::GameData::GetRupees(currentRupees) ||
+            currentRupees < 0 ||
+            currentRupees > INT32_MAX - static_cast<int32_t>(amount) ||
+            !WiiXLaunch::BotW::GameData::AddRupees(
+                static_cast<int>(amount)))
+        {
+            g_Result = "ERR rupee grant failed\n";
+            return false;
+        }
+
+        g_Result = "OK\n";
+        return true;
+    }
+
+    // Expand one equipment pouch category by one slot.
+    //
+    // Protocol:
+    // UPGRADE SLOT WEAPON|BOW|SHIELD
+    if (tokenCount == 3 &&
+        TokenEquals(tokens[0], "UPGRADE") &&
+        TokenEquals(tokens[1], "SLOT"))
+    {
+        const char* flagName = nullptr;
+        int maxSlots = 0;
+
+        if (TokenEquals(tokens[2], "WEAPON"))
+        {
+            flagName = "WeaponPorchStockNum";
+            maxSlots = 20;
+        }
+        else if (TokenEquals(tokens[2], "BOW"))
+        {
+            flagName = "BowPorchStockNum";
+            maxSlots = 14;
+        }
+        else if (TokenEquals(tokens[2], "SHIELD"))
+        {
+            flagName = "ShieldPorchStockNum";
+            maxSlots = 20;
+        }
+
+        int currentSlots = 0;
+        if (!flagName ||
+            !WiiXLaunch::BotW::GameData::GetFlagS32(
+                flagName, currentSlots) ||
+            currentSlots < 0)
+        {
+            g_Result = "ERR inventory slot upgrade failed\n";
+            return false;
+        }
+
+        if (currentSlots >= maxSlots)
+        {
+            g_Result = "FULL\n";
+            return true;
+        }
+
+        if (!WiiXLaunch::BotW::GameData::SetFlagS32(
+                flagName, currentSlots + 1))
+        {
+            g_Result = "ERR inventory slot upgrade failed\n";
             return false;
         }
 

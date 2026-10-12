@@ -1550,14 +1550,6 @@
         "Materials"
       ],
       "filler": true
-    },
-    {
-      "count": 1,
-      "name": "Greg the Green Rupee",
-      "category": [
-        "Equipment"
-      ],
-      "filler": true
     }
   ]
 }

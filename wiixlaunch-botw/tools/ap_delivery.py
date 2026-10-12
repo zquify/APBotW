@@ -2318,10 +2318,7 @@ def send_paraglider_to_bridge():
     return True
 
 
-def send_heart_container_to_bridge():
-    """Tell the WiiXLaunch bridge to increase max health by one heart."""
-    command = "UPGRADE HEART\n"
-
+def _send_bridge_command(command, subject, allow_full=False):
     try:
         with socket.create_connection(
             (BRIDGE_HOST, BRIDGE_PORT), timeout=BRIDGE_TIMEOUT
@@ -2351,53 +2348,63 @@ def send_heart_container_to_bridge():
         errors="replace",
     ).strip()
 
+    if result == "FULL" and allow_full:
+        return False
+
     if result != "OK":
         raise DeliveryError(
-            "Bridge rejected Heart Container command: {}".format(result)
+            "Bridge rejected {} command: {}".format(subject, result)
         )
 
     return True
+
+
+def send_heart_container_to_bridge():
+    """Tell the WiiXLaunch bridge to increase max health by one heart."""
+    return _send_bridge_command("UPGRADE HEART\n", "Heart Container")
 
 
 def send_stamina_vessel_to_bridge():
     """Tell the WiiXLaunch bridge to increase max stamina by one fifth wheel."""
-    command = "UPGRADE STAMINA\n"
+    return _send_bridge_command("UPGRADE STAMINA\n", "Stamina Vessel")
 
-    try:
-        with socket.create_connection(
-            (BRIDGE_HOST, BRIDGE_PORT), timeout=BRIDGE_TIMEOUT
-        ) as sock:
-            sock.settimeout(BRIDGE_TIMEOUT)
-            sock.sendall(command.encode("ascii"))
 
-            response = bytearray()
-            while not response.endswith(b"\n"):
-                chunk = sock.recv(1)
-                if not chunk:
-                    break
-                response.extend(chunk)
+def _rupee_amount_from_item(item_name):
+    amount_text, separator, currency = item_name.partition(" ")
+    if not separator or currency != "Rupees" or not amount_text.isdecimal():
+        return None
 
-    except OSError as exc:
-        raise DeliveryError(
-            "Bridge connection failed: {}".format(exc)
-        )
+    amount = int(amount_text)
+    if amount <= 0 or amount > 2147483647:
+        return None
 
-    if not response:
-        raise DeliveryError(
-            "Bridge disconnected without a response"
-        )
+    return amount
 
-    result = response.decode(
-        "ascii",
-        errors="replace",
-    ).strip()
 
-    if result != "OK":
-        raise DeliveryError(
-            "Bridge rejected Stamina Vessel command: {}".format(result)
-        )
+def send_rupees_to_bridge(amount):
+    """Add the specified amount to the player's rupee balance."""
+    if (
+        not isinstance(amount, int)
+        or isinstance(amount, bool)
+        or not 0 < amount <= 2147483647
+    ):
+        raise DeliveryError("Invalid rupee amount: {!r}".format(amount))
 
-    return True
+    command = "ADD RUPEES {}\n".format(amount)
+    return _send_bridge_command(command, "rupee grant")
+
+
+def send_inventory_slot_to_bridge(slot_type):
+    """Increase the specified weapon, bow, or shield capacity by one."""
+    if slot_type not in ("WEAPON", "BOW", "SHIELD"):
+        raise DeliveryError("Invalid inventory slot type: {!r}".format(slot_type))
+
+    command = "UPGRADE SLOT {}\n".format(slot_type)
+    return _send_bridge_command(
+        command,
+        "{} Slot".format(slot_type.title()),
+        allow_full=True,
+    )
 
 
 def send_tower_to_bridge(tower_number):
@@ -2569,6 +2576,52 @@ class APItemDelivery:
 
                 self._advance()
                 log.info("Increased max stamina for AP Stamina Vessel")
+                continue
+
+            rupee_amount = _rupee_amount_from_item(item_name)
+            if rupee_amount is not None:
+                try:
+                    send_rupees_to_bridge(rupee_amount)
+                except DeliveryError:
+                    log.exception(
+                        "Failed to grant %d rupees at index %d; "
+                        "delivery paused.",
+                        rupee_amount, index,
+                    )
+                    return False
+
+                self._advance()
+                log.info("Granted %d AP rupees", rupee_amount)
+                continue
+
+            inventory_slot = {
+                "Weapon Slot": "WEAPON",
+                "Bow Slot": "BOW",
+                "Shield Slot": "SHIELD",
+            }.get(item_name)
+            if inventory_slot is not None:
+                try:
+                    upgraded = send_inventory_slot_to_bridge(inventory_slot)
+                except DeliveryError:
+                    log.exception(
+                        "Failed to increase %s capacity at index %d; "
+                        "delivery paused.",
+                        inventory_slot.lower(), index,
+                    )
+                    return False
+
+                self._advance()
+                if upgraded:
+                    log.info(
+                        "Increased AP %s capacity",
+                        inventory_slot.lower(),
+                    )
+                else:
+                    log.info(
+                        "AP %s capacity already at maximum; "
+                        "slot item consumed.",
+                        inventory_slot.lower(),
+                    )
                 continue
             
             mapping = ITEM_MAP.get(item_name)
