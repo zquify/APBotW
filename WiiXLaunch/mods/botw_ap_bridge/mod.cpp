@@ -12,7 +12,11 @@
 
 static bool g_RegionTowersSynced = false;
 static bool g_HeartHealPending = false;
+static bool g_HeartHealClampOnly = false;
 static int32_t g_HeartHealTarget = 0;
+
+static constexpr int32_t kMaxHeartLife = 120;
+static constexpr float kStaminaVesselValue = 200.0f;
 
 namespace RegionImport
 {
@@ -415,14 +419,19 @@ static void ApplyPendingHeartHeal()
         return;
 
     const int maxLife = WiiXLaunch::BotW::GameData::GetMaxLife();
-    if (maxLife < g_HeartHealTarget)
+    if (maxLife <= 0 ||
+        (!g_HeartHealClampOnly && maxLife < g_HeartHealTarget) ||
+        (g_HeartHealClampOnly && maxLife > g_HeartHealTarget))
         return;
 
     int32_t* currentLife = GetPlayerLifePointer();
     if (!currentLife)
         return;
 
-    *currentLife = maxLife;
+    *currentLife = g_HeartHealClampOnly
+        ? (*currentLife < g_HeartHealTarget
+            ? *currentLife : g_HeartHealTarget)
+        : maxLife;
     g_HeartHealPending = false;
 }
 
@@ -742,14 +751,46 @@ static bool ParseAndGrant()
     {
         const int maxLife = WiiXLaunch::BotW::GameData::GetMaxLife();
 
-        if (maxLife <= 0 || maxLife > INT32_MAX - 4 ||
-            !WiiXLaunch::BotW::GameData::SetMaxLife(maxLife + 4))
+        if (maxLife <= 0)
         {
             g_Result = "ERR max heart increase failed\n";
             return false;
         }
 
-        g_HeartHealTarget = maxLife + 4;
+        if (maxLife > kMaxHeartLife)
+        {
+            if (!WiiXLaunch::BotW::GameData::SetMaxLife(kMaxHeartLife))
+            {
+                g_Result = "ERR max heart clamp failed\n";
+                return false;
+            }
+
+            g_HeartHealTarget = kMaxHeartLife;
+            g_HeartHealClampOnly = true;
+            g_HeartHealPending = true;
+            g_Result = "FULL\n";
+            return true;
+        }
+
+        if (maxLife == kMaxHeartLife)
+        {
+            g_HeartHealTarget = kMaxHeartLife;
+            g_HeartHealClampOnly = true;
+            g_HeartHealPending = true;
+            g_Result = "FULL\n";
+            return true;
+        }
+
+        const int newMaxLife =
+            maxLife > kMaxHeartLife - 4 ? kMaxHeartLife : maxLife + 4;
+        if (!WiiXLaunch::BotW::GameData::SetMaxLife(newMaxLife))
+        {
+            g_Result = "ERR max heart increase failed\n";
+            return false;
+        }
+
+        g_HeartHealTarget = newMaxLife;
+        g_HeartHealClampOnly = false;
         g_HeartHealPending = true;
         g_Result = "OK\n";
         return true;
@@ -780,14 +821,38 @@ static bool ParseAndGrant()
         const float maxStamina =
             WiiXLaunch::BotW::GameData::GetMaxStamina();
 
-        if (!(maxStamina > 0.0f) ||
-            !WiiXLaunch::BotW::GameData::SetMaxStamina(maxStamina + 200.0f))
+        if (!(maxStamina > 0.0f))
         {
             g_Result = "ERR max stamina increase failed\n";
             return false;
         }
 
-        g_Result = "OK\n";
+        const float staminaCap =
+            WiiXLaunch::BotW::GameData::kStaminaAbsoluteMax;
+        const bool alreadyAtMaximum = maxStamina >= staminaCap;
+        const float newMaxStamina = alreadyAtMaximum
+            ? staminaCap
+            : (maxStamina + kStaminaVesselValue > staminaCap
+                ? staminaCap
+                : maxStamina + kStaminaVesselValue);
+
+        if (newMaxStamina != maxStamina &&
+            !WiiXLaunch::BotW::GameData::SetMaxStamina(newMaxStamina))
+        {
+            g_Result = "ERR max stamina increase failed\n";
+            return false;
+        }
+
+        const float currentStamina =
+            WiiXLaunch::BotW::GameData::GetStamina();
+        if (currentStamina > newMaxStamina &&
+            !WiiXLaunch::BotW::GameData::SetStamina(newMaxStamina))
+        {
+            g_Result = "ERR stamina clamp failed\n";
+            return false;
+        }
+
+        g_Result = alreadyAtMaximum ? "FULL\n" : "OK\n";
         return true;
     }
 

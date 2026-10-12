@@ -2361,12 +2361,20 @@ def _send_bridge_command(command, subject, allow_full=False):
 
 def send_heart_container_to_bridge():
     """Tell the WiiXLaunch bridge to increase max health by one heart."""
-    return _send_bridge_command("UPGRADE HEART\n", "Heart Container")
+    return _send_bridge_command(
+        "UPGRADE HEART\n",
+        "Heart Container",
+        allow_full=True,
+    )
 
 
 def send_stamina_vessel_to_bridge():
     """Tell the WiiXLaunch bridge to increase max stamina by one fifth wheel."""
-    return _send_bridge_command("UPGRADE STAMINA\n", "Stamina Vessel")
+    return _send_bridge_command(
+        "UPGRADE STAMINA\n",
+        "Stamina Vessel",
+        allow_full=True,
+    )
 
 
 def _rupee_amount_from_item(item_name):
@@ -2550,7 +2558,7 @@ class APItemDelivery:
 
             if item_name == "Heart Container":
                 try:
-                    send_heart_container_to_bridge()
+                    upgraded = send_heart_container_to_bridge()
                 except DeliveryError:
                     log.exception(
                         "Failed to increase max health for Heart Container "
@@ -2560,12 +2568,18 @@ class APItemDelivery:
                     return False
 
                 self._advance()
-                log.info("Increased max health for AP Heart Container")
+                if upgraded:
+                    log.info("Increased max health for AP Heart Container")
+                else:
+                    log.info(
+                        "AP max health already at maximum; "
+                        "Heart Container consumed."
+                    )
                 continue
 
             if item_name == "Stamina Vessel":
                 try:
-                    send_stamina_vessel_to_bridge()
+                    upgraded = send_stamina_vessel_to_bridge()
                 except DeliveryError:
                     log.exception(
                         "Failed to increase max stamina for Stamina Vessel "
@@ -2575,7 +2589,13 @@ class APItemDelivery:
                     return False
 
                 self._advance()
-                log.info("Increased max stamina for AP Stamina Vessel")
+                if upgraded:
+                    log.info("Increased max stamina for AP Stamina Vessel")
+                else:
+                    log.info(
+                        "AP max stamina already at maximum; "
+                        "Stamina Vessel consumed."
+                    )
                 continue
 
             rupee_amount = _rupee_amount_from_item(item_name)
