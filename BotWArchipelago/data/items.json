@@ -293,7 +293,7 @@
       "progression": true
     },
     {
-      "count": "19",
+      "count": "11",
       "name": "Weapon Slot",
       "category": [
         "Weapon Slots"
@@ -301,7 +301,7 @@
       "useful": true
     },
     {
-      "count": "13",
+      "count": "8",
       "name": "Bow Slot",
       "category": [
         "Bow Slots"
@@ -309,7 +309,7 @@
       "useful": true
     },
     {
-      "count": "20",
+      "count": "16",
       "name": "Shield Slot",
       "category": [
         "Shield Slots"
@@ -1548,14 +1548,6 @@
       "name": "Wood Bundles (10)",
       "category": [
         "Materials"
-      ],
-      "filler": true
-    },
-    {
-      "count": 1,
-      "name": "Greg the Green Rupee",
-      "category": [
-        "Equipment"
       ],
       "filler": true
     }

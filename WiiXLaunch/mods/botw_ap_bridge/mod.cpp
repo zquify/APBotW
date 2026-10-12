@@ -10,6 +10,14 @@
 #include <cstdio>
 #include <stddef.h>
 
+static bool g_RegionTowersSynced = false;
+static bool g_HeartHealPending = false;
+static bool g_HeartHealClampOnly = false;
+static int32_t g_HeartHealTarget = 0;
+
+static constexpr int32_t kMaxHeartLife = 120;
+static constexpr float kStaminaVesselValue = 200.0f;
+
 namespace RegionImport
 {
     WXL_USE_botw_region(Init);
@@ -20,6 +28,8 @@ namespace RegionImport
     WXL_USE_botw_region(SetWallsEnabled);
     WXL_USE_botw_region(SetPushbackEnabled);
 }
+
+using namespace RegionImport;
 
 namespace PlayerImport
 {
@@ -346,6 +356,85 @@ static bool ParseUnsigned32(const char* text, uint32_t* out)
     return true;
 }
 
+static bool TokenEquals(const char* token, const char* expected)
+{
+    if (!token || !expected)
+        return false;
+
+    while (*token && *expected && *token == *expected)
+    {
+        ++token;
+        ++expected;
+    }
+
+    return *token == '\0' && *expected == '\0';
+}
+
+static int32_t* GetPlayerLifePointer()
+{
+    void* playerInfo = WiiXLaunch::BotW::GameData::impl::PlayerInfo();
+    if (!playerInfo)
+        return nullptr;
+
+    auto* playerInfoBytes = static_cast<uint8_t*>(playerInfo);
+    void* playerActor = *reinterpret_cast<void**>(playerInfoBytes + 0x30);
+    uintptr_t actorAddress = reinterpret_cast<uintptr_t>(playerActor);
+    if (actorAddress < 0x10000000 || actorAddress > 0xa0000000)
+        return nullptr;
+
+    void** vtable = *reinterpret_cast<void***>(
+        static_cast<uint8_t*>(playerActor) + 0xe8);
+    uintptr_t vtableAddress = reinterpret_cast<uintptr_t>(vtable);
+    if (!vtable || vtableAddress < 0x02000000 ||
+        vtableAddress > 0x10600000)
+    {
+        return nullptr;
+    }
+
+    using GetLifePointerFn = int32_t* (*)(void* actor);
+    auto getLifePointer =
+        reinterpret_cast<GetLifePointerFn>(vtable[0x2bc / 4]);
+    uintptr_t functionAddress =
+        reinterpret_cast<uintptr_t>(getLifePointer);
+    if (!getLifePointer || functionAddress < 0x02000000 ||
+        functionAddress > 0x04000000)
+    {
+        return nullptr;
+    }
+
+    int32_t* life = getLifePointer(playerActor);
+    uintptr_t lifeAddress = reinterpret_cast<uintptr_t>(life);
+    if (!life || lifeAddress < 0x10000000 || lifeAddress > 0xa0000000 ||
+        (lifeAddress & 3) != 0)
+    {
+        return nullptr;
+    }
+
+    return life;
+}
+
+static void ApplyPendingHeartHeal()
+{
+    if (!g_HeartHealPending)
+        return;
+
+    const int maxLife = WiiXLaunch::BotW::GameData::GetMaxLife();
+    if (maxLife <= 0 ||
+        (!g_HeartHealClampOnly && maxLife < g_HeartHealTarget) ||
+        (g_HeartHealClampOnly && maxLife > g_HeartHealTarget))
+        return;
+
+    int32_t* currentLife = GetPlayerLifePointer();
+    if (!currentLife)
+        return;
+
+    *currentLife = g_HeartHealClampOnly
+        ? (*currentLife < g_HeartHealTarget
+            ? *currentLife : g_HeartHealTarget)
+        : maxLife;
+    g_HeartHealPending = false;
+}
+
 static bool ParseAndGrant()
 {
     char* tokens[5] = {};
@@ -559,6 +648,214 @@ static bool ParseAndGrant()
         return true;
     }
 
+    // Add an AP rupee bundle to the save-backed wallet.
+    //
+    // Protocol:
+    // ADD RUPEES 200
+    if (tokenCount == 3 &&
+        TokenEquals(tokens[0], "ADD") &&
+        TokenEquals(tokens[1], "RUPEES"))
+    {
+        uint32_t amount = 0;
+        int currentRupees = 0;
+
+        if (!ParseUnsigned32(tokens[2], &amount) || amount == 0 ||
+            amount > static_cast<uint32_t>(INT32_MAX) ||
+            !WiiXLaunch::BotW::GameData::GetRupees(currentRupees) ||
+            currentRupees < 0 ||
+            currentRupees > INT32_MAX - static_cast<int32_t>(amount) ||
+            !WiiXLaunch::BotW::GameData::AddRupees(
+                static_cast<int>(amount)))
+        {
+            g_Result = "ERR rupee grant failed\n";
+            return false;
+        }
+
+        g_Result = "OK\n";
+        return true;
+    }
+
+    // Expand one equipment pouch category by one slot.
+    //
+    // Protocol:
+    // UPGRADE SLOT WEAPON|BOW|SHIELD
+    if (tokenCount == 3 &&
+        TokenEquals(tokens[0], "UPGRADE") &&
+        TokenEquals(tokens[1], "SLOT"))
+    {
+        const char* flagName = nullptr;
+        int maxSlots = 0;
+
+        if (TokenEquals(tokens[2], "WEAPON"))
+        {
+            flagName = "WeaponPorchStockNum";
+            maxSlots = 20;
+        }
+        else if (TokenEquals(tokens[2], "BOW"))
+        {
+            flagName = "BowPorchStockNum";
+            maxSlots = 14;
+        }
+        else if (TokenEquals(tokens[2], "SHIELD"))
+        {
+            flagName = "ShieldPorchStockNum";
+            maxSlots = 20;
+        }
+
+        int currentSlots = 0;
+        if (!flagName ||
+            !WiiXLaunch::BotW::GameData::GetFlagS32(
+                flagName, currentSlots) ||
+            currentSlots < 0)
+        {
+            g_Result = "ERR inventory slot upgrade failed\n";
+            return false;
+        }
+
+        if (currentSlots >= maxSlots)
+        {
+            g_Result = "FULL\n";
+            return true;
+        }
+
+        if (!WiiXLaunch::BotW::GameData::SetFlagS32(
+                flagName, currentSlots + 1))
+        {
+            g_Result = "ERR inventory slot upgrade failed\n";
+            return false;
+        }
+
+        g_Result = "OK\n";
+        return true;
+    }
+
+    // Increase max health by one heart through the game's save-backed API.
+    //
+    // Protocol:
+    // UPGRADE HEART
+    if (tokenCount == 2 &&
+        LocalStringLength(tokens[0]) == 7 &&
+        tokens[0][0] == 'U' &&
+        tokens[0][1] == 'P' &&
+        tokens[0][2] == 'G' &&
+        tokens[0][3] == 'R' &&
+        tokens[0][4] == 'A' &&
+        tokens[0][5] == 'D' &&
+        tokens[0][6] == 'E' &&
+        LocalStringLength(tokens[1]) == 5 &&
+        tokens[1][0] == 'H' &&
+        tokens[1][1] == 'E' &&
+        tokens[1][2] == 'A' &&
+        tokens[1][3] == 'R' &&
+        tokens[1][4] == 'T')
+    {
+        const int maxLife = WiiXLaunch::BotW::GameData::GetMaxLife();
+
+        if (maxLife <= 0)
+        {
+            g_Result = "ERR max heart increase failed\n";
+            return false;
+        }
+
+        if (maxLife > kMaxHeartLife)
+        {
+            if (!WiiXLaunch::BotW::GameData::SetMaxLife(kMaxHeartLife))
+            {
+                g_Result = "ERR max heart clamp failed\n";
+                return false;
+            }
+
+            g_HeartHealTarget = kMaxHeartLife;
+            g_HeartHealClampOnly = true;
+            g_HeartHealPending = true;
+            g_Result = "FULL\n";
+            return true;
+        }
+
+        if (maxLife == kMaxHeartLife)
+        {
+            g_HeartHealTarget = kMaxHeartLife;
+            g_HeartHealClampOnly = true;
+            g_HeartHealPending = true;
+            g_Result = "FULL\n";
+            return true;
+        }
+
+        const int newMaxLife =
+            maxLife > kMaxHeartLife - 4 ? kMaxHeartLife : maxLife + 4;
+        if (!WiiXLaunch::BotW::GameData::SetMaxLife(newMaxLife))
+        {
+            g_Result = "ERR max heart increase failed\n";
+            return false;
+        }
+
+        g_HeartHealTarget = newMaxLife;
+        g_HeartHealClampOnly = false;
+        g_HeartHealPending = true;
+        g_Result = "OK\n";
+        return true;
+    }
+
+    // Increase max stamina by one fifth of a wheel through GameData.
+    //
+    // Protocol:
+    // UPGRADE STAMINA
+    if (tokenCount == 2 &&
+        LocalStringLength(tokens[0]) == 7 &&
+        tokens[0][0] == 'U' &&
+        tokens[0][1] == 'P' &&
+        tokens[0][2] == 'G' &&
+        tokens[0][3] == 'R' &&
+        tokens[0][4] == 'A' &&
+        tokens[0][5] == 'D' &&
+        tokens[0][6] == 'E' &&
+        LocalStringLength(tokens[1]) == 7 &&
+        tokens[1][0] == 'S' &&
+        tokens[1][1] == 'T' &&
+        tokens[1][2] == 'A' &&
+        tokens[1][3] == 'M' &&
+        tokens[1][4] == 'I' &&
+        tokens[1][5] == 'N' &&
+        tokens[1][6] == 'A')
+    {
+        const float maxStamina =
+            WiiXLaunch::BotW::GameData::GetMaxStamina();
+
+        if (!(maxStamina > 0.0f))
+        {
+            g_Result = "ERR max stamina increase failed\n";
+            return false;
+        }
+
+        const float staminaCap =
+            WiiXLaunch::BotW::GameData::kStaminaAbsoluteMax;
+        const bool alreadyAtMaximum = maxStamina >= staminaCap;
+        const float newMaxStamina = alreadyAtMaximum
+            ? staminaCap
+            : (maxStamina + kStaminaVesselValue > staminaCap
+                ? staminaCap
+                : maxStamina + kStaminaVesselValue);
+
+        if (newMaxStamina != maxStamina &&
+            !WiiXLaunch::BotW::GameData::SetMaxStamina(newMaxStamina))
+        {
+            g_Result = "ERR max stamina increase failed\n";
+            return false;
+        }
+
+        const float currentStamina =
+            WiiXLaunch::BotW::GameData::GetStamina();
+        if (currentStamina > newMaxStamina &&
+            !WiiXLaunch::BotW::GameData::SetStamina(newMaxStamina))
+        {
+            g_Result = "ERR stamina clamp failed\n";
+            return false;
+        }
+
+        g_Result = alreadyAtMaximum ? "FULL\n" : "OK\n";
+        return true;
+    }
+
     // Unlock the Paraglider.
     //
     // Protocol:
@@ -725,8 +1022,29 @@ static void ProbeShrineChestFlags()
 }
 
 extern "C" __attribute__((used)) void WiiXLaunch_ModTick() {
+    ApplyPendingHeartHeal();
     WiiXLaunch::BotW::Events::Tick();
     ProbeShrineChestFlags();
+
+    // Keep the physical region mask synchronized with the game's
+    // MapTower_01 through MapTower_15 flags.
+    //
+    // SyncFromTowers() is safe to call repeatedly. If GameData is not
+    // available yet, it returns 0 and leaves the current mask alone.
+    if (WiiXLaunch::BotW::Map::IsAvailable())
+    {
+        SyncFromTowers();
+
+        // The Great Plateau is always accessible.
+        // Region 7 = Great Plateau = bit 6.
+        const uint32_t currentMask = GetUnlockMask();
+        const uint32_t plateauBit = 1u << (7 - 1);
+
+        if ((currentMask & plateauBit) == 0)
+        {
+            SetUnlockMask(currentMask | plateauBit);
+        }
+    }
 
     // Maintain physical region barriers.
     RegionImport::Tick();

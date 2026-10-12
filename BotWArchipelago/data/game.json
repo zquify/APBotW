@@ -27,30 +27,6 @@
 	  "yaml_option": [
 		"randomize_starting_tower"
 	  ]
-    },
-    {
-      "items": [
-        "Heart Container"
-      ],
-      "random": 3
-    },
-    {
-      "items": [
-        "Weapon Slot"
-      ],
-      "random": 8
-    },
-    {
-      "items": [
-        "Bow Slot"
-      ],
-      "random": 5
-    },
-    {
-      "items": [
-        "Shield Slot"
-      ],
-      "random": 4
     }
   ]
 }

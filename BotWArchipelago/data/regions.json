@@ -77,15 +77,15 @@
   },
   "Trial of the Sword (Beginning Trials)": {
 	"connects_to": [],
-	"requires": "|Paraglider| AND |Woodland Tower| AND |Heart Container:13| AND |Progressive Master Sword| AND |Magnesis| AND |Progressive Remote Bomb| AND |Cryonis| AND |Progressive Stasis|"
+	"requires": "|Paraglider| AND |Woodland Tower| AND |Heart Container:10| AND |Progressive Master Sword| AND |Magnesis| AND |Progressive Remote Bomb| AND |Cryonis| AND |Progressive Stasis|"
   },
   "Trial of the Sword (Middle Trials)": {
 	"connects_to": [],
-	"requires": "|Paraglider| AND |Woodland Tower| AND |Heart Container:19| AND |Progressive Master Sword| AND |Magnesis| AND |Progressive Remote Bomb| AND |Cryonis| AND |Progressive Stasis|"
+	"requires": "|Paraglider| AND |Woodland Tower| AND |Heart Container:16| AND |Progressive Master Sword| AND |Magnesis| AND |Progressive Remote Bomb| AND |Cryonis| AND |Progressive Stasis|"
   },
   "Trial of the Sword (Final Trials)": {
 	"connects_to": [],
-	"requires": "|Paraglider| AND |Woodland Tower| AND |Heart Container:25| AND |Progressive Master Sword| AND |Magnesis| AND |Progressive Remote Bomb| AND |Cryonis| AND |Progressive Stasis|"
+	"requires": "|Paraglider| AND |Woodland Tower| AND |Heart Container:22| AND |Progressive Master Sword| AND |Magnesis| AND |Progressive Remote Bomb| AND |Cryonis| AND |Progressive Stasis|"
   },
   "Great Plateau (One-Hit Obliterator)": {
     "connects_to": [],
