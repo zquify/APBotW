@@ -11,6 +11,8 @@
 #include <stddef.h>
 
 static bool g_RegionTowersSynced = false;
+static bool g_HeartHealPending = false;
+static int32_t g_HeartHealTarget = 0;
 
 namespace RegionImport
 {
@@ -350,6 +352,66 @@ static bool ParseUnsigned32(const char* text, uint32_t* out)
     return true;
 }
 
+static int32_t* GetPlayerLifePointer()
+{
+    void* playerInfo = WiiXLaunch::BotW::GameData::impl::PlayerInfo();
+    if (!playerInfo)
+        return nullptr;
+
+    auto* playerInfoBytes = static_cast<uint8_t*>(playerInfo);
+    void* playerActor = *reinterpret_cast<void**>(playerInfoBytes + 0x30);
+    uintptr_t actorAddress = reinterpret_cast<uintptr_t>(playerActor);
+    if (actorAddress < 0x10000000 || actorAddress > 0xa0000000)
+        return nullptr;
+
+    void** vtable = *reinterpret_cast<void***>(
+        static_cast<uint8_t*>(playerActor) + 0xe8);
+    uintptr_t vtableAddress = reinterpret_cast<uintptr_t>(vtable);
+    if (!vtable || vtableAddress < 0x02000000 ||
+        vtableAddress > 0x10600000)
+    {
+        return nullptr;
+    }
+
+    using GetLifePointerFn = int32_t* (*)(void* actor);
+    auto getLifePointer =
+        reinterpret_cast<GetLifePointerFn>(vtable[0x2bc / 4]);
+    uintptr_t functionAddress =
+        reinterpret_cast<uintptr_t>(getLifePointer);
+    if (!getLifePointer || functionAddress < 0x02000000 ||
+        functionAddress > 0x04000000)
+    {
+        return nullptr;
+    }
+
+    int32_t* life = getLifePointer(playerActor);
+    uintptr_t lifeAddress = reinterpret_cast<uintptr_t>(life);
+    if (!life || lifeAddress < 0x10000000 || lifeAddress > 0xa0000000 ||
+        (lifeAddress & 3) != 0)
+    {
+        return nullptr;
+    }
+
+    return life;
+}
+
+static void ApplyPendingHeartHeal()
+{
+    if (!g_HeartHealPending)
+        return;
+
+    const int maxLife = WiiXLaunch::BotW::GameData::GetMaxLife();
+    if (maxLife < g_HeartHealTarget)
+        return;
+
+    int32_t* currentLife = GetPlayerLifePointer();
+    if (!currentLife)
+        return;
+
+    *currentLife = maxLife;
+    g_HeartHealPending = false;
+}
+
 static bool ParseAndGrant()
 {
     char* tokens[5] = {};
@@ -563,6 +625,77 @@ static bool ParseAndGrant()
         return true;
     }
 
+    // Increase max health by one heart through the game's save-backed API.
+    //
+    // Protocol:
+    // UPGRADE HEART
+    if (tokenCount == 2 &&
+        LocalStringLength(tokens[0]) == 7 &&
+        tokens[0][0] == 'U' &&
+        tokens[0][1] == 'P' &&
+        tokens[0][2] == 'G' &&
+        tokens[0][3] == 'R' &&
+        tokens[0][4] == 'A' &&
+        tokens[0][5] == 'D' &&
+        tokens[0][6] == 'E' &&
+        LocalStringLength(tokens[1]) == 5 &&
+        tokens[1][0] == 'H' &&
+        tokens[1][1] == 'E' &&
+        tokens[1][2] == 'A' &&
+        tokens[1][3] == 'R' &&
+        tokens[1][4] == 'T')
+    {
+        const int maxLife = WiiXLaunch::BotW::GameData::GetMaxLife();
+
+        if (maxLife <= 0 || maxLife > INT32_MAX - 4 ||
+            !WiiXLaunch::BotW::GameData::SetMaxLife(maxLife + 4))
+        {
+            g_Result = "ERR max heart increase failed\n";
+            return false;
+        }
+
+        g_HeartHealTarget = maxLife + 4;
+        g_HeartHealPending = true;
+        g_Result = "OK\n";
+        return true;
+    }
+
+    // Increase max stamina by one fifth of a wheel through GameData.
+    //
+    // Protocol:
+    // UPGRADE STAMINA
+    if (tokenCount == 2 &&
+        LocalStringLength(tokens[0]) == 7 &&
+        tokens[0][0] == 'U' &&
+        tokens[0][1] == 'P' &&
+        tokens[0][2] == 'G' &&
+        tokens[0][3] == 'R' &&
+        tokens[0][4] == 'A' &&
+        tokens[0][5] == 'D' &&
+        tokens[0][6] == 'E' &&
+        LocalStringLength(tokens[1]) == 7 &&
+        tokens[1][0] == 'S' &&
+        tokens[1][1] == 'T' &&
+        tokens[1][2] == 'A' &&
+        tokens[1][3] == 'M' &&
+        tokens[1][4] == 'I' &&
+        tokens[1][5] == 'N' &&
+        tokens[1][6] == 'A')
+    {
+        const float maxStamina =
+            WiiXLaunch::BotW::GameData::GetMaxStamina();
+
+        if (!(maxStamina > 0.0f) ||
+            !WiiXLaunch::BotW::GameData::SetMaxStamina(maxStamina + 200.0f))
+        {
+            g_Result = "ERR max stamina increase failed\n";
+            return false;
+        }
+
+        g_Result = "OK\n";
+        return true;
+    }
+
     // Unlock the Paraglider.
     //
     // Protocol:
@@ -729,6 +862,7 @@ static void ProbeShrineChestFlags()
 }
 
 extern "C" __attribute__((used)) void WiiXLaunch_ModTick() {
+    ApplyPendingHeartHeal();
     WiiXLaunch::BotW::Events::Tick();
     ProbeShrineChestFlags();
 

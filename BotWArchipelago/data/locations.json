@@ -2304,7 +2304,7 @@
         "Gerudo Highlands Shrines",
         "Shrine Chests"
       ],
-      "requires": "((|@Heat Resistant Head| AND |@Heat Resistant Body|) OR (|@Heat Resistant Head| AND |@Heat Resistant Legs|) OR (|@Heat Resistant Body| AND |@Heat Resistant Legs|)) AND |Heart Container:10| AND |Magnesis| AND |Progressive Stasis|"
+      "requires": "((|@Heat Resistant Head| AND |@Heat Resistant Body|) OR (|@Heat Resistant Head| AND |@Heat Resistant Legs|) OR (|@Heat Resistant Body| AND |@Heat Resistant Legs|)) AND |Heart Container:7| AND |Magnesis| AND |Progressive Stasis|"
     },
     {
       "name": "Joloo Nah Shrine - Chest 2",
@@ -2313,7 +2313,7 @@
         "Gerudo Highlands Shrines",
         "Shrine Chests"
       ],
-      "requires": "((|@Heat Resistant Head| AND |@Heat Resistant Body|) OR (|@Heat Resistant Head| AND |@Heat Resistant Legs|) OR (|@Heat Resistant Body| AND |@Heat Resistant Legs|)) AND |Heart Container:10| AND |Magnesis| AND |Progressive Stasis|"
+      "requires": "((|@Heat Resistant Head| AND |@Heat Resistant Body|) OR (|@Heat Resistant Head| AND |@Heat Resistant Legs|) OR (|@Heat Resistant Body| AND |@Heat Resistant Legs|)) AND |Heart Container:7| AND |Magnesis| AND |Progressive Stasis|"
     },
     {
       "name": "Joloo Nah Shrine",
@@ -2321,7 +2321,7 @@
       "category": [
         "Gerudo Highlands Shrines"
       ],
-      "requires": "((|@Heat Resistant Head| AND |@Heat Resistant Body|) OR (|@Heat Resistant Head| AND |@Heat Resistant Legs|) OR (|@Heat Resistant Body| AND |@Heat Resistant Legs|)) AND |Heart Container:10| AND |Magnesis| AND |Progressive Stasis|"
+      "requires": "((|@Heat Resistant Head| AND |@Heat Resistant Body|) OR (|@Heat Resistant Head| AND |@Heat Resistant Legs|) OR (|@Heat Resistant Body| AND |@Heat Resistant Legs|)) AND |Heart Container:7| AND |Magnesis| AND |Progressive Stasis|"
     },
     {
       "name": "Keeha Yoog Shrine - Chest",
@@ -2807,7 +2807,7 @@
         "Hebra Shrines",
         "Shrine Chests"
       ],
-      "requires": "|Heart Container:10|"
+      "requires": "|Heart Container:7|"
     },
     {
       "region": "Hebra",
@@ -2815,7 +2815,7 @@
       "category": [
         "Hebra Shrines"
       ],
-      "requires": "|Heart Container:10|"
+      "requires": "|Heart Container:7|"
     },
     {
       "name": "Maka Rah Shrine - Chest 1",
@@ -3184,7 +3184,7 @@
         "Divine Beast Vah Medoh",
         "The Champions' Ballad DLC"
       ],
-      "requires": "|Vah Medoh Cleared| AND |Heart Container:10|"
+      "requires": "|Vah Medoh Cleared| AND |Heart Container:7|"
     },
     {
       "name": "Divine Beast Vah Rudania - Map Terminal",
@@ -3259,7 +3259,7 @@
         "Divine Beast Vah Rudania",
         "The Champions' Ballad DLC"
       ],
-      "requires": "|Vah Rudania Cleared| AND |Heart Container:10|"
+      "requires": "|Vah Rudania Cleared| AND |Heart Container:7|"
     },
     {
       "name": "Divine Beast Vah Ruta - Map Terminal",
@@ -3334,7 +3334,7 @@
         "Divine Beast Vah Ruta",
         "The Champions' Ballad DLC"
       ],
-      "requires": "|Vah Ruta Cleared| AND |Heart Container:10|"
+      "requires": "|Vah Ruta Cleared| AND |Heart Container:7|"
     },
     {
       "name": "Divine Beast Vah Naboris - Map Terminal",
@@ -3409,7 +3409,7 @@
         "Divine Beast Vah Naboris",
         "The Champions' Ballad DLC"
       ],
-      "requires": "|Vah Naboris Cleared| AND |Heart Container:15|"
+      "requires": "|Vah Naboris Cleared| AND |Heart Container:12|"
     },
     {
       "name": "Final Trial - Map Terminal",
@@ -3480,7 +3480,7 @@
       "category": [
         "Korok Forest"
       ],
-      "requires": "|Heart Container:13|"
+      "requires": "|Heart Container:10|"
 	},
 	{
 	  "name": "Trial of the Sword (Beginning) - Floor 3 Chest 1",
