@@ -385,6 +385,7 @@ inline uint32_t& LastMask() { static uint32_t v = 0xffffffffu; return v; }
 // Last position the player stood in an allowed region, for the pushback net.
 inline float* SafePosition() { static float p[3] = {}; return p; }
 inline bool& SafePositionValid() { static bool v = false; return v; }
+inline bool& SceneTransitionSuspended() { static bool v = false; return v; }
 
 // The single barrier panel shown where the player is being stopped.
 //
@@ -935,6 +936,8 @@ inline void SetWallsEnabled(bool enabled) {
 inline bool Init() {
 #if !WIIXL_SWITCH
     impl::Armed() = true;
+    impl::SafePositionValid() = false;
+    impl::SceneTransitionSuspended() = false;
     impl::LastCellX() = 0x7fffffff;
     return true;
 #else
@@ -1159,6 +1162,41 @@ inline bool Tick() {
     float px = 0.0f, py = 0.0f, pz = 0.0f;
     if (!Player::GetPosition(px, py, pz)) return false;
 
+    // MainField's region raster is also queried for shrine-local coordinates.
+    // A scene load can therefore look like a locked region and push Link toward
+    // a stale overworld position. Suspend region handling across a large,
+    // vertical position discontinuity, then resume near the last safe position.
+    constexpr float kSceneJumpDistance = 1500.0f;
+    constexpr float kSceneJumpHeight = 100.0f;
+    constexpr float kSceneReturnDistance = 500.0f;
+    float* safe = impl::SafePosition();
+    if (impl::SafePositionValid()) {
+        const float dx = px - safe[0];
+        const float dy = py - safe[1];
+        const float dz = pz - safe[2];
+        const float horizontalDistanceSquared = dx * dx + dz * dz;
+
+        if (impl::SceneTransitionSuspended()) {
+            if (horizontalDistanceSquared >
+                kSceneReturnDistance * kSceneReturnDistance) {
+                return false;
+            }
+
+            impl::SceneTransitionSuspended() = false;
+            impl::LastCellX() = 0x7fffffff;
+            impl::LastCellZ() = 0x7fffffff;
+        } else if (
+            horizontalDistanceSquared >
+                kSceneJumpDistance * kSceneJumpDistance &&
+            dy * dy > kSceneJumpHeight * kSceneJumpHeight
+        ) {
+            impl::SceneTransitionSuspended() = true;
+            impl::LastCellX() = 0x7fffffff;
+            impl::LastCellZ() = 0x7fffffff;
+            return false;
+        }
+    }
+
     const impl::EcoMapInfo* info = impl::MapTowerEcoMap();
     if (!info) return false;
 
@@ -1167,7 +1205,6 @@ inline bool Tick() {
                           (impl::UnlockMask() & (1u << (playerRegion - 1))) == 0;
 
     if (!inLocked) {
-        float* safe = impl::SafePosition();
         safe[0] = px; safe[1] = py; safe[2] = pz;
         impl::SafePositionValid() = true;
 
