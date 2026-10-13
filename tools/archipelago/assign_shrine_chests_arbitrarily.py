@@ -4,7 +4,7 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
-ROOT = Path(r"C:\Projects\APBotW")
+ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "check_inventory"
 
 AP_INVENTORY = OUT / "ap_location_inventory.csv"

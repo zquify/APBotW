@@ -3,13 +3,13 @@
 borrows from the game - the same numbers docs/gui.md quotes came out of this.
 
     # decode a .bflim to PNG (de-tiles the GX2 surface, decodes BC4/BC5/A8/...)
-    python tools/preview_ui_assets.py bflim  extracted/Common/timg/Nt_MsgWindowL_00^s.bflim -o out/
+    python tools/wiixlaunch-botw/preview_ui_assets.py bflim  extracted/Common/timg/Nt_MsgWindowL_00^s.bflim -o out/
 
     # dump a .bffnt's FINF/TGLP and write each glyph sheet as PNG
-    python tools/preview_ui_assets.py bffnt  extracted/Font_US/Normal_00.bffnt -o out/
+    python tools/wiixlaunch-botw/preview_ui_assets.py bffnt  extracted/Font_US/Normal_00.bffnt -o out/
 
     # print a .bflyt pane tree with materials, textures, text styles, window frames
-    python tools/preview_ui_assets.py bflyt  extracted/Common/blyt/Message_00.bflyt
+    python tools/wiixlaunch-botw/preview_ui_assets.py bflyt  extracted/Common/blyt/Message_00.bflyt
 
 Extract the archives first (any SARC/Yaz0 tool; the Cemu update's
 content/Pack/Bootup.pack holds Layout/Common.sblarc, content/Font/Font_US.sbfarc

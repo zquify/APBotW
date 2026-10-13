@@ -25,8 +25,8 @@ is a no-op. The renderer is split so that an NVN backend only has to provide
 | `platform/yaz0.hpp` | Streaming Yaz0 decoder with a 4 KB window. |
 | `platform/sarc.hpp` | SARC header / node-table lookup by name hash. |
 | `platform/fs.hpp` | `FS::File` - open + positioned reads (`FSReadFileWithPos`), added for the loader. |
-| `tools/preview_ui_assets.py` | Offline de-tiler/decoder: `.bflim` to PNG, `.bffnt` header + sheets, `.bflyt` pane tree. Every number in this file came out of it. |
-| `tools/preview_ui_compose.py` | The same drawing rules as the renderer, in Python, so a composite can be built and looked at as a PNG without launching the game. |
+| `tools/wiixlaunch-botw/preview_ui_assets.py` | Offline de-tiler/decoder: `.bflim` to PNG, `.bffnt` header + sheets, `.bflyt` pane tree. Every number in this file came out of it. |
+| `tools/wiixlaunch-botw/preview_ui_compose.py` | The same drawing rules as the renderer, in Python, so a composite can be built and looked at as a PNG without launching the game. |
 | `graphics/gx2.hpp` | Added: `SurfaceDesc` / `AllocTextureSurface` / `CreateTextureFromSurface` (upload pre-tiled surfaces as-is) and `BeginBatch` / `BatchQuad` / `EndBatch` (many quads per draw call, no per-quad `GX2DrawDone`). |
 
 ## Using it
@@ -550,7 +550,7 @@ uses it - a mod using both is close to the heap limit.
 
 All of it against the Wii U **v208** update files (Cemu's
 `mlc01/usr/title/0005000e/101c9400/content`), decoded offline with the
-`tools/preview_ui_assets.py` de-tiler (an addrlib port) and BFLYT dumper.
+`tools/wiixlaunch-botw/preview_ui_assets.py` de-tiler (an addrlib port) and BFLYT dumper.
 Nothing here is taken from format documentation without checking it against
 the real files.
 
@@ -765,7 +765,7 @@ group-alpha stack, blend states, orientation, pixel snapping, batching - so a
 mod's texture behaves like any sprite and batches with them.
 
 `.bflim` is the format, the same one the game's art is in, which means
-`tools/preview_ui_assets.py` decodes it and `tools/pack_texture_gx2.py` builds
+`tools/wiixlaunch-botw/preview_ui_assets.py` decodes it and `tools/wiixlaunch-botw/pack_texture_gx2.py` builds
 it. `GUI::LoadTexture` reads through the game's content mount and is only
 meaningful once the pipeline is up, so call it from an initialisation callback
 or on first use, never per frame. Nothing in the GUI owns or frees the handle,

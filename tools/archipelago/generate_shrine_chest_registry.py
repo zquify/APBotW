@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 
 DEFAULT_REGISTRY = (
     REPO_ROOT / "check_inventory" / "shrine_chest_registry.csv"
@@ -25,8 +25,8 @@ DEFAULT_CPP_OUTPUT = (
 
 DEFAULT_PYTHON_OUTPUT = (
     REPO_ROOT
-    / "wiixlaunch-botw"
     / "tools"
+    / "archipelago"
     / "generated_shrine_chest_registry.py"
 )
 

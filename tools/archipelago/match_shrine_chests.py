@@ -169,7 +169,7 @@ def main():
     parser.add_argument(
         "--project",
         type=Path,
-        default=Path(r"C:\Projects\APBotW"),
+        default=Path(__file__).resolve().parents[2],
     )
     parser.add_argument(
         "--botw-tools",
