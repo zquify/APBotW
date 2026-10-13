@@ -2222,6 +2222,7 @@ ITEM_MAP = {
 TOWER_MAP = {
     "Hebra Tower": 1,
     "Tabantha Tower": 2,
+    "Gerudo Tower": 3,
     "Wasteland Tower": 4,
     "Woodland Tower": 5,
     "Central Tower": 6,
