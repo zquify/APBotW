@@ -11,42 +11,12 @@
 #define WIIXL_HAVE_GAME_MODULE 1
 #endif
 
-// Optional graphics demo for BotW.
+// Optional graphics backend for BotW.
 #if __has_include(<wiixlaunch/botw/botw.hpp>) && !defined(WIIXL_NO_DEMO)
 #include <wiixlaunch/botw/botw.hpp>
 #define WIIXL_BOTW_DEMO 1
 using namespace WiiXLaunch::BotW;
 #endif
-
-#if WIIXL_BOTW_DEMO
-#if WIIXL_SWITCH
-// Compiled-in NVN packaged texture.
-#include <testpic_texture_bytes.hpp>
-
-static NVN::TextureHandle g_LogoTexture = 0;
-
-void OnRender(NVN::CommandBuffer* cmdBuf, void* dstTexture, int width, int height) {
-    if (g_LogoTexture) {
-        NVN::DrawSprite(cmdBuf, dstTexture, g_LogoTexture, -0.92f, 0.50f, 0.225f, 0.40f);
-    }
-}
-#elif WIIXL_CEMU
-static GX2::TextureHandle g_LogoTexture = 0;
-
-void OnRender(GX2::CommandBuffer* cmdBuf, void* dstTexture, int width, int height) {
-    if (g_LogoTexture) {
-        GX2::DrawSprite(cmdBuf, dstTexture, g_LogoTexture, -0.92f, 0.50f, 0.225f, 0.40f);
-    }
-}
-#elif WIIXL_WIIU
-static GX2::TextureHandle g_LogoTexture = 0;
-
-void OnRender(GX2::CommandBuffer* cmdBuf, void* dstTexture, int width, int height) {
-    GX2::DrawSprite(cmdBuf, dstTexture, g_LogoTexture, -0.92f, 0.50f, 0.225f, 0.40f);
-}
-#endif
-#endif // WIIXL_BOTW_DEMO
-
 
 // Entry point called once at plugin/module load. Install your hooks here.
 extern "C" void WiiXLaunch_Init() {
@@ -90,20 +60,8 @@ extern "C" void WiiXLaunch_Init() {
 #if WIIXL_BOTW_DEMO
 #if WIIXL_SWITCH
     NVN::Init();
-    NVN::RegisterDrawCallback(OnRender);
-    // Deferred until the game initializes the NVN device.
-    NVN::OnInitialized([]() {
-        g_LogoTexture = NVN::CreateTexturePackaged(g_TestPicTextureBytes,
-                                                   kTestPicTextureSize);
-        WIIXL_LOG("WiiXLaunch: NVN logo texture initialized: %p",
-                  reinterpret_cast<void*>(g_LogoTexture));
-    });
 #elif WIIXL_CEMU
     GX2::Init();
-    GX2::RegisterDrawCallback(OnRender);
-    GX2::OnInitialized([]() {
-        g_LogoTexture = GX2::LoadTexture("WiiXLaunch/mods/_host/logo.bin");
-    });
 #endif
 #endif // WIIXL_BOTW_DEMO
 }

@@ -110,9 +110,10 @@ NVN::DrawMesh(cmdBuf, dstTexture, vertices, vertexCount);
 ```
 
 `DrawSprite` draws an alpha-blended textured quad. `x`/`y`/`width`/`height`
-are in the game's own UI coordinate space, roughly -1 to 1 (`src/main.cpp`
-places the host's logo at `x = -0.92, y = 0.50, width = 0.225, height =
-0.40`). `r, g, b, a` tint the sprite.
+are in the game's own UI coordinate space, roughly -1 to 1. `r, g, b, a`
+tint the sprite. The host initializes the graphics backend but does not draw
+a built-in logo; register a draw callback from a module to render custom
+content.
 
 `DrawMesh` draws a depth-tested triangle list. Both `NVN` and `GX2` build
 their own private depth texture on first use.
