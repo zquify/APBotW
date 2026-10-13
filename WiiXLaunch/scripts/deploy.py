@@ -195,14 +195,19 @@ def main():
 
     cemu_cfg = config.get("cemu", {})
     gp_path = cemu_cfg.get("graphic_pack_path", f"{project_name}/Mods/WiiXLaunch")
+    gp_name = cemu_cfg.get("graphic_pack_name", project_name)
+    gp_description = cemu_cfg.get("graphic_pack_description")
+    gp_description_line = (
+        f'description = "{gp_description}"\n' if gp_description else ""
+    )
     gp_version = cemu_cfg.get("graphic_pack_version", "V100")
     mod_matches = cemu_cfg.get("module_matches", "0x00000000")
 
     cemu_rules_content = f"""[Definition]
 titleIds = {wiiu_tids}
-name = "{project_name}"
+name = "{gp_name}"
 path = "{gp_path}"
-version = 7
+{gp_description_line}version = 7
 """
     cemu_rules_path = os.path.join(cemu_deploy_dir, "rules.txt")
     with open(cemu_rules_path, "w", encoding="utf-8") as f:
