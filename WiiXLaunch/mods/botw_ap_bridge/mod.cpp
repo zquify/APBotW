@@ -889,6 +889,12 @@ static bool ParseAndGrant()
             return false;
         }
 
+        if (!WiiXLaunch::BotW::Pouch::AddItem("PlayerStole2"))
+        {
+            g_Result = "ERR paraglider item grant failed\n";
+            return false;
+        }
+
         g_Result = "OK\n";
         return true;
     }

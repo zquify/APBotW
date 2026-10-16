@@ -1255,7 +1255,7 @@
         "Eldin Shrines",
         "Shrine Chests"
       ],
-      "requires": ""
+      "requires": "|@Flame Resistance|"
     },
     {
       "name": "Qua Raym Shrine - Chest 2",
@@ -1439,7 +1439,7 @@
       "category": [
         "Eldin Shrines"
       ],
-      "requires": "|Magnesis|"
+      "requires": ""
     },
     {
       "name": "Rinu Honika Shrine - Chest",
