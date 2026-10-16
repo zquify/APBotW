@@ -53,11 +53,11 @@
   },
   "Gerudo Desert": {
     "connects_to": [],
-    "requires": "|Paraglider| AND |Wasteland Tower|"
+    "requires": "|Paraglider| AND |Wasteland Tower| AND |Sand Boots|"
   },
   "Hebra": {
     "connects_to": [],
-    "requires": "|Paraglider| AND |Hebra Tower| AND ((|@Cold Resistant Head| AND |@Cold Resistant Body|) OR (|@Cold Resistant Head| AND |@Cold Resistant Legs|) OR (|@Cold Resistant Body| AND |@Cold Resistant Legs|))"
+    "requires": "|Paraglider| AND |Hebra Tower| AND |@Cold Resistant Head| AND |@Cold Resistant Body| AND |Snow Boots|"
   },
   "Divine Beast Vah Medoh": {
     "connects_to": [],

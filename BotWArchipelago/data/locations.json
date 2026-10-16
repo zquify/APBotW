@@ -2347,7 +2347,7 @@
         "Gerudo Highlands Shrines",
         "Shrine Chests"
       ],
-      "requires": "((|@Cold Resistant Head| AND |@Cold Resistant Body|) OR (|@Cold Resistant Head| AND |@Cold Resistant Legs|) OR (|@Cold Resistant Body| AND |@Cold Resistant Legs|)) AND |Progressive Armor Upgrade:2| AND |@Upgradeable Head| AND |@Upgradeable Body| AND |@Upgradeable Legs| AND |Cryonis|"
+      "requires": "(|@Cold Resistant Head| AND |@Cold Resistant Body| AND |Snow Boots|) AND |Progressive Armor Upgrade:2| AND |@Upgradeable Head| AND |@Upgradeable Body| AND |@Upgradeable Legs| AND |Cryonis|"
     },
     {
       "name": "Kema Kosassa Shrine",
@@ -2355,7 +2355,7 @@
       "category": [
         "Gerudo Highlands Shrines"
       ],
-      "requires": "((|@Cold Resistant Head| AND |@Cold Resistant Body|) OR (|@Cold Resistant Head| AND |@Cold Resistant Legs|) OR (|@Cold Resistant Body| AND |@Cold Resistant Legs|)) AND |Progressive Armor Upgrade:2| AND |@Upgradeable Head| AND |@Upgradeable Body| AND |@Upgradeable Legs| AND |Cryonis|"
+      "requires": "(|@Cold Resistant Head| AND |@Cold Resistant Body| AND |Snow Boots|) AND |Progressive Armor Upgrade:2| AND |@Upgradeable Head| AND |@Upgradeable Body| AND |@Upgradeable Legs| AND |Cryonis|"
     },
     {
       "name": "Kuh Takkar Shrine - Chest",
@@ -2364,7 +2364,7 @@
         "Gerudo Highlands Shrines",
         "Shrine Chests"
       ],
-      "requires": "((|@Cold Resistant Head| AND |@Cold Resistant Body|) OR (|@Cold Resistant Head| AND |@Cold Resistant Legs|) OR (|@Cold Resistant Body| AND |@Cold Resistant Legs|)) AND |Magnesis|"
+      "requires": "(|@Cold Resistant Head| AND |@Cold Resistant Body||@Cold Resistant Head| AND |@Cold Resistant Body| AND |Snow Boots| AND |Magnesis|"
     },
     {
       "region": "Gerudo Highlands",
@@ -2372,7 +2372,7 @@
       "category": [
         "Gerudo Highlands Shrines"
       ],
-      "requires": "((|@Cold Resistant Head| AND |@Cold Resistant Body|) OR (|@Cold Resistant Head| AND |@Cold Resistant Legs|) OR (|@Cold Resistant Body| AND |@Cold Resistant Legs|)) AND |Magnesis|"
+      "requires": "(|@Cold Resistant Head| AND |@Cold Resistant Body||@Cold Resistant Head| AND |@Cold Resistant Body| AND |Snow Boots| AND |Magnesis|"
     },
     {
       "name": "Sho Dantu Shrine - Chest",
@@ -2639,7 +2639,7 @@
         "Gerudo Desert Shrines",
         "Shrine Chests"
       ],
-      "requires": "((|@Cold Resistant Head| AND |@Cold Resistant Body|) OR (|@Cold Resistant Head| AND |@Cold Resistant Legs|) OR (|@Cold Resistant Body| AND |@Cold Resistant Legs|))"
+      "requires": "|@Cold Resistant Head| AND |@Cold Resistant Body| AND |Snow Boots|"
     },
     {
       "name": "Suma Sahma Shrine",
@@ -2647,7 +2647,7 @@
       "category": [
         "Gerudo Desert Shrines"
       ],
-      "requires": "((|@Cold Resistant Head| AND |@Cold Resistant Body|) OR (|@Cold Resistant Head| AND |@Cold Resistant Legs|) OR (|@Cold Resistant Body| AND |@Cold Resistant Legs|))"
+      "requires": "|@Cold Resistant Head| AND |@Cold Resistant Body| AND |Snow Boots|"
     },
     {
       "name": "Tho Kayu Shrine - Chest",
