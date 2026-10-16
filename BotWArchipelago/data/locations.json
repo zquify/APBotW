@@ -377,7 +377,7 @@
     },
     {
       "name": "Saas Ko'sah Shrine - Chest",
-      "region": "Central Hyrule",
+      "region": "Hyrule Castle",
       "category": [
         "Central Hyrule Shrines",
         "Shrine Chests"
@@ -386,7 +386,7 @@
     },
     {
       "name": "Saas Ko'sah Shrine",
-      "region": "Central Hyrule",
+      "region": "Hyrule Castle",
       "category": [
         "Central Hyrule Shrines"
       ],
@@ -536,7 +536,7 @@
         "Dueling Peaks Shrines",
         "Shrine Chests"
       ],
-      "requires": ""
+      "requires": "|@Cold Resistance|"
     },
     {
       "name": "Shee Venath Shrine",
@@ -544,7 +544,7 @@
       "category": [
         "Dueling Peaks Shrines"
       ],
-      "requires": ""
+      "requires": "|@Cold Resistance|"
     },
     {
       "name": "Ta'loh Naeg Shrine - Chest 1",
