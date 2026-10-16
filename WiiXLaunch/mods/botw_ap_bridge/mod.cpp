@@ -1145,14 +1145,14 @@ extern "C" __attribute__((used)) void WiiXLaunch_ModEntry() {
     }
 
     // Enable the physical region barriers.
-    if (!RegionImport::SetWallsEnabled(true))
+    if (!RegionImport::SetWallsEnabled(false))
     {
         g_Log("BotW AP bridge: region walls failed");
         return;
     }
 
     // Safety net for getting through a gap, over a wall, etc.
-    if (!RegionImport::SetPushbackEnabled(true))
+    if (!RegionImport::SetPushbackEnabled(false))
     {
         g_Log("BotW AP bridge: region pushback failed");
         return;
