@@ -3,6 +3,14 @@
 This workspace contains the Breath of the Wild Archipelago world and the
 WiiXLaunch projects used to connect it to the game.
 
+## The Randomizer
+
+- Shrines and shrine chests give random items
+- Regions are locked behind towers, which are unlocked when received as items
+- Divine Beast maps and terminals are randomized
+- Sanctum is locked until you get the Master Sword
+- ~8-12 hour playtime
+
 ## Projects and data
 
 - [`BotWArchipelago/`](./BotWArchipelago/) contains the Archipelago world
