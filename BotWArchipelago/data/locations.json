@@ -2094,7 +2094,7 @@
       "name": "Voo Lota Shrine - Chest 2",
       "region": "Tabantha",
       "category": ["Tabantha Shrines", "Shrine Chests"],
-      "requires": ""
+      "requires": "|Vah Medoh Cleared|"
     },
     {
       "name": "Voo Lota Shrine",
