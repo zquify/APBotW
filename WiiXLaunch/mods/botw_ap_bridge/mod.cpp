@@ -58,6 +58,16 @@ static uint32_t LocalStringLength(const char* text) {
     return length;
 }
 
+static bool LocalStringsEqual(const char* left, const char* right) {
+    if (!left || !right) return false;
+
+    while (*left && *right) {
+        if (*left++ != *right++) return false;
+    }
+
+    return *left == *right;
+}
+
 extern "C" {
     extern void wiixl_import__wiixl_core__Log(const char* text);
     extern uint32_t wiixl_import__wiixl_core__RegisterTick(
@@ -180,6 +190,64 @@ static void FormatShrineCheck(
     buffer[pos] = '\0';
 }
 
+static void FormatPedestalCheck(
+    char* buffer,
+    std::size_t capacity,
+    std::size_t pedestal
+)
+{
+    if (capacity == 0)
+        return;
+
+    constexpr char prefix[] = "CHECK PEDESTAL ";
+    constexpr std::size_t prefixLength = sizeof(prefix) - 1;
+
+    if (capacity <= prefixLength)
+    {
+        buffer[0] = '\0';
+        return;
+    }
+
+    std::size_t pos = 0;
+
+    for (std::size_t i = 0; i < prefixLength; ++i)
+        buffer[pos++] = prefix[i];
+
+    char digits[20];
+    std::size_t digitCount = 0;
+
+    do
+    {
+        digits[digitCount++] =
+            static_cast<char>('0' + (pedestal % 10));
+
+        pedestal /= 10;
+    }
+    while (pedestal != 0 && digitCount < sizeof(digits));
+
+    while (digitCount > 0 && pos + 1 < capacity)
+        buffer[pos++] = digits[--digitCount];
+
+    buffer[pos] = '\0';
+}
+
+struct RunePedestalEntry
+{
+    const char* location_name;
+    const char* persistent_flag;
+    const char* actor_name;
+};
+
+static constexpr RunePedestalEntry kRunePedestals[] = {
+    {"Magnesis Pedestal", "IsGet_Obj_Magnetglove", "Obj_Magnetglove"},
+    {"Remote Bomb Pedestal", "IsGet_Obj_RemoteBomb", "Obj_RemoteBomb"},
+    {"Cryonis Pedestal", "IsGet_Obj_IceMaker", "Obj_IceMaker"},
+    {"Stasis Pedestal", "IsGet_Obj_StopTimer", "Obj_StopTimer"},
+};
+
+static constexpr std::size_t kRunePedestalCount =
+    sizeof(kRunePedestals) / sizeof(kRunePedestals[0]);
+
 using U32Fn = uint32_t (*)(void);
 using OpenFn = uint32_t (*)(uint32_t*);
 using HandleFn = uint32_t (*)(uint32_t);
@@ -242,6 +310,11 @@ static volatile bool
 
 static bool
     g_ShrineChestDetected[BotWAP::kShrineChestRegistrySize] = {};
+
+static volatile bool g_RunePedestalPending[kRunePedestalCount] = {};
+static bool g_RunePedestalDetected[kRunePedestalCount] = {};
+static bool g_RunePedestalLast[kRunePedestalCount] = {};
+static bool g_RunePedestalArmed[kRunePedestalCount] = {};
 
 static char g_DynamicResult[64];
 
@@ -516,7 +589,53 @@ static bool ParseAndGrant()
             }
         }
 
+        // Report a rune pedestal check by its fixed registry index.
+        for (std::size_t i = 0; i < kRunePedestalCount; ++i)
+        {
+            if (g_RunePedestalPending[i])
+            {
+                FormatPedestalCheck(
+                    g_DynamicResult,
+                    sizeof(g_DynamicResult),
+                    i
+                );
+
+                g_Result = g_DynamicResult;
+                return true;
+            }
+        }
+
         g_Result = "NONE\n";
+        return true;
+    }
+
+    // Acknowledge a rune pedestal check by its fixed index.
+    if (tokenCount == 3 &&
+        LocalStringLength(tokens[0]) == 3 &&
+        tokens[0][0] == 'A' &&
+        tokens[0][1] == 'C' &&
+        tokens[0][2] == 'K' &&
+        LocalStringLength(tokens[1]) == 8 &&
+        tokens[1][0] == 'P' &&
+        tokens[1][1] == 'E' &&
+        tokens[1][2] == 'D' &&
+        tokens[1][3] == 'E' &&
+        tokens[1][4] == 'S' &&
+        tokens[1][5] == 'T' &&
+        tokens[1][6] == 'A' &&
+        tokens[1][7] == 'L')
+    {
+        std::uint32_t pedestal = 0;
+
+        if (!ParseUnsigned32(tokens[2], &pedestal) ||
+            pedestal >= kRunePedestalCount)
+        {
+            g_Result = "ERR unknown check\n";
+            return false;
+        }
+
+        g_RunePedestalPending[pedestal] = false;
+        g_Result = "OK\n";
         return true;
     }
 
@@ -972,6 +1091,26 @@ static bool ParseAndGrant()
         return false;
     }
 
+    for (std::size_t i = 0; i < kRunePedestalCount; ++i)
+    {
+        if (!LocalStringsEqual(actor, kRunePedestals[i].actor_name)) {
+            continue;
+        }
+
+        bool runeUnlocked = false;
+        // Rune delivery sets the same game flag; it is not a pedestal check.
+        if (WiiXLaunch::BotW::GameData::GetFlagBool(
+                kRunePedestals[i].persistent_flag,
+                runeUnlocked
+            ) && runeUnlocked && !g_RunePedestalPending[i])
+        {
+            g_RunePedestalDetected[i] = true;
+            g_RunePedestalLast[i] = true;
+            g_RunePedestalArmed[i] = true;
+        }
+        break;
+    }
+
     if (hasModifier)
     {
         // Weapon modifiers are supported only for melee weapons,
@@ -1027,10 +1166,47 @@ static void ProbeShrineChestFlags()
     }
 }
 
+static void ProbeRunePedestalFlags()
+{
+    for (std::size_t i = 0; i < kRunePedestalCount; ++i)
+    {
+        if (g_RunePedestalDetected[i])
+            continue;
+
+        bool unlocked = false;
+        if (!WiiXLaunch::BotW::GameData::GetFlagBool(
+                kRunePedestals[i].persistent_flag,
+                unlocked
+            ))
+        {
+            continue;
+        }
+
+        if (!g_RunePedestalArmed[i])
+        {
+            // Existing runes in a loaded save must not become new checks.
+            g_RunePedestalArmed[i] = true;
+            g_RunePedestalLast[i] = unlocked;
+            g_RunePedestalDetected[i] = unlocked;
+            continue;
+        }
+
+        if (unlocked && !g_RunePedestalLast[i])
+        {
+            g_RunePedestalDetected[i] = true;
+            g_RunePedestalPending[i] = true;
+            g_Log("BotW AP bridge: rune pedestal check pending");
+        }
+
+        g_RunePedestalLast[i] = unlocked;
+    }
+}
+
 extern "C" __attribute__((used)) void WiiXLaunch_ModTick() {
     ApplyPendingHeartHeal();
     WiiXLaunch::BotW::Events::Tick();
     ProbeShrineChestFlags();
+    ProbeRunePedestalFlags();
 
     // Keep the physical region mask synchronized with the game's
     // MapTower_01 through MapTower_15 flags.

@@ -2364,7 +2364,7 @@
         "Gerudo Highlands Shrines",
         "Shrine Chests"
       ],
-      "requires": "(|@Cold Resistant Head| AND |@Cold Resistant Body||@Cold Resistant Head| AND |@Cold Resistant Body| AND |Snow Boots| AND |Magnesis|"
+      "requires": "(|@Cold Resistant Head| AND |@Cold Resistant Body|) AND |Snow Boots| AND |Magnesis|"
     },
     {
       "region": "Gerudo Highlands",
@@ -2372,7 +2372,7 @@
       "category": [
         "Gerudo Highlands Shrines"
       ],
-      "requires": "(|@Cold Resistant Head| AND |@Cold Resistant Body||@Cold Resistant Head| AND |@Cold Resistant Body| AND |Snow Boots| AND |Magnesis|"
+      "requires": "(|@Cold Resistant Head| AND |@Cold Resistant Body|) AND |Snow Boots| AND |Magnesis|"
     },
     {
       "name": "Sho Dantu Shrine - Chest",

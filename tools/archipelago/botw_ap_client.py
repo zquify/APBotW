@@ -147,9 +147,16 @@ def load_shrine_locations():
 
 SHRINE_LOCATIONS = load_shrine_locations()
 
+RUNE_PEDESTAL_LOCATIONS = (
+    "Magnesis Pedestal",
+    "Remote Bomb Pedestal",
+    "Cryonis Pedestal",
+    "Stasis Pedestal",
+)
+
 
 async def game_check_loop(ctx):
-    """Poll the bridge and report the Oman Au Shrine completion."""
+    """Poll the bridge and report BotW location checks."""
     while not ctx.exit_event.is_set():
         try:
             # Wait until Archipelago has authenticated this client.
@@ -216,6 +223,39 @@ async def game_check_loop(ctx):
                         logger.warning(
                             "Cannot resolve AP location ID for %r; "
                             "leaving chest check pending",
+                            check_name,
+                        )
+                        continue
+
+                elif response.startswith("CHECK PEDESTAL "):
+                    try:
+                        pedestal_index = int(
+                            response.removeprefix("CHECK PEDESTAL ").strip()
+                        )
+                    except ValueError:
+                        logger.warning(
+                            "Invalid pedestal-check response from bridge: %r",
+                            response,
+                        )
+                        continue
+
+                    if not (
+                        0 <= pedestal_index < len(RUNE_PEDESTAL_LOCATIONS)
+                    ):
+                        logger.warning(
+                            "Rune pedestal index out of range: %s",
+                            pedestal_index,
+                        )
+                        continue
+
+                    check_name = RUNE_PEDESTAL_LOCATIONS[pedestal_index]
+                    location_id = resolve_location_id(ctx, check_name)
+                    ack_command = f"ACK PEDESTAL {pedestal_index}"
+
+                    if location_id is None:
+                        logger.warning(
+                            "Cannot resolve AP location ID for %r; "
+                            "leaving pedestal check pending",
                             check_name,
                         )
                         continue
